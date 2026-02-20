@@ -6,420 +6,203 @@
     <title>QuizForge</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --bg: #000000;
-            --surface: #1c1c1e;
-            --surface2: #2c2c2e;
-            --surface3: #3a3a3c;
-            --text: #ffffff;
-            --text-secondary: #8e8e93;
-            --accent: #ffffff;
-            --border: rgba(255,255,255,0.08);
-            --border-light: rgba(255,255,255,0.12);
-            --success: #30d158;
-            --error: #ff453a;
-            --warning: #ffd60a;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .app-container { max-width: 720px; margin: 0 auto; padding: 20px; min-height: 100vh; }
-
-        .header { text-align: center; padding: 60px 0 40px; }
-        .header-logo {
-            width: 68px; height: 68px; background: var(--text); border-radius: 18px;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-size: 34px;
-            box-shadow: 0 8px 32px rgba(255,255,255,0.1);
-        }
-        .header h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
-        .header p { font-size: 17px; color: var(--text-secondary); font-weight: 400; line-height: 1.5; }
-
-        .nav-tabs { display: flex; background: var(--surface); border-radius: 12px; padding: 4px; margin-bottom: 32px; gap: 4px; }
-        .nav-tab {
-            flex: 1; padding: 10px 16px; border: none; background: transparent;
-            color: var(--text-secondary); font-size: 15px; font-weight: 500;
-            border-radius: 10px; cursor: pointer; transition: all 0.3s; font-family: inherit;
-        }
-        .nav-tab.active { background: var(--surface3); color: var(--text); }
-        .nav-tab:hover:not(.active) { color: var(--text); }
-
-        .section { display: none; animation: fadeIn 0.4s ease; }
-        .section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .card {
-            background: var(--surface); border-radius: 16px; padding: 24px;
-            margin-bottom: 16px; border: 1px solid var(--border); transition: border-color 0.3s;
-        }
-        .card:hover { border-color: var(--border-light); }
-        .card-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.3px; }
-        .card-subtitle { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5; }
-
-        .prompt-box {
-            background: var(--surface2); border-radius: 12px; padding: 20px;
-            margin-bottom: 16px; position: relative; border: 1px solid var(--border);
-        }
-        .prompt-box pre {
-            font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px;
-            line-height: 1.65; white-space: pre-wrap; word-wrap: break-word;
-            color: var(--text-secondary); max-height: 340px; overflow-y: auto;
-        }
-        .prompt-box pre::-webkit-scrollbar { width: 6px; }
-        .prompt-box pre::-webkit-scrollbar-track { background: transparent; }
-        .prompt-box pre::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 3px; }
-
-        .copy-btn {
-            position: absolute; top: 12px; right: 12px; padding: 8px 16px;
-            background: var(--surface3); border: none; border-radius: 8px;
-            color: var(--text); font-size: 13px; font-weight: 500;
-            cursor: pointer; transition: all 0.2s; font-family: inherit;
-        }
-        .copy-btn:hover { background: var(--text); color: var(--bg); }
-        .copy-btn.copied { background: var(--success); color: #000; }
-
-        .input-area {
-            width: 100%; min-height: 200px; background: var(--surface2);
-            border: 1px solid var(--border); border-radius: 12px; padding: 16px;
-            color: var(--text); font-size: 13px; font-family: 'SF Mono', monospace;
-            line-height: 1.6; resize: vertical; outline: none; transition: border-color 0.3s;
-        }
-        .input-area:focus { border-color: rgba(255,255,255,0.3); }
-        .input-area::placeholder { color: var(--surface3); }
-
-        .btn-primary {
-            width: 100%; padding: 16px 24px; background: var(--text); color: var(--bg);
-            border: none; border-radius: 14px; font-size: 17px; font-weight: 600;
-            cursor: pointer; transition: all 0.3s; font-family: inherit; margin-top: 16px;
-        }
-        .btn-primary:hover { opacity: 0.9; transform: scale(0.99); }
-        .btn-primary:active { transform: scale(0.97); }
-        .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
-
-        .btn-secondary {
-            padding: 12px 24px; background: var(--surface2); color: var(--text);
-            border: 1px solid var(--border); border-radius: 12px; font-size: 15px;
-            font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: inherit;
-        }
-        .btn-secondary:hover { background: var(--surface3); }
-
-        .settings-row { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
-        .toggle-container {
-            display: flex; align-items: center; gap: 12px; background: var(--surface2);
-            border: 1px solid var(--border); border-radius: 12px; padding: 12px 18px;
-            flex: 1; min-width: 200px; cursor: pointer; transition: all 0.2s; user-select: none;
-        }
-        .toggle-container:hover { border-color: var(--border-light); }
-        .toggle-container .toggle-label { font-size: 15px; font-weight: 500; flex: 1; }
-        .toggle-container .toggle-sublabel { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
-
-        .toggle-switch {
-            width: 51px; height: 31px; min-width: 51px; background: var(--surface3);
-            border-radius: 16px; position: relative; transition: background 0.3s; cursor: pointer;
-        }
-        .toggle-switch.active { background: var(--success); }
-        .toggle-switch::after {
-            content: ''; position: absolute; width: 27px; height: 27px;
-            background: #fff; border-radius: 50%; top: 2px; left: 2px;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .toggle-switch.active::after { transform: translateX(20px); }
-
-        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-        .quiz-progress { font-size: 15px; color: var(--text-secondary); font-weight: 500; }
-        .progress-bar-container { width: 100%; height: 4px; background: var(--surface2); border-radius: 2px; margin-bottom: 32px; overflow: hidden; }
-        .progress-bar { height: 100%; background: var(--text); border-radius: 2px; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-
-        .question-type-badge {
-            display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 1.5px; padding: 4px 10px; border-radius: 6px; margin-bottom: 12px;
-        }
-        .badge-mcq { background: rgba(255,255,255,0.1); color: var(--text-secondary); }
-        .badge-tf { background: rgba(255, 214, 10, 0.12); color: var(--warning); }
-        .badge-short { background: rgba(48, 209, 88, 0.12); color: var(--success); }
-
-        .question-number { font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 12px; }
-        .question-text { font-size: 24px; font-weight: 600; line-height: 1.35; margin-bottom: 32px; letter-spacing: -0.3px; }
-
-        .options-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
-        .option-btn {
-            width: 100%; padding: 18px 20px; background: var(--surface);
-            border: 1.5px solid var(--border-light); border-radius: 14px;
-            color: var(--text); font-size: 17px; font-weight: 400; cursor: pointer;
-            transition: all 0.25s; font-family: inherit; text-align: left;
-            display: flex; align-items: center; gap: 14px; line-height: 1.4;
-        }
-        .option-btn:hover:not(:disabled) { border-color: rgba(255,255,255,0.3); background: var(--surface2); }
-        .option-btn .option-letter {
-            width: 32px; height: 32px; min-width: 32px; border-radius: 50%;
-            background: var(--surface2); display: flex; align-items: center;
-            justify-content: center; font-size: 14px; font-weight: 600; transition: all 0.25s;
-        }
-        .option-btn.selected { border-color: var(--text); background: var(--surface2); }
-        .option-btn.selected .option-letter { background: var(--text); color: var(--bg); }
-        .option-btn.correct { border-color: var(--success); background: rgba(48, 209, 88, 0.1); }
-        .option-btn.correct .option-letter { background: var(--success); color: #000; }
-        .option-btn.incorrect { border-color: var(--error); background: rgba(255, 69, 58, 0.1); }
-        .option-btn.incorrect .option-letter { background: var(--error); color: #fff; }
-        .option-btn:disabled { cursor: default; }
-
-        .tf-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
-        .tf-btn {
-            padding: 28px 20px; background: var(--surface); border: 1.5px solid var(--border-light);
-            border-radius: 14px; color: var(--text); font-size: 18px; font-weight: 600;
-            cursor: pointer; transition: all 0.25s; font-family: inherit; text-align: center;
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
-        }
-        .tf-btn .tf-icon { font-size: 28px; transition: transform 0.3s; }
-        .tf-btn:hover:not(:disabled) { border-color: rgba(255,255,255,0.3); background: var(--surface2); }
-        .tf-btn:hover:not(:disabled) .tf-icon { transform: scale(1.1); }
-        .tf-btn.selected { border-color: var(--text); background: var(--surface2); }
-        .tf-btn.correct { border-color: var(--success); background: rgba(48, 209, 88, 0.1); }
-        .tf-btn.incorrect { border-color: var(--error); background: rgba(255, 69, 58, 0.1); }
-        .tf-btn:disabled { cursor: default; }
-
-        /* Short answer */
-        .short-answer-container { margin-bottom: 24px; }
-        .short-input {
-            width: 100%; padding: 16px 20px; background: var(--surface);
-            border: 1.5px solid var(--border-light); border-radius: 14px;
-            color: var(--text); font-size: 17px; font-family: inherit;
-            outline: none; transition: all 0.3s;
-        }
-        .short-input:focus { border-color: rgba(255,255,255,0.4); }
-        .short-input::placeholder { color: var(--surface3); }
-        .short-input.correct { border-color: var(--success); background: rgba(48,209,88,0.08); }
-        .short-input.incorrect { border-color: var(--error); background: rgba(255,69,58,0.08); }
-        .short-input:disabled { opacity: 0.7; cursor: default; }
-
-        .short-submit-btn {
-            margin-top: 12px; padding: 14px 24px; background: var(--text); color: var(--bg);
-            border: none; border-radius: 12px; font-size: 16px; font-weight: 600;
-            cursor: pointer; font-family: inherit; width: 100%; transition: all 0.2s;
-        }
-        .short-submit-btn:hover { opacity: 0.9; }
-        .short-submit-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-        .correct-answer-reveal {
-            margin-top: 12px; padding: 12px 16px; background: rgba(48,209,88,0.1);
-            border: 1px solid rgba(48,209,88,0.2); border-radius: 10px;
-            font-size: 15px; color: var(--success); animation: fadeIn 0.3s;
-        }
-        .correct-answer-reveal span { font-weight: 600; }
-
-        .accepted-answers {
-            margin-top: 8px; font-size: 13px; color: var(--text-secondary);
-        }
-
-        .explanation-box {
-            background: var(--surface2); border-radius: 12px; padding: 16px 20px;
-            margin-top: 16px; border-left: 3px solid var(--text-secondary); animation: fadeIn 0.3s;
-        }
-        .explanation-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 6px; }
-        .explanation-text { font-size: 15px; line-height: 1.5; color: var(--text-secondary); }
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#000;--surface:#1c1c1e;--surface2:#2c2c2e;--surface3:#3a3a3c;--text:#fff;--text-secondary:#8e8e93;--border:rgba(255,255,255,0.08);--border-light:rgba(255,255,255,0.12);--success:#30d158;--error:#ff453a;--warning:#ffd60a}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+        .app-container{max-width:720px;margin:0 auto;padding:20px;min-height:100vh}
+        .header{text-align:center;padding:60px 0 40px}
+        .header-logo{width:68px;height:68px;background:var(--text);border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:34px;box-shadow:0 8px 32px rgba(255,255,255,0.1)}
+        .header h1{font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+        .header p{font-size:17px;color:var(--text-secondary);line-height:1.5}
+        .nav-tabs{display:flex;background:var(--surface);border-radius:12px;padding:4px;margin-bottom:32px;gap:4px}
+        .nav-tab{flex:1;padding:10px 16px;border:none;background:transparent;color:var(--text-secondary);font-size:15px;font-weight:500;border-radius:10px;cursor:pointer;transition:all .3s;font-family:inherit}
+        .nav-tab.active{background:var(--surface3);color:var(--text)}
+        .nav-tab:hover:not(.active){color:var(--text)}
+        .section{display:none;animation:fadeIn .4s ease}
+        .section.active{display:block}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        .card{background:var(--surface);border-radius:16px;padding:24px;margin-bottom:16px;border:1px solid var(--border);transition:border-color .3s}
+        .card:hover{border-color:var(--border-light)}
+        .card-title{font-size:20px;font-weight:600;margin-bottom:8px;letter-spacing:-.3px}
+        .card-subtitle{font-size:15px;color:var(--text-secondary);margin-bottom:20px;line-height:1.5}
+        .prompt-box{background:var(--surface2);border-radius:12px;padding:20px;margin-bottom:16px;position:relative;border:1px solid var(--border)}
+        .prompt-box pre{font-family:'SF Mono','Fira Code',monospace;font-size:12px;line-height:1.65;white-space:pre-wrap;word-wrap:break-word;color:var(--text-secondary);max-height:340px;overflow-y:auto}
+        .prompt-box pre::-webkit-scrollbar{width:6px}
+        .prompt-box pre::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:3px}
+        .copy-btn{position:absolute;top:12px;right:12px;padding:8px 16px;background:var(--surface3);border:none;border-radius:8px;color:var(--text);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
+        .copy-btn:hover{background:var(--text);color:var(--bg)}
+        .copy-btn.copied{background:var(--success);color:#000}
+        .input-area{width:100%;min-height:200px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;color:var(--text);font-size:13px;font-family:'SF Mono',monospace;line-height:1.6;resize:vertical;outline:none;transition:border-color .3s}
+        .input-area:focus{border-color:rgba(255,255,255,0.3)}
+        .input-area::placeholder{color:var(--surface3)}
+        .btn-primary{width:100%;padding:16px 24px;background:var(--text);color:var(--bg);border:none;border-radius:14px;font-size:17px;font-weight:600;cursor:pointer;transition:all .3s;font-family:inherit;margin-top:16px}
+        .btn-primary:hover{opacity:.9;transform:scale(.99)}
+        .btn-primary:active{transform:scale(.97)}
+        .btn-primary:disabled{opacity:.3;cursor:not-allowed;transform:none}
+        .btn-secondary{padding:12px 24px;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:12px;font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
+        .btn-secondary:hover{background:var(--surface3)}
+        .settings-row{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+        .toggle-container{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 18px;flex:1;min-width:200px;cursor:pointer;transition:all .2s;user-select:none}
+        .toggle-container:hover{border-color:var(--border-light)}
+        .toggle-label{font-size:15px;font-weight:500;flex:1}
+        .toggle-sublabel{font-size:12px;color:var(--text-secondary);margin-top:2px}
+        .toggle-switch{width:51px;height:31px;min-width:51px;background:var(--surface3);border-radius:16px;position:relative;transition:background .3s;cursor:pointer}
+        .toggle-switch.active{background:var(--success)}
+        .toggle-switch::after{content:'';position:absolute;width:27px;height:27px;background:#fff;border-radius:50%;top:2px;left:2px;transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:0 2px 4px rgba(0,0,0,.3)}
+        .toggle-switch.active::after{transform:translateX(20px)}
+        .quiz-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+        .quiz-progress{font-size:15px;color:var(--text-secondary);font-weight:500}
+        .progress-bar-container{width:100%;height:4px;background:var(--surface2);border-radius:2px;margin-bottom:32px;overflow:hidden}
+        .progress-bar{height:100%;background:var(--text);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+        .question-type-badge{display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;padding:4px 10px;border-radius:6px;margin-bottom:12px}
+        .badge-mcq{background:rgba(255,255,255,0.1);color:var(--text-secondary)}
+        .badge-tf{background:rgba(255,214,10,0.12);color:var(--warning)}
+        .badge-short{background:rgba(48,209,88,0.12);color:var(--success)}
+        .question-number{font-size:13px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:12px}
+        .question-text{font-size:24px;font-weight:600;line-height:1.35;margin-bottom:32px;letter-spacing:-.3px}
+        .options-list{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+        .option-btn{width:100%;padding:18px 20px;background:var(--surface);border:1.5px solid var(--border-light);border-radius:14px;color:var(--text);font-size:17px;font-weight:400;cursor:pointer;transition:all .25s;font-family:inherit;text-align:left;display:flex;align-items:center;gap:14px;line-height:1.4}
+        .option-btn:hover:not(:disabled){border-color:rgba(255,255,255,0.3);background:var(--surface2)}
+        .option-btn .option-letter{width:32px;height:32px;min-width:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;transition:all .25s}
+        .option-btn.correct{border-color:var(--success);background:rgba(48,209,88,0.1)}
+        .option-btn.correct .option-letter{background:var(--success);color:#000}
+        .option-btn.incorrect{border-color:var(--error);background:rgba(255,69,58,0.1)}
+        .option-btn.incorrect .option-letter{background:var(--error);color:#fff}
+        .option-btn:disabled{cursor:default}
+        .tf-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+        .tf-btn{padding:28px 20px;background:var(--surface);border:1.5px solid var(--border-light);border-radius:14px;color:var(--text);font-size:18px;font-weight:600;cursor:pointer;transition:all .25s;font-family:inherit;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+        .tf-btn .tf-icon{font-size:28px;transition:transform .3s}
+        .tf-btn:hover:not(:disabled){border-color:rgba(255,255,255,0.3);background:var(--surface2)}
+        .tf-btn:hover:not(:disabled) .tf-icon{transform:scale(1.1)}
+        .tf-btn.correct{border-color:var(--success);background:rgba(48,209,88,0.1)}
+        .tf-btn.incorrect{border-color:var(--error);background:rgba(255,69,58,0.1)}
+        .tf-btn:disabled{cursor:default}
+        .short-answer-container{margin-bottom:24px}
+        .short-input{width:100%;padding:16px 20px;background:var(--surface);border:1.5px solid var(--border-light);border-radius:14px;color:var(--text);font-size:17px;font-family:inherit;outline:none;transition:all .3s}
+        .short-input:focus{border-color:rgba(255,255,255,0.4)}
+        .short-input::placeholder{color:var(--surface3)}
+        .short-input.correct{border-color:var(--success);background:rgba(48,209,88,0.08)}
+        .short-input.incorrect{border-color:var(--error);background:rgba(255,69,58,0.08)}
+        .short-input:disabled{opacity:.7;cursor:default}
+        .short-submit-btn{margin-top:12px;padding:14px 24px;background:var(--text);color:var(--bg);border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;transition:all .2s}
+        .short-submit-btn:hover{opacity:.9}
+        .short-submit-btn:disabled{opacity:.3;cursor:not-allowed}
+        .correct-answer-reveal{margin-top:12px;padding:12px 16px;background:rgba(48,209,88,0.1);border:1px solid rgba(48,209,88,0.2);border-radius:10px;font-size:15px;color:var(--success);animation:fadeIn .3s}
+        .correct-answer-reveal span{font-weight:600}
+        .accepted-answers{margin-top:8px;font-size:13px;color:var(--text-secondary)}
+        .explanation-box{background:var(--surface2);border-radius:12px;padding:16px 20px;margin-top:16px;border-left:3px solid var(--text-secondary);animation:fadeIn .3s}
+        .explanation-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-secondary);margin-bottom:6px}
+        .explanation-text{font-size:15px;line-height:1.5;color:var(--text-secondary)}
 
         /* Whiteboard FAB */
-        .whiteboard-fab {
-            position: fixed; bottom: 28px; right: 28px; width: 56px; height: 56px;
-            background: var(--text); color: var(--bg); border: none; border-radius: 50%;
-            font-size: 24px; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s; z-index: 999;
-        }
-        .whiteboard-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,0,0,0.6); }
-        .whiteboard-fab:active { transform: scale(0.95); }
-        .whiteboard-fab.hidden { display: none; }
+        .whiteboard-fab{position:fixed;bottom:28px;right:28px;width:56px;height:56px;background:var(--text);color:var(--bg);border:none;border-radius:50%;font-size:24px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:50}
+        .whiteboard-fab:hover{transform:scale(1.08)}
+        .whiteboard-fab:active{transform:scale(.95)}
+        .whiteboard-fab.hidden{display:none}
 
-        /* Whiteboard Window */
-        .wb-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); z-index: 1000; backdrop-filter: blur(4px);
-        }
-        .wb-overlay.show { display: flex; align-items: center; justify-content: center; }
+        /* Whiteboard Overlay */
+        .wb-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:9000}
+        .wb-overlay.show{display:block}
+        .wb-window{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--surface);border:1px solid var(--border-light);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.6);min-width:340px;min-height:280px;width:680px;height:520px;z-index:9001}
+        .wb-window.resizable{resize:both;overflow:auto}
+        .wb-titlebar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border);user-select:none;flex-shrink:0;cursor:grab;touch-action:none}
+        .wb-titlebar:active{cursor:grabbing}
+        .wb-title{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+        .wb-controls{display:flex;gap:8px;align-items:center}
+        .wb-ctrl-btn{width:32px;height:32px;border:none;border-radius:8px;background:var(--surface3);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s;touch-action:manipulation}
+        .wb-ctrl-btn:hover{background:rgba(255,255,255,.15);color:var(--text)}
+        .wb-ctrl-btn.close-btn:hover{background:var(--error);color:#fff}
+        .wb-toolbar{display:flex;align-items:center;gap:6px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap}
+        .wb-tool-btn{width:36px;height:36px;border:1.5px solid transparent;border-radius:8px;background:var(--surface2);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;touch-action:manipulation}
+        .wb-tool-btn:hover{border-color:var(--border-light);color:var(--text)}
+        .wb-tool-btn.active{border-color:var(--text);color:var(--text);background:var(--surface3)}
+        .wb-separator{width:1px;height:24px;background:var(--border);margin:0 4px}
+        .wb-size-group{display:flex;align-items:center;gap:4px}
+        .wb-size-btn{width:28px;height:28px;border:1.5px solid transparent;border-radius:6px;background:var(--surface2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;touch-action:manipulation}
+        .wb-size-btn:hover{border-color:var(--border-light)}
+        .wb-size-btn.active{border-color:var(--text)}
+        .wb-size-btn .dot{border-radius:50%;background:var(--text)}
+        .wb-color-btn{width:28px;height:28px;border:2px solid transparent;border-radius:50%;cursor:pointer;transition:all .2s;touch-action:manipulation}
+        .wb-color-btn:hover{transform:scale(1.15)}
+        .wb-color-btn.active{border-color:var(--text);box-shadow:0 0 0 2px var(--bg)}
+        .wb-canvas-wrap{flex:1;position:relative;overflow:hidden;background:#1a1a1a}
+        .wb-canvas-wrap.light-bg{background:#ffffff}
+        #wb-canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
 
-        .wb-window {
-            position: absolute; background: var(--surface); border: 1px solid var(--border-light);
-            border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
-            box-shadow: 0 24px 80px rgba(0,0,0,0.6); min-width: 340px; min-height: 280px;
-            resize: both;
-        }
-
-        .wb-titlebar {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 16px; background: var(--surface2); cursor: grab;
-            border-bottom: 1px solid var(--border); user-select: none; flex-shrink: 0;
-        }
-        .wb-titlebar:active { cursor: grabbing; }
-        .wb-title { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-        .wb-title-icon { font-size: 16px; }
-
-        .wb-controls { display: flex; gap: 8px; align-items: center; }
-        .wb-ctrl-btn {
-            width: 32px; height: 32px; border: none; border-radius: 8px;
-            background: var(--surface3); color: var(--text-secondary); cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 14px; transition: all 0.2s;
-        }
-        .wb-ctrl-btn:hover { background: rgba(255,255,255,0.15); color: var(--text); }
-        .wb-ctrl-btn.close-btn:hover { background: var(--error); color: #fff; }
-
-        .wb-toolbar {
-            display: flex; align-items: center; gap: 6px; padding: 10px 16px;
-            background: var(--surface); border-bottom: 1px solid var(--border); flex-shrink: 0;
-            flex-wrap: wrap;
-        }
-
-        .wb-tool-btn {
-            width: 36px; height: 36px; border: 1.5px solid transparent; border-radius: 8px;
-            background: var(--surface2); color: var(--text-secondary); cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; transition: all 0.2s;
-        }
-        .wb-tool-btn:hover { border-color: var(--border-light); color: var(--text); }
-        .wb-tool-btn.active { border-color: var(--text); color: var(--text); background: var(--surface3); }
-
-        .wb-separator { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
-
-        .wb-size-group { display: flex; align-items: center; gap: 4px; }
-        .wb-size-btn {
-            width: 28px; height: 28px; border: 1.5px solid transparent; border-radius: 6px;
-            background: var(--surface2); cursor: pointer; display: flex;
-            align-items: center; justify-content: center; transition: all 0.2s;
-        }
-        .wb-size-btn:hover { border-color: var(--border-light); }
-        .wb-size-btn.active { border-color: var(--text); }
-        .wb-size-btn .dot {
-            border-radius: 50%; background: var(--text);
-        }
-
-        .wb-color-btn {
-            width: 28px; height: 28px; border: 2px solid transparent; border-radius: 50%;
-            cursor: pointer; transition: all 0.2s;
-        }
-        .wb-color-btn:hover { transform: scale(1.15); }
-        .wb-color-btn.active { border-color: var(--text); box-shadow: 0 0 0 2px var(--bg); }
-
-        .wb-canvas-container {
-            flex: 1; background: #ffffff; position: relative; overflow: hidden;
-        }
-        .wb-canvas-container.dark { background: #1a1a1a; }
-
-        .wb-canvas {
-            width: 100%; height: 100%; cursor: crosshair; display: block;
-        }
-
-        /* Fullscreen whiteboard */
-        .wb-window.fullscreen {
-            position: fixed !important; top: 0 !important; left: 0 !important;
-            width: 100vw !important; height: 100vh !important;
-            border-radius: 0; resize: none;
-            max-width: 100vw !important; max-height: 100vh !important;
-        }
+        .wb-window.fullscreen{top:0!important;left:0!important;width:100vw!important;height:100vh!important;transform:none!important;border-radius:0;resize:none!important;max-width:none!important;max-height:none!important}
 
         /* Results */
-        .results-card { text-align: center; padding: 48px 24px; }
-        .results-score-circle {
-            width: 160px; height: 160px; border-radius: 50%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            margin: 0 auto 32px; position: relative;
-        }
-        .results-score-circle svg { position: absolute; top: -2px; left: -2px; transform: rotate(-90deg); }
-        .results-percentage { font-size: 48px; font-weight: 800; letter-spacing: -2px; }
-        .results-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
-        .results-message { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; }
-        .results-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
-        .stat-item { background: var(--surface2); border-radius: 12px; padding: 16px; }
-        .stat-value { font-size: 28px; font-weight: 700; letter-spacing: -1px; }
-        .stat-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat-value.correct-color { color: var(--success); }
-        .stat-value.incorrect-color { color: var(--error); }
-        .results-actions { display: flex; gap: 12px; margin-top: 24px; }
-        .results-actions button { flex: 1; }
-
-        .review-item { background: var(--surface); border-radius: 14px; padding: 20px; margin-bottom: 12px; border: 1px solid var(--border); }
-        .review-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-        .review-badge { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .review-badge.correct { background: rgba(48,209,88,0.15); color: var(--success); }
-        .review-badge.incorrect { background: rgba(255,69,58,0.15); color: var(--error); }
-        .review-question { font-size: 17px; font-weight: 500; line-height: 1.4; margin-bottom: 12px; }
-        .review-answer { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
-        .review-answer span { color: var(--text); font-weight: 500; }
-
-        .steps { display: flex; flex-direction: column; gap: 16px; margin: 24px 0; }
-        .step { display: flex; gap: 16px; align-items: flex-start; }
-        .step-number {
-            width: 32px; height: 32px; min-width: 32px; border-radius: 50%;
-            background: var(--surface2); display: flex; align-items: center;
-            justify-content: center; font-size: 14px; font-weight: 600; color: var(--text-secondary);
-        }
-        .step-content { flex: 1; }
-        .step-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-        .step-content p { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
-
-        .toast {
-            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%) translateY(100px);
-            background: var(--surface2); color: var(--text); padding: 14px 24px;
-            border-radius: 14px; font-size: 15px; font-weight: 500;
-            border: 1px solid var(--border); z-index: 2000;
-            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-            backdrop-filter: blur(20px); max-width: 90%; text-align: center;
-        }
-        .toast.show { transform: translateX(-50%) translateY(0); }
-        .toast.error { border-color: var(--error); }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 4px; }
-
-        @media (max-width: 600px) {
-            .app-container { padding: 16px; }
-            .header { padding: 40px 0 30px; }
-            .header h1 { font-size: 28px; }
-            .question-text { font-size: 20px; }
-            .results-stats { gap: 10px; }
-            .stat-value { font-size: 22px; }
-            .results-actions { flex-direction: column; }
-            .nav-tab { font-size: 13px; padding: 10px 12px; }
-            .settings-row { flex-direction: column; }
-            .toggle-container { min-width: unset; }
-            .whiteboard-fab { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 20px; }
+        .results-card{text-align:center;padding:48px 24px}
+        .results-score-circle{width:160px;height:160px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 32px;position:relative}
+        .results-score-circle svg{position:absolute;top:-2px;left:-2px;transform:rotate(-90deg)}
+        .results-percentage{font-size:48px;font-weight:800;letter-spacing:-2px}
+        .results-label{font-size:13px;color:var(--text-secondary);font-weight:500;text-transform:uppercase;letter-spacing:1px}
+        .results-message{font-size:17px;color:var(--text-secondary);margin-bottom:32px}
+        .results-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+        .stat-item{background:var(--surface2);border-radius:12px;padding:16px}
+        .stat-value{font-size:28px;font-weight:700;letter-spacing:-1px}
+        .stat-label{font-size:12px;color:var(--text-secondary);font-weight:500;margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+        .stat-value.correct-color{color:var(--success)}
+        .stat-value.incorrect-color{color:var(--error)}
+        .results-actions{display:flex;gap:12px;margin-top:24px}
+        .results-actions button{flex:1}
+        .review-item{background:var(--surface);border-radius:14px;padding:20px;margin-bottom:12px;border:1px solid var(--border)}
+        .review-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+        .review-badge{font-size:12px;font-weight:600;padding:4px 10px;border-radius:6px;text-transform:uppercase;letter-spacing:.5px}
+        .review-badge.correct{background:rgba(48,209,88,.15);color:var(--success)}
+        .review-badge.incorrect{background:rgba(255,69,58,.15);color:var(--error)}
+        .review-question{font-size:17px;font-weight:500;line-height:1.4;margin-bottom:12px}
+        .review-answer{font-size:14px;color:var(--text-secondary);line-height:1.5}
+        .review-answer span{color:var(--text);font-weight:500}
+        .steps{display:flex;flex-direction:column;gap:16px;margin:24px 0}
+        .step{display:flex;gap:16px;align-items:flex-start}
+        .step-number{width:32px;height:32px;min-width:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--text-secondary)}
+        .step-content{flex:1}
+        .step-content h4{font-size:15px;font-weight:600;margin-bottom:4px}
+        .step-content p{font-size:14px;color:var(--text-secondary);line-height:1.5}
+        .toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--surface2);color:var(--text);padding:14px 24px;border-radius:14px;font-size:15px;font-weight:500;border:1px solid var(--border);z-index:20000;transition:transform .4s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(20px);max-width:90%;text-align:center}
+        .toast.show{transform:translateX(-50%) translateY(0)}
+        .toast.error{border-color:var(--error)}
+        ::-webkit-scrollbar{width:8px}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:4px}
+        @media(max-width:600px){
+            .app-container{padding:16px}
+            .header{padding:40px 0 30px}
+            .header h1{font-size:28px}
+            .question-text{font-size:20px}
+            .results-stats{gap:10px}
+            .stat-value{font-size:22px}
+            .results-actions{flex-direction:column}
+            .nav-tab{font-size:13px;padding:10px 12px}
+            .settings-row{flex-direction:column}
+            .toggle-container{min-width:unset}
+            .whiteboard-fab{bottom:20px;right:20px;width:50px;height:50px;font-size:20px}
+            .wb-window{width:95vw!important;height:70vh!important}
         }
     </style>
 </head>
 <body>
-
 <div class="app-container">
     <header class="header">
         <div class="header-logo"><span style="color:#000;font-weight:800;">Q</span></div>
         <h1>QuizForge</h1>
         <p>Generate quizzes with AI. Learn smarter.</p>
     </header>
-
     <nav class="nav-tabs">
         <button class="nav-tab active" onclick="showSection('prompt')">Prompt</button>
         <button class="nav-tab" onclick="showSection('import')">Import</button>
         <button class="nav-tab" onclick="showSection('quiz')">Quiz</button>
     </nav>
 
-    <!-- PROMPT SECTION -->
     <div id="section-prompt" class="section active">
         <div class="card">
             <h3 class="card-title">How It Works</h3>
             <p class="card-subtitle">Three simple steps to create your quiz.</p>
             <div class="steps">
                 <div class="step"><div class="step-number">1</div><div class="step-content"><h4>Copy the Prompt</h4><p>Copy the prompt below into any AI — ChatGPT, Claude, Gemini, etc.</p></div></div>
-                <div class="step"><div class="step-number">2</div><div class="step-content"><h4>Add Your Topic</h4><p>Append your topic. AI generates MCQ, True/False & Short Answer questions on the most important parts.</p></div></div>
-                <div class="step"><div class="step-number">3</div><div class="step-content"><h4>Import & Quiz</h4><p>Paste the output into Import, enable shuffle if you want, and start. Use the scratchpad for calculations!</p></div></div>
+                <div class="step"><div class="step-number">2</div><div class="step-content"><h4>Add Your Topic</h4><p>Append your topic. AI generates MCQ, True/False &amp; Short Answer on the most important parts.</p></div></div>
+                <div class="step"><div class="step-number">3</div><div class="step-content"><h4>Import &amp; Quiz</h4><p>Paste output into Import, shuffle if desired, and start. Use the scratchpad for calculations!</p></div></div>
             </div>
         </div>
         <div class="card">
@@ -473,62 +256,49 @@ Output ONLY the JSON array. Now generate a quiz focusing on the most important c
         </div>
     </div>
 
-    <!-- IMPORT SECTION -->
     <div id="section-import" class="section">
         <div class="card">
             <h3 class="card-title">Import Questions</h3>
-            <p class="card-subtitle">Paste the JSON output from your AI below. Supports MCQ, True/False & Short Answer.</p>
+            <p class="card-subtitle">Paste the JSON output from your AI below. Supports MCQ, True/False &amp; Short Answer.</p>
             <textarea id="json-input" class="input-area" placeholder='Paste the AI-generated JSON here...'></textarea>
             <div class="settings-row">
-                <div class="toggle-container" onclick="toggleShuffle()">
-                    <div><div class="toggle-label">Shuffle Questions</div><div class="toggle-sublabel">Randomize question order</div></div>
-                    <div class="toggle-switch" id="shuffle-toggle"></div>
-                </div>
-                <div class="toggle-container" onclick="toggleShuffleOptions()">
-                    <div><div class="toggle-label">Shuffle Options</div><div class="toggle-sublabel">Randomize MCQ choices</div></div>
-                    <div class="toggle-switch" id="shuffle-options-toggle"></div>
-                </div>
+                <div class="toggle-container" onclick="toggleShuffle()"><div><div class="toggle-label">Shuffle Questions</div><div class="toggle-sublabel">Randomize question order</div></div><div class="toggle-switch" id="shuffle-toggle"></div></div>
+                <div class="toggle-container" onclick="toggleShuffleOptions()"><div><div class="toggle-label">Shuffle Options</div><div class="toggle-sublabel">Randomize MCQ choices</div></div><div class="toggle-switch" id="shuffle-options-toggle"></div></div>
             </div>
             <button class="btn-primary" onclick="loadQuiz()">Load Quiz</button>
         </div>
         <div class="card">
             <h3 class="card-title">Try a Sample</h3>
-            <p class="card-subtitle">See how it works with a sample quiz including all three question types.</p>
-            <button class="btn-secondary" onclick="loadSample()" style="width:100%;">Load Sample Quiz</button>
+            <p class="card-subtitle">See how it works with all three question types.</p>
+            <button class="btn-secondary" onclick="loadSample()" style="width:100%">Load Sample Quiz</button>
         </div>
     </div>
 
-    <!-- QUIZ SECTION -->
     <div id="section-quiz" class="section">
-        <div id="quiz-empty" style="text-align:center;padding:60px 20px;">
-            <div style="font-size:48px;margin-bottom:16px;">📝</div>
-            <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;">No Quiz Loaded</h3>
-            <p style="color:var(--text-secondary);font-size:15px;margin-bottom:24px;">Import questions first to start.</p>
+        <div id="quiz-empty" style="text-align:center;padding:60px 20px">
+            <div style="font-size:48px;margin-bottom:16px">📝</div>
+            <h3 style="font-size:20px;font-weight:600;margin-bottom:8px">No Quiz Loaded</h3>
+            <p style="color:var(--text-secondary);font-size:15px;margin-bottom:24px">Import questions first to start.</p>
             <button class="btn-secondary" onclick="showSection('import')">Go to Import</button>
         </div>
-
-        <div id="quiz-active" style="display:none;">
+        <div id="quiz-active" style="display:none">
             <div class="quiz-header">
-                <span class="quiz-progress" id="quiz-progress">Question 1 of 10</span>
+                <span class="quiz-progress" id="quiz-progress"></span>
                 <span class="quiz-progress" id="quiz-score">Score: 0</span>
             </div>
             <div class="progress-bar-container"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
             <div id="question-type-badge"></div>
-            <div class="question-number" id="question-label">QUESTION 1</div>
+            <div class="question-number" id="question-label"></div>
             <div class="question-text" id="question-text"></div>
             <div id="options-container"></div>
-            <div id="explanation-container" style="display:none;"></div>
-            <button class="btn-primary" id="next-btn" style="display:none;" onclick="nextQuestion()">Next Question</button>
+            <div id="explanation-container" style="display:none"></div>
+            <button class="btn-primary" id="next-btn" style="display:none" onclick="nextQuestion()">Next Question</button>
         </div>
-
-        <div id="quiz-results" style="display:none;">
+        <div id="quiz-results" style="display:none">
             <div class="card results-card">
-                <h3 class="card-title" style="font-size:15px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:24px;">Quiz Complete</h3>
+                <h3 class="card-title" style="font-size:15px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:24px">Quiz Complete</h3>
                 <div class="results-score-circle">
-                    <svg width="164" height="164" viewBox="0 0 164 164">
-                        <circle cx="82" cy="82" r="78" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="4"/>
-                        <circle id="score-ring" cx="82" cy="82" r="78" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="490" stroke-dashoffset="490" stroke-linecap="round"/>
-                    </svg>
+                    <svg width="164" height="164" viewBox="0 0 164 164"><circle cx="82" cy="82" r="78" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="4"/><circle id="score-ring" cx="82" cy="82" r="78" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="490" stroke-dashoffset="490" stroke-linecap="round"/></svg>
                     <div class="results-percentage" id="results-percentage">0%</div>
                     <div class="results-label">Score</div>
                 </div>
@@ -540,51 +310,50 @@ Output ONLY the JSON array. Now generate a quiz focusing on the most important c
                 </div>
                 <div class="results-actions">
                     <button class="btn-secondary" onclick="reviewAnswers()">Review</button>
-                    <button class="btn-primary" style="margin-top:0;" onclick="retakeQuiz()">Retake Quiz</button>
+                    <button class="btn-primary" style="margin-top:0" onclick="retakeQuiz()">Retake Quiz</button>
                 </div>
             </div>
-            <div id="review-container" style="display:none;margin-top:16px;"></div>
+            <div id="review-container" style="display:none;margin-top:16px"></div>
         </div>
     </div>
 </div>
 
-<!-- Whiteboard FAB -->
 <button class="whiteboard-fab hidden" id="wb-fab" onclick="openWhiteboard()" title="Open Scratchpad">✏️</button>
 
-<!-- Whiteboard Overlay -->
+<!-- Whiteboard -->
 <div class="wb-overlay" id="wb-overlay">
-    <div class="wb-window" id="wb-window" style="width:680px;height:520px;">
+    <div class="wb-window" id="wb-window">
         <div class="wb-titlebar" id="wb-titlebar">
-            <div class="wb-title"><span class="wb-title-icon">📐</span> Scratchpad</div>
+            <div class="wb-title"><span>📐</span> Scratchpad</div>
             <div class="wb-controls">
-                <button class="wb-ctrl-btn" onclick="clearCanvas()" title="Clear">🗑</button>
-                <button class="wb-ctrl-btn" onclick="undoCanvas()" title="Undo">↩</button>
-                <button class="wb-ctrl-btn" onclick="toggleWbFullscreen()" title="Fullscreen" id="wb-fs-btn">⛶</button>
-                <button class="wb-ctrl-btn close-btn" onclick="closeWhiteboard()" title="Close">✕</button>
+                <button class="wb-ctrl-btn" id="wb-clear-btn" title="Clear All">🗑</button>
+                <button class="wb-ctrl-btn" id="wb-undo-btn" title="Undo">↩</button>
+                <button class="wb-ctrl-btn" id="wb-fs-btn" title="Fullscreen">⛶</button>
+                <button class="wb-ctrl-btn close-btn" id="wb-close-btn" title="Close">✕</button>
             </div>
         </div>
         <div class="wb-toolbar" id="wb-toolbar">
-            <button class="wb-tool-btn active" data-tool="pen" onclick="setTool('pen',this)" title="Pen">✏️</button>
-            <button class="wb-tool-btn" data-tool="eraser" onclick="setTool('eraser',this)" title="Eraser">🧹</button>
+            <button class="wb-tool-btn active" id="tool-pen" title="Pen">✏️</button>
+            <button class="wb-tool-btn" id="tool-eraser" title="Eraser">🧹</button>
             <div class="wb-separator"></div>
             <div class="wb-size-group">
-                <button class="wb-size-btn active" onclick="setSize(2,this)" title="Small"><div class="dot" style="width:4px;height:4px;"></div></button>
-                <button class="wb-size-btn" onclick="setSize(5,this)" title="Medium"><div class="dot" style="width:8px;height:8px;"></div></button>
-                <button class="wb-size-btn" onclick="setSize(10,this)" title="Large"><div class="dot" style="width:12px;height:12px;"></div></button>
-                <button class="wb-size-btn" onclick="setSize(20,this)" title="X-Large"><div class="dot" style="width:16px;height:16px;"></div></button>
+                <button class="wb-size-btn active" data-size="2" title="Small"><div class="dot" style="width:4px;height:4px"></div></button>
+                <button class="wb-size-btn" data-size="5" title="Medium"><div class="dot" style="width:8px;height:8px"></div></button>
+                <button class="wb-size-btn" data-size="10" title="Large"><div class="dot" style="width:12px;height:12px"></div></button>
+                <button class="wb-size-btn" data-size="20" title="X-Large"><div class="dot" style="width:16px;height:16px"></div></button>
             </div>
             <div class="wb-separator"></div>
-            <button class="wb-color-btn active" style="background:#fff;" onclick="setColor('#ffffff',this)"></button>
-            <button class="wb-color-btn" style="background:#ff453a;" onclick="setColor('#ff453a',this)"></button>
-            <button class="wb-color-btn" style="background:#30d158;" onclick="setColor('#30d158',this)"></button>
-            <button class="wb-color-btn" style="background:#0a84ff;" onclick="setColor('#0a84ff',this)"></button>
-            <button class="wb-color-btn" style="background:#ffd60a;" onclick="setColor('#ffd60a',this)"></button>
-            <button class="wb-color-btn" style="background:#bf5af2;" onclick="setColor('#bf5af2',this)"></button>
+            <button class="wb-color-btn active" data-color="#ffffff" style="background:#fff" title="White"></button>
+            <button class="wb-color-btn" data-color="#ff453a" style="background:#ff453a" title="Red"></button>
+            <button class="wb-color-btn" data-color="#30d158" style="background:#30d158" title="Green"></button>
+            <button class="wb-color-btn" data-color="#0a84ff" style="background:#0a84ff" title="Blue"></button>
+            <button class="wb-color-btn" data-color="#ffd60a" style="background:#ffd60a" title="Yellow"></button>
+            <button class="wb-color-btn" data-color="#bf5af2" style="background:#bf5af2" title="Purple"></button>
             <div class="wb-separator"></div>
-            <button class="wb-tool-btn" onclick="toggleDarkCanvas()" title="Toggle Background" id="bg-toggle-btn">🌓</button>
+            <button class="wb-tool-btn" id="wb-bg-toggle" title="Toggle Background">🌓</button>
         </div>
-        <div class="wb-canvas-container dark" id="wb-canvas-container">
-            <canvas class="wb-canvas" id="wb-canvas"></canvas>
+        <div class="wb-canvas-wrap" id="wb-canvas-wrap">
+            <canvas id="wb-canvas"></canvas>
         </div>
     </div>
 </div>
@@ -592,477 +361,408 @@ Output ONLY the JSON array. Now generate a quiz focusing on the most important c
 <div class="toast" id="toast"></div>
 
 <script>
-// ===== APP STATE =====
-let questions = [], originalQuestions = [], currentQuestion = 0, score = 0, answers = [], answered = false;
-let shuffleEnabled = false, shuffleOptionsEnabled = false;
+// ==================== QUIZ APP ====================
+let questions=[],originalQuestions=[],currentQuestion=0,score=0,answers=[],answered=false;
+let shuffleEnabled=false,shuffleOptionsEnabled=false;
 
-// ===== NAV =====
-function showSection(s) {
-    document.querySelectorAll('.section').forEach(e => e.classList.remove('active'));
-    document.querySelectorAll('.nav-tab').forEach(e => e.classList.remove('active'));
-    document.getElementById('section-' + s).classList.add('active');
+function showSection(s){
+    document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(e=>e.classList.remove('active'));
+    document.getElementById('section-'+s).classList.add('active');
     document.querySelectorAll('.nav-tab')[['prompt','import','quiz'].indexOf(s)].classList.add('active');
-    document.getElementById('wb-fab').classList.toggle('hidden', s !== 'quiz' || questions.length === 0);
+    document.getElementById('wb-fab').classList.toggle('hidden',s!=='quiz'||questions.length===0);
 }
 
-function showToast(m, err=false) {
-    const t = document.getElementById('toast');
-    t.textContent = m;
-    t.className = 'toast show' + (err ? ' error' : '');
-    setTimeout(() => t.classList.remove('show'), 3000);
+function showToast(m,err=false){
+    const t=document.getElementById('toast');t.textContent=m;
+    t.className='toast show'+(err?' error':'');
+    setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-function toggleShuffle() { shuffleEnabled = !shuffleEnabled; document.getElementById('shuffle-toggle').classList.toggle('active', shuffleEnabled); }
-function toggleShuffleOptions() { shuffleOptionsEnabled = !shuffleOptionsEnabled; document.getElementById('shuffle-options-toggle').classList.toggle('active', shuffleOptionsEnabled); }
+function toggleShuffle(){shuffleEnabled=!shuffleEnabled;document.getElementById('shuffle-toggle').classList.toggle('active',shuffleEnabled)}
+function toggleShuffleOptions(){shuffleOptionsEnabled=!shuffleOptionsEnabled;document.getElementById('shuffle-options-toggle').classList.toggle('active',shuffleOptionsEnabled)}
 
-function shuffleArray(a) { const s=[...a]; for(let i=s.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[s[i],s[j]]=[s[j],s[i]];} return s; }
+function shuffleArray(a){const s=[...a];for(let i=s.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[s[i],s[j]]=[s[j],s[i]]}return s}
 
-function shuffleOptions(q) {
-    if (q.type !== 'mcq') return q;
-    const c = JSON.parse(JSON.stringify(q));
-    const entries = Object.keys(c.options).map(k => ({key:k, value:c.options[k], isAns:k===c.answer}));
-    const sh = shuffleArray(entries);
-    const letters = ['A','B','C','D'];
-    const newOpts = {};
-    sh.forEach((e,i) => { newOpts[letters[i]] = e.value; if(e.isAns) c.answer = letters[i]; });
-    c.options = newOpts;
-    return c;
+function shuffleOptions(q){
+    if(q.type!=='mcq')return q;
+    const c=JSON.parse(JSON.stringify(q));
+    const entries=Object.keys(c.options).map(k=>({key:k,value:c.options[k],isAns:k===c.answer}));
+    const sh=shuffleArray(entries);const letters=['A','B','C','D'];const newOpts={};
+    sh.forEach((e,i)=>{newOpts[letters[i]]=e.value;if(e.isAns)c.answer=letters[i]});
+    c.options=newOpts;return c;
 }
 
-function copyPrompt(btn) {
-    const text = document.getElementById('generation-prompt').textContent;
-    navigator.clipboard.writeText(text).then(() => {
-        btn.textContent = 'Copied!'; btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-    }).catch(() => {
-        const ta = document.createElement('textarea'); ta.value = text;
-        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-        btn.textContent = 'Copied!'; btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+function copyPrompt(btn){
+    const text=document.getElementById('generation-prompt').textContent;
+    navigator.clipboard.writeText(text).then(()=>{
+        btn.textContent='Copied!';btn.classList.add('copied');
+        setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000);
+    }).catch(()=>{
+        const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+        btn.textContent='Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000);
     });
 }
 
-// ===== LOAD QUIZ =====
-function loadQuiz() {
-    const input = document.getElementById('json-input').value.trim();
-    if (!input) { showToast('Please paste JSON data first.', true); return; }
-    try {
-        let jsonStr = input;
-        const m = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);
-        if (m) jsonStr = m[1].trim();
-        const data = JSON.parse(jsonStr);
-        if (!Array.isArray(data) || !data.length) { showToast('Expected a non-empty JSON array.', true); return; }
-
-        for (let i = 0; i < data.length; i++) {
-            const item = data[i];
-            if (!item.type) {
-                if (item.options && Object.keys(item.options).length === 2) {
-                    const v = Object.values(item.options).map(x=>x.toLowerCase());
-                    item.type = (v.includes('true') && v.includes('false')) ? 'tf' : 'mcq';
-                } else if (!item.options) { item.type = 'short'; }
-                else { item.type = 'mcq'; }
+function loadQuiz(){
+    const input=document.getElementById('json-input').value.trim();
+    if(!input){showToast('Please paste JSON data first.',true);return}
+    try{
+        let jsonStr=input;const m=jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);if(m)jsonStr=m[1].trim();
+        const data=JSON.parse(jsonStr);
+        if(!Array.isArray(data)||!data.length){showToast('Expected a non-empty JSON array.',true);return}
+        for(let i=0;i<data.length;i++){
+            const item=data[i];
+            if(!item.type){
+                if(item.options&&Object.keys(item.options).length===2){const v=Object.values(item.options).map(x=>x.toLowerCase());item.type=(v.includes('true')&&v.includes('false'))?'tf':'mcq'}
+                else if(!item.options)item.type='short';else item.type='mcq';
             }
-            if (!item.q || !item.answer) { showToast(`Q${i+1} missing q or answer.`, true); return; }
-
-            if (item.type === 'mcq') {
-                if (!item.options||!item.options.A||!item.options.B||!item.options.C||!item.options.D) { showToast(`MCQ Q${i+1} needs A-D.`, true); return; }
-                if (!['A','B','C','D'].includes(item.answer.toUpperCase())) { showToast(`MCQ Q${i+1} answer must be A-D.`, true); return; }
-                item.answer = item.answer.toUpperCase();
-            } else if (item.type === 'tf') {
-                if (!item.options||!item.options.A||!item.options.B) { showToast(`TF Q${i+1} needs A,B.`, true); return; }
-                if (!['A','B'].includes(item.answer.toUpperCase())) { showToast(`TF Q${i+1} answer must be A/B.`, true); return; }
-                item.answer = item.answer.toUpperCase();
-            } else if (item.type === 'short') {
-                if (!item.accept) item.accept = [item.answer.toLowerCase()];
-                else item.accept = item.accept.map(a => a.toLowerCase());
-                if (!item.accept.includes(item.answer.toLowerCase())) item.accept.push(item.answer.toLowerCase());
+            if(!item.q||!item.answer){showToast(`Q${i+1} missing q or answer.`,true);return}
+            if(item.type==='mcq'){
+                if(!item.options||!item.options.A||!item.options.B||!item.options.C||!item.options.D){showToast(`MCQ Q${i+1} needs A-D.`,true);return}
+                if(!['A','B','C','D'].includes(item.answer.toUpperCase())){showToast(`MCQ Q${i+1} answer must be A-D.`,true);return}
+                item.answer=item.answer.toUpperCase();
+            }else if(item.type==='tf'){
+                if(!item.options||!item.options.A||!item.options.B){showToast(`TF Q${i+1} needs A,B.`,true);return}
+                if(!['A','B'].includes(item.answer.toUpperCase())){showToast(`TF Q${i+1} answer must be A/B.`,true);return}
+                item.answer=item.answer.toUpperCase();
+            }else if(item.type==='short'){
+                if(!item.accept)item.accept=[item.answer.toLowerCase()];
+                else item.accept=item.accept.map(a=>a.toLowerCase());
+                if(!item.accept.includes(item.answer.toLowerCase()))item.accept.push(item.answer.toLowerCase());
             }
         }
-
-        originalQuestions = JSON.parse(JSON.stringify(data));
-        let proc = JSON.parse(JSON.stringify(data));
-        if (shuffleEnabled) proc = shuffleArray(proc);
-        if (shuffleOptionsEnabled) proc = proc.map(q => shuffleOptions(q));
-        questions = proc; currentQuestion = 0; score = 0; answers = []; answered = false;
-
-        const mc=questions.filter(q=>q.type==='mcq').length, tf=questions.filter(q=>q.type==='tf').length, sh=questions.filter(q=>q.type==='short').length;
+        originalQuestions=JSON.parse(JSON.stringify(data));
+        let proc=JSON.parse(JSON.stringify(data));
+        if(shuffleEnabled)proc=shuffleArray(proc);
+        if(shuffleOptionsEnabled)proc=proc.map(q=>shuffleOptions(q));
+        questions=proc;currentQuestion=0;score=0;answers=[];answered=false;
+        const mc=questions.filter(q=>q.type==='mcq').length,tf=questions.filter(q=>q.type==='tf').length,sh=questions.filter(q=>q.type==='short').length;
         showToast(`✓ ${questions.length} questions (${mc} MCQ, ${tf} T/F, ${sh} Short)${shuffleEnabled?' — Shuffled':''}`);
-        showSection('quiz'); startQuiz();
-    } catch(e) { showToast('Invalid JSON. Check format.', true); console.error(e); }
+        showSection('quiz');startQuiz();
+    }catch(e){showToast('Invalid JSON. Check format.',true);console.error(e)}
 }
 
-function startQuiz() {
-    document.getElementById('quiz-empty').style.display = 'none';
-    document.getElementById('quiz-active').style.display = 'block';
-    document.getElementById('quiz-results').style.display = 'none';
+function startQuiz(){
+    document.getElementById('quiz-empty').style.display='none';
+    document.getElementById('quiz-active').style.display='block';
+    document.getElementById('quiz-results').style.display='none';
     document.getElementById('wb-fab').classList.remove('hidden');
     renderQuestion();
 }
 
-function renderQuestion() {
-    const q = questions[currentQuestion]; answered = false;
-    document.getElementById('quiz-progress').textContent = `Question ${currentQuestion+1} of ${questions.length}`;
-    document.getElementById('quiz-score').textContent = `Score: ${score}`;
-    document.getElementById('progress-bar').style.width = `${(currentQuestion/questions.length)*100}%`;
-    document.getElementById('question-label').textContent = `QUESTION ${currentQuestion+1}`;
-    document.getElementById('question-text').textContent = q.q;
-    document.getElementById('next-btn').style.display = 'none';
-    document.getElementById('explanation-container').style.display = 'none';
-
-    const badge = document.getElementById('question-type-badge');
-    if (q.type==='tf') badge.innerHTML='<span class="question-type-badge badge-tf">True / False</span>';
-    else if (q.type==='short') badge.innerHTML='<span class="question-type-badge badge-short">Short Answer</span>';
+function renderQuestion(){
+    const q=questions[currentQuestion];answered=false;
+    document.getElementById('quiz-progress').textContent=`Question ${currentQuestion+1} of ${questions.length}`;
+    document.getElementById('quiz-score').textContent=`Score: ${score}`;
+    document.getElementById('progress-bar').style.width=`${(currentQuestion/questions.length)*100}%`;
+    document.getElementById('question-label').textContent=`QUESTION ${currentQuestion+1}`;
+    document.getElementById('question-text').textContent=q.q;
+    document.getElementById('next-btn').style.display='none';
+    document.getElementById('explanation-container').style.display='none';
+    const badge=document.getElementById('question-type-badge');
+    if(q.type==='tf')badge.innerHTML='<span class="question-type-badge badge-tf">True / False</span>';
+    else if(q.type==='short')badge.innerHTML='<span class="question-type-badge badge-short">Short Answer</span>';
     else badge.innerHTML='<span class="question-type-badge badge-mcq">Multiple Choice</span>';
-
-    const container = document.getElementById('options-container');
-    container.innerHTML = '';
-
-    if (q.type === 'tf') {
-        const div = document.createElement('div'); div.className = 'tf-options';
-        ['A','B'].forEach(l => {
-            const btn = document.createElement('button'); btn.className = 'tf-btn';
-            const isT = q.options[l].toLowerCase()==='true';
-            btn.innerHTML = `<span class="tf-icon">${isT?'✓':'✗'}</span><span>${q.options[l]}</span>`;
-            btn.onclick = () => selectChoiceAnswer(l, btn, 'tf');
-            btn.dataset.letter = l; div.appendChild(btn);
-        });
+    const container=document.getElementById('options-container');container.innerHTML='';
+    if(q.type==='tf'){
+        const div=document.createElement('div');div.className='tf-options';
+        ['A','B'].forEach(l=>{
+            const btn=document.createElement('button');btn.className='tf-btn';
+            const isT=q.options[l].toLowerCase()==='true';
+            btn.innerHTML=`<span class="tf-icon">${isT?'✓':'✗'}</span><span>${q.options[l]}</span>`;
+            btn.onclick=()=>selectChoiceAnswer(l,btn,'tf');btn.dataset.letter=l;div.appendChild(btn);
+        });container.appendChild(div);
+    }else if(q.type==='short'){
+        const div=document.createElement('div');div.className='short-answer-container';
+        div.innerHTML=`<input type="text" class="short-input" id="short-input" placeholder="Type your answer..." autocomplete="off"><button class="short-submit-btn" id="short-submit" onclick="submitShortAnswer()">Submit Answer</button>`;
         container.appendChild(div);
-    } else if (q.type === 'short') {
-        const div = document.createElement('div'); div.className = 'short-answer-container';
-        div.innerHTML = `
-            <input type="text" class="short-input" id="short-input" placeholder="Type your answer..." autocomplete="off" autofocus>
-            <button class="short-submit-btn" id="short-submit" onclick="submitShortAnswer()">Submit Answer</button>
-        `;
-        container.appendChild(div);
-        setTimeout(() => {
-            const inp = document.getElementById('short-input');
-            if(inp) { inp.focus(); inp.addEventListener('keydown', e => { if(e.key==='Enter') submitShortAnswer(); }); }
-        }, 100);
-    } else {
-        const ol = document.createElement('div'); ol.className = 'options-list';
-        ['A','B','C','D'].forEach(l => {
-            const btn = document.createElement('button'); btn.className = 'option-btn';
-            btn.innerHTML = `<span class="option-letter">${l}</span><span>${q.options[l]}</span>`;
-            btn.onclick = () => selectChoiceAnswer(l, btn, 'mcq');
-            btn.dataset.letter = l; ol.appendChild(btn);
-        });
-        container.appendChild(ol);
+        setTimeout(()=>{const inp=document.getElementById('short-input');if(inp){inp.focus();inp.addEventListener('keydown',e=>{if(e.key==='Enter')submitShortAnswer()})}},100);
+    }else{
+        const ol=document.createElement('div');ol.className='options-list';
+        ['A','B','C','D'].forEach(l=>{
+            const btn=document.createElement('button');btn.className='option-btn';
+            btn.innerHTML=`<span class="option-letter">${l}</span><span>${q.options[l]}</span>`;
+            btn.onclick=()=>selectChoiceAnswer(l,btn,'mcq');btn.dataset.letter=l;ol.appendChild(btn);
+        });container.appendChild(ol);
     }
 }
 
-function selectChoiceAnswer(letter, btn, type) {
-    if (answered) return; answered = true;
-    const q = questions[currentQuestion];
-    const correct = q.answer, isCorrect = letter === correct;
-    if (isCorrect) { score++; btn.classList.add('correct'); }
-    else {
-        btn.classList.add('incorrect');
-        const sel = type==='tf' ? '.tf-btn' : '.option-btn';
-        document.querySelectorAll(sel).forEach(b => { if(b.dataset.letter===correct) b.classList.add('correct'); });
-    }
-    document.querySelectorAll(type==='tf'?'.tf-btn':'.option-btn').forEach(b => b.disabled=true);
-    const selectedText = q.options ? q.options[letter] : letter;
-    const correctText = q.options ? q.options[correct] : correct;
-    recordAnswer(q, letter, selectedText, correct, correctText, isCorrect);
+function selectChoiceAnswer(letter,btn,type){
+    if(answered)return;answered=true;
+    const q=questions[currentQuestion],correct=q.answer,isCorrect=letter===correct;
+    if(isCorrect){score++;btn.classList.add('correct')}
+    else{btn.classList.add('incorrect');const sel=type==='tf'?'.tf-btn':'.option-btn';document.querySelectorAll(sel).forEach(b=>{if(b.dataset.letter===correct)b.classList.add('correct')})}
+    document.querySelectorAll(type==='tf'?'.tf-btn':'.option-btn').forEach(b=>b.disabled=true);
+    recordAnswer(q,letter,q.options?q.options[letter]:letter,correct,q.options?q.options[correct]:correct,isCorrect);
 }
 
-function submitShortAnswer() {
-    if (answered) return;
-    const inp = document.getElementById('short-input');
-    const submitBtn = document.getElementById('short-submit');
-    const userAnswer = inp.value.trim();
-    if (!userAnswer) { showToast('Please type an answer.', true); return; }
-    answered = true;
-    const q = questions[currentQuestion];
-    const normalized = userAnswer.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
-    const acceptList = (q.accept||[]).map(a => a.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim());
-    const isCorrect = acceptList.some(a => a === normalized || normalized.includes(a) || a.includes(normalized));
-
-    inp.disabled = true; submitBtn.disabled = true;
-    inp.classList.add(isCorrect ? 'correct' : 'incorrect');
-
-    if (isCorrect) score++;
-
-    const container = document.getElementById('options-container');
-    const reveal = document.createElement('div');
-    reveal.className = 'correct-answer-reveal';
-    reveal.innerHTML = `${isCorrect?'✓ Correct!':'✗ Incorrect.'} The answer is: <span>${q.answer}</span>`;
+function submitShortAnswer(){
+    if(answered)return;
+    const inp=document.getElementById('short-input'),submitBtn=document.getElementById('short-submit');
+    const userAnswer=inp.value.trim();
+    if(!userAnswer){showToast('Please type an answer.',true);return}
+    answered=true;const q=questions[currentQuestion];
+    const normalized=userAnswer.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
+    const acceptList=(q.accept||[]).map(a=>a.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim());
+    const isCorrect=acceptList.some(a=>a===normalized||normalized.includes(a)||a.includes(normalized));
+    inp.disabled=true;submitBtn.disabled=true;inp.classList.add(isCorrect?'correct':'incorrect');
+    if(isCorrect)score++;
+    const container=document.getElementById('options-container');
+    const reveal=document.createElement('div');reveal.className='correct-answer-reveal';
+    reveal.innerHTML=`${isCorrect?'✓ Correct!':'✗ Incorrect.'} The answer is: <span>${q.answer}</span>`;
     container.appendChild(reveal);
-
-    if (q.accept && q.accept.length > 1) {
-        const acc = document.createElement('div');
-        acc.className = 'accepted-answers';
-        acc.textContent = `Accepted answers: ${q.accept.join(', ')}`;
-        container.appendChild(acc);
-    }
-
-    recordAnswer(q, userAnswer, userAnswer, q.answer, q.answer, isCorrect);
+    if(q.accept&&q.accept.length>1){const acc=document.createElement('div');acc.className='accepted-answers';acc.textContent=`Accepted: ${q.accept.join(', ')}`;container.appendChild(acc)}
+    recordAnswer(q,userAnswer,userAnswer,q.answer,q.answer,isCorrect);
 }
 
-function recordAnswer(q, selectedKey, selectedText, correctKey, correctText, isCorrect) {
-    answers.push({ question: q.q, type: q.type, selected: selectedKey, selectedText: selectedText,
-        correct: correctKey, correctText: correctText, isCorrect, explanation: q.explanation||'', options: q.options||null });
-
-    if (q.explanation) {
-        const c = document.getElementById('explanation-container'); c.style.display = 'block';
-        c.innerHTML = `<div class="explanation-box"><div class="explanation-label">Explanation</div><div class="explanation-text">${q.explanation}</div></div>`;
-    }
-    document.getElementById('quiz-score').textContent = `Score: ${score}`;
-    const nb = document.getElementById('next-btn'); nb.style.display = 'block';
-    nb.textContent = currentQuestion===questions.length-1 ? 'See Results' : 'Next Question';
+function recordAnswer(q,selectedKey,selectedText,correctKey,correctText,isCorrect){
+    answers.push({question:q.q,type:q.type,selected:selectedKey,selectedText,correct:correctKey,correctText,isCorrect,explanation:q.explanation||'',options:q.options||null});
+    if(q.explanation){const c=document.getElementById('explanation-container');c.style.display='block';c.innerHTML=`<div class="explanation-box"><div class="explanation-label">Explanation</div><div class="explanation-text">${q.explanation}</div></div>`}
+    document.getElementById('quiz-score').textContent=`Score: ${score}`;
+    const nb=document.getElementById('next-btn');nb.style.display='block';nb.textContent=currentQuestion===questions.length-1?'See Results':'Next Question';
 }
 
-function nextQuestion() {
-    currentQuestion++;
-    if (currentQuestion >= questions.length) showResults();
-    else renderQuestion();
-}
+function nextQuestion(){currentQuestion++;if(currentQuestion>=questions.length)showResults();else renderQuestion()}
 
-function showResults() {
-    document.getElementById('quiz-active').style.display = 'none';
-    document.getElementById('quiz-results').style.display = 'block';
-    document.getElementById('review-container').style.display = 'none';
-    const pct = Math.round((score/questions.length)*100);
-    document.getElementById('results-percentage').textContent = pct+'%';
-    document.getElementById('total-questions').textContent = questions.length;
-    document.getElementById('correct-count').textContent = score;
-    document.getElementById('incorrect-count').textContent = questions.length - score;
-    let msg='';
-    if(pct===100)msg='Perfect score! Outstanding! 🏆';
-    else if(pct>=90)msg='Excellent work! Nearly perfect! 🌟';
-    else if(pct>=70)msg='Great job! Keep it up! 💪';
-    else if(pct>=50)msg='Good effort. Room to improve! 📚';
-    else msg="Keep studying. You'll get there! 🎯";
-    document.getElementById('results-message').textContent = msg;
-
-    const ring = document.getElementById('score-ring');
-    const circ = 2*Math.PI*78, off = circ-(pct/100)*circ;
-    ring.style.transition='none'; ring.style.strokeDashoffset=circ;
-    setTimeout(()=>{
-        ring.style.transition='stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1)';
-        ring.style.strokeDashoffset=off;
-        ring.style.stroke = pct>=70?'#30d158':pct>=40?'#ffd60a':'#ff453a';
-    },100);
+function showResults(){
+    document.getElementById('quiz-active').style.display='none';document.getElementById('quiz-results').style.display='block';document.getElementById('review-container').style.display='none';
+    const pct=Math.round((score/questions.length)*100);
+    document.getElementById('results-percentage').textContent=pct+'%';
+    document.getElementById('total-questions').textContent=questions.length;
+    document.getElementById('correct-count').textContent=score;
+    document.getElementById('incorrect-count').textContent=questions.length-score;
+    let msg='';if(pct===100)msg='Perfect score! 🏆';else if(pct>=90)msg='Excellent! 🌟';else if(pct>=70)msg='Great job! 💪';else if(pct>=50)msg='Good effort! 📚';else msg="Keep studying! 🎯";
+    document.getElementById('results-message').textContent=msg;
+    const ring=document.getElementById('score-ring'),circ=2*Math.PI*78,off=circ-(pct/100)*circ;
+    ring.style.transition='none';ring.style.strokeDashoffset=circ;
+    setTimeout(()=>{ring.style.transition='stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)';ring.style.strokeDashoffset=off;ring.style.stroke=pct>=70?'#30d158':pct>=40?'#ffd60a':'#ff453a'},100);
     document.getElementById('progress-bar').style.width='100%';
 }
 
-function reviewAnswers() {
-    const c = document.getElementById('review-container');
-    if(c.style.display==='block'){c.style.display='none';return;}
-    c.style.display='block'; c.innerHTML='';
+function reviewAnswers(){
+    const c=document.getElementById('review-container');if(c.style.display==='block'){c.style.display='none';return}
+    c.style.display='block';c.innerHTML='';
     answers.forEach((a,i)=>{
-        const div=document.createElement('div'); div.className='review-item';
-        let yourAns='', correctAns='';
-        if(a.type==='short'){
-            yourAns=a.selectedText; correctAns=a.correctText;
-        } else {
-            yourAns=`${a.selected}. ${a.options?a.options[a.selected]:a.selected}`;
-            correctAns=`${a.correct}. ${a.options?a.options[a.correct]:a.correct}`;
-        }
-        const badgeType = a.type==='tf'?'badge-tf':a.type==='short'?'badge-short':'badge-mcq';
-        const badgeLabel = a.type==='tf'?'T/F':a.type==='short'?'Short':'MCQ';
-        div.innerHTML=`
-            <div class="review-item-header">
-                <div><span class="question-number" style="margin-bottom:0">Question ${i+1}</span>
-                <span class="question-type-badge ${badgeType}" style="margin-left:8px;vertical-align:middle;">${badgeLabel}</span></div>
-                <span class="review-badge ${a.isCorrect?'correct':'incorrect'}">${a.isCorrect?'✓ Correct':'✗ Wrong'}</span>
-            </div>
-            <div class="review-question">${a.question}</div>
-            <div class="review-answer">Your answer: <span style="color:${a.isCorrect?'var(--success)':'var(--error)'}">${yourAns}</span></div>
-            ${!a.isCorrect?`<div class="review-answer" style="margin-top:4px">Correct: <span style="color:var(--success)">${correctAns}</span></div>`:''}
-            ${a.explanation?`<div class="explanation-box" style="margin-top:12px"><div class="explanation-label">Explanation</div><div class="explanation-text">${a.explanation}</div></div>`:''}
-        `;
+        let yourAns='',correctAns='';
+        if(a.type==='short'){yourAns=a.selectedText;correctAns=a.correctText}
+        else{yourAns=`${a.selected}. ${a.options?a.options[a.selected]:a.selected}`;correctAns=`${a.correct}. ${a.options?a.options[a.correct]:a.correct}`}
+        const bt=a.type==='tf'?'badge-tf':a.type==='short'?'badge-short':'badge-mcq';
+        const bl=a.type==='tf'?'T/F':a.type==='short'?'Short':'MCQ';
+        const div=document.createElement('div');div.className='review-item';
+        div.innerHTML=`<div class="review-item-header"><div><span class="question-number" style="margin-bottom:0">Question ${i+1}</span><span class="question-type-badge ${bt}" style="margin-left:8px;vertical-align:middle">${bl}</span></div><span class="review-badge ${a.isCorrect?'correct':'incorrect'}">${a.isCorrect?'✓ Correct':'✗ Wrong'}</span></div><div class="review-question">${a.question}</div><div class="review-answer">Your answer: <span style="color:${a.isCorrect?'var(--success)':'var(--error)'}">${yourAns}</span></div>${!a.isCorrect?`<div class="review-answer" style="margin-top:4px">Correct: <span style="color:var(--success)">${correctAns}</span></div>`:''}${a.explanation?`<div class="explanation-box" style="margin-top:12px"><div class="explanation-label">Explanation</div><div class="explanation-text">${a.explanation}</div></div>`:''}`;
         c.appendChild(div);
     });
 }
 
-function retakeQuiz() {
-    let proc = JSON.parse(JSON.stringify(originalQuestions));
-    if(shuffleEnabled) proc=shuffleArray(proc);
-    if(shuffleOptionsEnabled) proc=proc.map(q=>shuffleOptions(q));
-    questions=proc; currentQuestion=0; score=0; answers=[]; answered=false;
-    const ring=document.getElementById('score-ring');
-    ring.style.transition='none'; ring.style.strokeDashoffset=490; ring.style.stroke='#fff';
+function retakeQuiz(){
+    let proc=JSON.parse(JSON.stringify(originalQuestions));
+    if(shuffleEnabled)proc=shuffleArray(proc);if(shuffleOptionsEnabled)proc=proc.map(q=>shuffleOptions(q));
+    questions=proc;currentQuestion=0;score=0;answers=[];answered=false;
+    const ring=document.getElementById('score-ring');ring.style.transition='none';ring.style.strokeDashoffset=490;ring.style.stroke='#fff';
     startQuiz();
 }
 
 function loadSample(){
     const sample=[
-        {"type":"mcq","q":"Which organelle is responsible for producing ATP in eukaryotic cells?","options":{"A":"Nucleus","B":"Ribosome","C":"Mitochondria","D":"Golgi Apparatus"},"answer":"C","explanation":"Mitochondria are the powerhouse of the cell, generating most of the cell's ATP through oxidative phosphorylation."},
-        {"type":"tf","q":"The Great Wall of China is visible from the Moon with the naked eye.","options":{"A":"True","B":"False"},"answer":"B","explanation":"This is a common myth. The Great Wall is not visible from the Moon and is barely visible from low Earth orbit."},
-        {"type":"short","q":"What is the chemical symbol for gold?","answer":"Au","accept":["au","Au","AU"],"explanation":"Au comes from the Latin word 'aurum,' meaning gold."},
-        {"type":"mcq","q":"In what year did the Berlin Wall fall?","options":{"A":"1987","B":"1989","C":"1991","D":"1985"},"answer":"B","explanation":"The Berlin Wall fell on November 9, 1989, a pivotal moment ending the Cold War."},
-        {"type":"tf","q":"Sound travels faster in water than in air.","options":{"A":"True","B":"False"},"answer":"A","explanation":"Sound travels about 4.3 times faster in water because water molecules are more densely packed."},
-        {"type":"short","q":"What is the derivative of x² with respect to x?","answer":"2x","accept":["2x","2*x","2X"],"explanation":"Using the power rule, d/dx(x²) = 2x."},
-        {"type":"mcq","q":"Which planet has the most moons in our solar system?","options":{"A":"Jupiter","B":"Saturn","C":"Uranus","D":"Neptune"},"answer":"B","explanation":"As of recent discoveries, Saturn has surpassed Jupiter with over 140 confirmed moons."},
-        {"type":"tf","q":"Humans share approximately 60% of their DNA with bananas.","options":{"A":"True","B":"False"},"answer":"A","explanation":"Fundamental cellular processes are conserved across life, leading to significant DNA overlap even with plants."},
-        {"type":"short","q":"What is the largest organ in the human body?","answer":"Skin","accept":["skin","the skin","Skin"],"explanation":"The skin covers about 20 square feet in adults and weighs approximately 8 pounds."},
-        {"type":"mcq","q":"What does HTTP stand for?","options":{"A":"HyperText Transfer Protocol","B":"High Transfer Text Protocol","C":"HyperText Transmission Process","D":"Hybrid Text Transfer Protocol"},"answer":"A","explanation":"HTTP stands for HyperText Transfer Protocol, the foundation of data communication on the web."},
-        {"type":"tf","q":"Lightning never strikes the same place twice.","options":{"A":"True","B":"False"},"answer":"B","explanation":"Lightning frequently strikes the same place. The Empire State Building is struck 20-25 times per year."},
-        {"type":"short","q":"What is the value of π (pi) to two decimal places?","answer":"3.14","accept":["3.14","3.14159"],"explanation":"Pi (π) is approximately 3.14159, commonly rounded to 3.14."}
+        {"type":"mcq","q":"Which organelle is responsible for producing ATP in eukaryotic cells?","options":{"A":"Nucleus","B":"Ribosome","C":"Mitochondria","D":"Golgi Apparatus"},"answer":"C","explanation":"Mitochondria generate most of the cell's ATP through oxidative phosphorylation."},
+        {"type":"tf","q":"The Great Wall of China is visible from the Moon with the naked eye.","options":{"A":"True","B":"False"},"answer":"B","explanation":"This is a common myth. It is not visible from the Moon."},
+        {"type":"short","q":"What is the chemical symbol for gold?","answer":"Au","accept":["au","Au","AU"],"explanation":"Au comes from the Latin 'aurum.'"},
+        {"type":"mcq","q":"In what year did the Berlin Wall fall?","options":{"A":"1987","B":"1989","C":"1991","D":"1985"},"answer":"B","explanation":"The Berlin Wall fell on November 9, 1989."},
+        {"type":"tf","q":"Sound travels faster in water than in air.","options":{"A":"True","B":"False"},"answer":"A","explanation":"Sound travels ~4.3x faster in water due to denser molecules."},
+        {"type":"short","q":"What is the derivative of x² with respect to x?","answer":"2x","accept":["2x","2*x","2X"],"explanation":"Using the power rule: d/dx(x²) = 2x."},
+        {"type":"mcq","q":"Which planet has the most moons in our solar system?","options":{"A":"Jupiter","B":"Saturn","C":"Uranus","D":"Neptune"},"answer":"B","explanation":"Saturn has surpassed Jupiter with over 140 confirmed moons."},
+        {"type":"tf","q":"Humans share approximately 60% of their DNA with bananas.","options":{"A":"True","B":"False"},"answer":"A","explanation":"Fundamental cellular processes are conserved across life."},
+        {"type":"short","q":"What is the largest organ in the human body?","answer":"Skin","accept":["skin","the skin"],"explanation":"Skin covers ~20 sq ft in adults."},
+        {"type":"mcq","q":"What does HTTP stand for?","options":{"A":"HyperText Transfer Protocol","B":"High Transfer Text Protocol","C":"HyperText Transmission Process","D":"Hybrid Text Transfer Protocol"},"answer":"A","explanation":"HTTP = HyperText Transfer Protocol."},
+        {"type":"tf","q":"Lightning never strikes the same place twice.","options":{"A":"True","B":"False"},"answer":"B","explanation":"Lightning frequently strikes the same place. The Empire State Building is struck 20-25 times/year."},
+        {"type":"short","q":"What is the value of π to two decimal places?","answer":"3.14","accept":["3.14","3.14159"],"explanation":"Pi ≈ 3.14159, commonly rounded to 3.14."}
     ];
     document.getElementById('json-input').value=JSON.stringify(sample,null,2);
     showToast('✓ Sample loaded — Press "Load Quiz" to start!');
 }
 
-// ===== WHITEBOARD =====
-let wbOpen=false, wbFullscreen=false, drawing=false, tool='pen', penColor='#ffffff', penSize=2, darkBg=true;
-let canvasHistory=[], historyIndex=-1;
-let dragOffX=0, dragOffY=0, isDragging=false;
+// ==================== WHITEBOARD ====================
+(function(){
+    let isOpen=false, isFullscreen=false, isDragging=false;
+    let dragStartX=0, dragStartY=0, winStartX=0, winStartY=0;
+    let drawing=false, currentTool='pen', penColor='#ffffff', penSize=2, darkBg=true;
+    let history=[], historyIdx=-1;
+    let canvas, ctx, canvasWrap;
 
-function openWhiteboard(){
-    wbOpen=true;
-    document.getElementById('wb-overlay').classList.add('show');
-    initCanvas();
-}
-
-function closeWhiteboard(){
-    wbOpen=false;
-    document.getElementById('wb-overlay').classList.remove('show');
-    if(wbFullscreen) toggleWbFullscreen();
-}
-
-function toggleWbFullscreen(){
+    const overlay=document.getElementById('wb-overlay');
     const win=document.getElementById('wb-window');
-    wbFullscreen=!wbFullscreen;
-    win.classList.toggle('fullscreen',wbFullscreen);
-    document.getElementById('wb-fs-btn').textContent=wbFullscreen?'⊡':'⛶';
-    setTimeout(resizeCanvas,50);
-}
-
-function initCanvas(){
-    const canvas=document.getElementById('wb-canvas');
-    const container=document.getElementById('wb-canvas-container');
-    const ctx=canvas.getContext('2d');
-
-    function resize(){
-        const rect=container.getBoundingClientRect();
-        const imgData=canvas.width>0&&canvas.height>0?ctx.getImageData(0,0,canvas.width,canvas.height):null;
-        canvas.width=rect.width; canvas.height=rect.height;
-        if(imgData) ctx.putImageData(imgData,0,0);
-    }
-    resize();
-
-    canvas.onpointerdown=e=>{
-        if(e.button!==0)return;
-        drawing=true; canvas.setPointerCapture(e.pointerId);
-        ctx.beginPath();
-        const r=canvas.getBoundingClientRect();
-        ctx.moveTo(e.clientX-r.left, e.clientY-r.top);
-    };
-    canvas.onpointermove=e=>{
-        if(!drawing)return;
-        const r=canvas.getBoundingClientRect();
-        ctx.lineWidth=tool==='eraser'?penSize*3:penSize;
-        ctx.lineCap='round'; ctx.lineJoin='round';
-        ctx.strokeStyle=tool==='eraser'?(darkBg?'#1a1a1a':'#ffffff'):penColor;
-        ctx.globalCompositeOperation=tool==='eraser'?'source-over':'source-over';
-        ctx.lineTo(e.clientX-r.left, e.clientY-r.top);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(e.clientX-r.left, e.clientY-r.top);
-    };
-    canvas.onpointerup=()=>{ if(drawing){drawing=false; saveHistory();} };
-    canvas.onpointerleave=()=>{ if(drawing){drawing=false; saveHistory();} };
-
-    const ro=new ResizeObserver(()=>resize());
-    ro.observe(container);
-
-    // Dragging
     const titlebar=document.getElementById('wb-titlebar');
-    titlebar.onpointerdown=e=>{
-        if(wbFullscreen)return;
+    let canvasInited=false;
+
+    function getCanvas(){
+        if(!canvas){canvas=document.getElementById('wb-canvas');ctx=canvas.getContext('2d');canvasWrap=document.getElementById('wb-canvas-wrap')}
+        return canvas;
+    }
+
+    function sizeCanvas(){
+        const c=getCanvas();const r=canvasWrap.getBoundingClientRect();
+        let imgData=null;
+        if(c.width>0&&c.height>0){try{imgData=ctx.getImageData(0,0,c.width,c.height)}catch(e){}}
+        c.width=r.width;c.height=r.height;
+        if(imgData)ctx.putImageData(imgData,0,0);
+    }
+
+    function saveHistory(){
+        const c=getCanvas();historyIdx++;history=history.slice(0,historyIdx);
+        history.push(c.toDataURL());if(history.length>50){history.shift();historyIdx--}
+    }
+
+    function initCanvasEvents(){
+        if(canvasInited)return;canvasInited=true;
+        const c=getCanvas();
+
+        c.addEventListener('pointerdown',function(e){
+            if(e.button!==0)return;
+            drawing=true;c.setPointerCapture(e.pointerId);
+            const r=c.getBoundingClientRect();
+            ctx.beginPath();ctx.moveTo(e.clientX-r.left,e.clientY-r.top);
+        });
+
+        c.addEventListener('pointermove',function(e){
+            if(!drawing)return;
+            const r=c.getBoundingClientRect();
+            ctx.lineWidth=currentTool==='eraser'?penSize*3:penSize;
+            ctx.lineCap='round';ctx.lineJoin='round';
+            ctx.strokeStyle=currentTool==='eraser'?(darkBg?'#1a1a1a':'#ffffff'):penColor;
+            ctx.lineTo(e.clientX-r.left,e.clientY-r.top);
+            ctx.stroke();ctx.beginPath();ctx.moveTo(e.clientX-r.left,e.clientY-r.top);
+        });
+
+        c.addEventListener('pointerup',function(){if(drawing){drawing=false;saveHistory()}});
+        c.addEventListener('pointerleave',function(){if(drawing){drawing=false;saveHistory()}});
+
+        // Resize observer
+        new ResizeObserver(()=>{if(isOpen)sizeCanvas()}).observe(canvasWrap);
+    }
+
+    // Open
+    window.openWhiteboard=function(){
+        isOpen=true;overlay.classList.add('show');
+        if(!isFullscreen){win.style.top='50%';win.style.left='50%';win.style.transform='translate(-50%,-50%)';win.style.width='680px';win.style.height='520px'}
+        setTimeout(()=>{sizeCanvas();initCanvasEvents();if(history.length===0)saveHistory()},50);
+    };
+
+    // Close
+    window.closeWhiteboard=function(){
+        isOpen=false;overlay.classList.remove('show');
+        if(isFullscreen){isFullscreen=false;win.classList.remove('fullscreen');document.getElementById('wb-fs-btn').textContent='⛶'}
+    };
+
+    // Close button
+    document.getElementById('wb-close-btn').addEventListener('click',function(e){e.stopPropagation();window.closeWhiteboard()});
+
+    // Click overlay background to close
+    overlay.addEventListener('mousedown',function(e){if(e.target===overlay)window.closeWhiteboard()});
+
+    // Fullscreen
+    document.getElementById('wb-fs-btn').addEventListener('click',function(e){
+        e.stopPropagation();
+        isFullscreen=!isFullscreen;
+        win.classList.toggle('fullscreen',isFullscreen);
+        this.textContent=isFullscreen?'⊡':'⛶';
+        if(!isFullscreen){win.style.top='50%';win.style.left='50%';win.style.transform='translate(-50%,-50%)'}
+        setTimeout(sizeCanvas,80);
+    });
+
+    // Clear
+    document.getElementById('wb-clear-btn').addEventListener('click',function(e){
+        e.stopPropagation();const c=getCanvas();ctx.clearRect(0,0,c.width,c.height);saveHistory();
+    });
+
+    // Undo
+    document.getElementById('wb-undo-btn').addEventListener('click',function(e){
+        e.stopPropagation();
+        if(historyIdx<=0)return;historyIdx--;
+        const c=getCanvas();const img=new Image();
+        img.onload=function(){ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(img,0,0)};
+        img.src=history[historyIdx];
+    });
+
+    // Tool: Pen
+    document.getElementById('tool-pen').addEventListener('click',function(e){
+        e.stopPropagation();currentTool='pen';
+        document.getElementById('tool-pen').classList.add('active');
+        document.getElementById('tool-eraser').classList.remove('active');
+    });
+
+    // Tool: Eraser
+    document.getElementById('tool-eraser').addEventListener('click',function(e){
+        e.stopPropagation();currentTool='eraser';
+        document.getElementById('tool-eraser').classList.add('active');
+        document.getElementById('tool-pen').classList.remove('active');
+    });
+
+    // Sizes
+    document.querySelectorAll('.wb-size-btn').forEach(btn=>{
+        btn.addEventListener('click',function(e){
+            e.stopPropagation();
+            penSize=parseInt(this.dataset.size);
+            document.querySelectorAll('.wb-size-btn').forEach(b=>b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Colors
+    document.querySelectorAll('.wb-color-btn').forEach(btn=>{
+        btn.addEventListener('click',function(e){
+            e.stopPropagation();
+            penColor=this.dataset.color;currentTool='pen';
+            document.querySelectorAll('.wb-color-btn').forEach(b=>b.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('tool-pen').classList.add('active');
+            document.getElementById('tool-eraser').classList.remove('active');
+        });
+    });
+
+    // BG toggle
+    document.getElementById('wb-bg-toggle').addEventListener('click',function(e){
+        e.stopPropagation();darkBg=!darkBg;
+        document.getElementById('wb-canvas-wrap').classList.toggle('light-bg',!darkBg);
+    });
+
+    // Dragging titlebar
+    titlebar.addEventListener('pointerdown',function(e){
+        if(isFullscreen)return;
+        // Don't drag if clicking a button
+        if(e.target.closest('.wb-ctrl-btn'))return;
         isDragging=true;
-        const win=document.getElementById('wb-window');
         const rect=win.getBoundingClientRect();
-        dragOffX=e.clientX-rect.left; dragOffY=e.clientY-rect.top;
+        // Remove transform centering, set absolute position
+        win.style.transform='none';
+        win.style.top=rect.top+'px';
+        win.style.left=rect.left+'px';
+        dragStartX=e.clientX;dragStartY=e.clientY;
+        winStartX=rect.left;winStartY=rect.top;
         titlebar.setPointerCapture(e.pointerId);
-    };
-    titlebar.onpointermove=e=>{
+        e.preventDefault();
+    });
+
+    titlebar.addEventListener('pointermove',function(e){
         if(!isDragging)return;
-        const win=document.getElementById('wb-window');
-        win.style.left=(e.clientX-dragOffX)+'px';
-        win.style.top=(e.clientY-dragOffY)+'px';
-        win.style.right='auto'; win.style.bottom='auto';
-        win.style.margin='0';
-    };
-    titlebar.onpointerup=()=>isDragging=false;
+        const dx=e.clientX-dragStartX,dy=e.clientY-dragStartY;
+        win.style.left=(winStartX+dx)+'px';
+        win.style.top=(winStartY+dy)+'px';
+    });
 
-    saveHistory();
-}
+    titlebar.addEventListener('pointerup',function(){isDragging=false});
+    titlebar.addEventListener('pointercancel',function(){isDragging=false});
 
-function resizeCanvas(){
-    const canvas=document.getElementById('wb-canvas');
-    const container=document.getElementById('wb-canvas-container');
-    const ctx=canvas.getContext('2d');
-    const rect=container.getBoundingClientRect();
-    const imgData=canvas.width>0&&canvas.height>0?ctx.getImageData(0,0,canvas.width,canvas.height):null;
-    canvas.width=rect.width; canvas.height=rect.height;
-    if(imgData) ctx.putImageData(imgData,0,0);
-}
+    // Prevent toolbar clicks from closing or bubbling weirdly
+    document.getElementById('wb-toolbar').addEventListener('click',function(e){e.stopPropagation()});
+    document.getElementById('wb-toolbar').addEventListener('pointerdown',function(e){e.stopPropagation()});
 
-function saveHistory(){
-    const canvas=document.getElementById('wb-canvas');
-    const data=canvas.toDataURL();
-    historyIndex++;
-    canvasHistory=canvasHistory.slice(0,historyIndex);
-    canvasHistory.push(data);
-    if(canvasHistory.length>50) { canvasHistory.shift(); historyIndex--; }
-}
-
-function undoCanvas(){
-    if(historyIndex<=0)return;
-    historyIndex--;
-    const canvas=document.getElementById('wb-canvas');
-    const ctx=canvas.getContext('2d');
-    const img=new Image();
-    img.onload=()=>{ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(img,0,0); };
-    img.src=canvasHistory[historyIndex];
-}
-
-function clearCanvas(){
-    const canvas=document.getElementById('wb-canvas');
-    const ctx=canvas.getContext('2d');
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    saveHistory();
-}
-
-function setTool(t,btn){
-    tool=t;
-    document.querySelectorAll('.wb-tool-btn[data-tool]').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-}
-
-function setSize(s,btn){
-    penSize=s;
-    document.querySelectorAll('.wb-size-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-}
-
-function setColor(c,btn){
-    penColor=c; tool='pen';
-    document.querySelectorAll('.wb-color-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.wb-tool-btn[data-tool]').forEach(b=>b.classList.remove('active'));
-    document.querySelector('.wb-tool-btn[data-tool="pen"]').classList.add('active');
-}
-
-function toggleDarkCanvas(){
-    darkBg=!darkBg;
-    document.getElementById('wb-canvas-container').classList.toggle('dark',darkBg);
-}
-
-// Close overlay on bg click
-document.getElementById('wb-overlay').addEventListener('click',e=>{
-    if(e.target===document.getElementById('wb-overlay')) closeWhiteboard();
-});
-
-// Keyboard
-document.addEventListener('keydown',e=>{
-    if(e.key==='Escape' && wbOpen) closeWhiteboard();
-    if(e.ctrlKey && e.key==='z' && wbOpen) { e.preventDefault(); undoCanvas(); }
-});
+    // Escape key
+    document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'&&isOpen)window.closeWhiteboard();
+        if(e.ctrlKey&&e.key==='z'&&isOpen){e.preventDefault();document.getElementById('wb-undo-btn').click()}
+    });
+})();
 </script>
-
 </body>
 </html>
