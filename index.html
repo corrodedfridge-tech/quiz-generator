@@ -1,3 +1,5 @@
+
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizForge</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
         * {
             margin: 0;
@@ -30,7 +32,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
@@ -45,28 +47,28 @@
             min-height: 100vh;
         }
 
-        /* Header */
         .header {
             text-align: center;
             padding: 60px 0 40px;
         }
 
         .header-logo {
-            width: 64px;
-            height: 64px;
+            width: 68px;
+            height: 68px;
             background: var(--text);
-            border-radius: 16px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            font-size: 32px;
+            font-size: 34px;
+            box-shadow: 0 8px 32px rgba(255,255,255,0.1);
         }
 
         .header h1 {
-            font-size: 34px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -1px;
             margin-bottom: 8px;
         }
 
@@ -77,7 +79,6 @@
             line-height: 1.5;
         }
 
-        /* Navigation Tabs */
         .nav-tabs {
             display: flex;
             background: var(--surface);
@@ -110,7 +111,6 @@
             color: var(--text);
         }
 
-        /* Sections */
         .section {
             display: none;
             animation: fadeIn 0.4s ease;
@@ -125,7 +125,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Cards */
         .card {
             background: var(--surface);
             border-radius: 16px;
@@ -153,7 +152,6 @@
             line-height: 1.5;
         }
 
-        /* Prompt Box */
         .prompt-box {
             background: var(--surface2);
             border-radius: 12px;
@@ -164,28 +162,19 @@
         }
 
         .prompt-box pre {
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            font-size: 13px;
-            line-height: 1.6;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 12.5px;
+            line-height: 1.65;
             white-space: pre-wrap;
             word-wrap: break-word;
             color: var(--text-secondary);
-            max-height: 300px;
+            max-height: 340px;
             overflow-y: auto;
         }
 
-        .prompt-box pre::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .prompt-box pre::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .prompt-box pre::-webkit-scrollbar-thumb {
-            background: var(--surface3);
-            border-radius: 3px;
-        }
+        .prompt-box pre::-webkit-scrollbar { width: 6px; }
+        .prompt-box pre::-webkit-scrollbar-track { background: transparent; }
+        .prompt-box pre::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 3px; }
 
         .copy-btn {
             position: absolute;
@@ -203,17 +192,9 @@
             font-family: inherit;
         }
 
-        .copy-btn:hover {
-            background: var(--text);
-            color: var(--bg);
-        }
+        .copy-btn:hover { background: var(--text); color: var(--bg); }
+        .copy-btn.copied { background: var(--success); color: #000; }
 
-        .copy-btn.copied {
-            background: var(--success);
-            color: #000;
-        }
-
-        /* Textarea */
         .input-area {
             width: 100%;
             min-height: 200px;
@@ -222,23 +203,17 @@
             border-radius: 12px;
             padding: 16px;
             color: var(--text);
-            font-size: 14px;
-            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 13px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
             line-height: 1.6;
             resize: vertical;
             outline: none;
             transition: border-color 0.3s;
         }
 
-        .input-area:focus {
-            border-color: rgba(255,255,255,0.3);
-        }
+        .input-area:focus { border-color: rgba(255,255,255,0.3); }
+        .input-area::placeholder { color: var(--surface3); }
 
-        .input-area::placeholder {
-            color: var(--surface3);
-        }
-
-        /* Buttons */
         .btn-primary {
             width: 100%;
             padding: 16px 24px;
@@ -255,20 +230,9 @@
             letter-spacing: -0.2px;
         }
 
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: scale(0.99);
-        }
-
-        .btn-primary:active {
-            transform: scale(0.97);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: none;
-        }
+        .btn-primary:hover { opacity: 0.9; transform: scale(0.99); }
+        .btn-primary:active { transform: scale(0.97); }
+        .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
 
         .btn-secondary {
             padding: 12px 24px;
@@ -283,11 +247,80 @@
             font-family: inherit;
         }
 
-        .btn-secondary:hover {
-            background: var(--surface3);
+        .btn-secondary:hover { background: var(--surface3); }
+
+        /* Settings Row */
+        .settings-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
         }
 
-        /* Quiz Section */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 18px;
+            flex: 1;
+            min-width: 200px;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .toggle-container:hover {
+            border-color: var(--border-light);
+        }
+
+        .toggle-container .toggle-label {
+            font-size: 15px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .toggle-container .toggle-sublabel {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .toggle-switch {
+            width: 51px;
+            height: 31px;
+            min-width: 51px;
+            background: var(--surface3);
+            border-radius: 16px;
+            position: relative;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .toggle-switch.active {
+            background: var(--success);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 27px;
+            height: 27px;
+            background: #fff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(20px);
+        }
+
+        /* Quiz */
         .quiz-header {
             display: flex;
             justify-content: space-between;
@@ -317,6 +350,27 @@
             transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        .question-type-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .badge-mcq {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+        }
+
+        .badge-tf {
+            background: rgba(255, 214, 10, 0.12);
+            color: var(--warning);
+        }
+
         .question-number {
             font-size: 13px;
             color: var(--text-secondary);
@@ -334,7 +388,6 @@
             letter-spacing: -0.3px;
         }
 
-        /* Options */
         .options-list {
             display: flex;
             flex-direction: column;
@@ -410,11 +463,53 @@
             color: #fff;
         }
 
-        .option-btn:disabled {
-            cursor: default;
+        .option-btn:disabled { cursor: default; }
+
+        /* True/False specific */
+        .tf-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
         }
 
-        /* Explanation */
+        .tf-btn {
+            padding: 28px 20px;
+            background: var(--surface);
+            border: 1.5px solid var(--border-light);
+            border-radius: 14px;
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tf-btn .tf-icon {
+            font-size: 28px;
+            transition: transform 0.3s;
+        }
+
+        .tf-btn:hover:not(:disabled) {
+            border-color: rgba(255,255,255,0.3);
+            background: var(--surface2);
+        }
+
+        .tf-btn:hover:not(:disabled) .tf-icon {
+            transform: scale(1.1);
+        }
+
+        .tf-btn.selected { border-color: var(--text); background: var(--surface2); }
+        .tf-btn.correct { border-color: var(--success); background: rgba(48, 209, 88, 0.1); }
+        .tf-btn.incorrect { border-color: var(--error); background: rgba(255, 69, 58, 0.1); }
+        .tf-btn:disabled { cursor: default; }
+
         .explanation-box {
             background: var(--surface2);
             border-radius: 12px;
@@ -449,7 +544,6 @@
             width: 160px;
             height: 160px;
             border-radius: 50%;
-            border: 4px solid var(--border-light);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -467,7 +561,7 @@
 
         .results-percentage {
             font-size: 48px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -2px;
         }
 
@@ -477,6 +571,13 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .results-message {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-weight: 400;
         }
 
         .results-stats {
@@ -516,9 +617,7 @@
             margin-top: 24px;
         }
 
-        .results-actions button {
-            flex: 1;
-        }
+        .results-actions button { flex: 1; }
 
         /* Review */
         .review-item {
@@ -601,9 +700,7 @@
             color: var(--text-secondary);
         }
 
-        .step-content {
-            flex: 1;
-        }
+        .step-content { flex: 1; }
 
         .step-content h4 {
             font-size: 15px;
@@ -617,14 +714,6 @@
             line-height: 1.5;
         }
 
-        /* Divider */
-        .divider {
-            height: 1px;
-            background: var(--border);
-            margin: 24px 0;
-        }
-
-        /* Error Toast */
         .toast {
             position: fixed;
             bottom: 40px;
@@ -641,83 +730,54 @@
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            max-width: 90%;
+            text-align: center;
         }
 
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .toast.error { border-color: var(--error); }
 
-        .toast.error {
-            border-color: var(--error);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 4px; }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--surface3);
-            border-radius: 4px;
-        }
-
-        /* Responsive */
         @media (max-width: 600px) {
-            .app-container {
-                padding: 16px;
-            }
-
-            .header {
-                padding: 40px 0 30px;
-            }
-
-            .header h1 {
-                font-size: 28px;
-            }
-
-            .question-text {
-                font-size: 20px;
-            }
-
-            .results-stats {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-
-            .stat-value {
-                font-size: 22px;
-            }
-
-            .results-actions {
-                flex-direction: column;
-            }
-
-            .nav-tab {
-                font-size: 13px;
-                padding: 10px 12px;
-            }
+            .app-container { padding: 16px; }
+            .header { padding: 40px 0 30px; }
+            .header h1 { font-size: 28px; }
+            .question-text { font-size: 20px; }
+            .results-stats { gap: 10px; }
+            .stat-value { font-size: 22px; }
+            .results-actions { flex-direction: column; }
+            .nav-tab { font-size: 13px; padding: 10px 12px; }
+            .settings-row { flex-direction: column; }
+            .toggle-container { min-width: unset; }
+            .tf-options { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .tf-btn { padding: 22px 16px; }
         }
 
-        /* Subtle animations */
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
 
-        .loading {
-            animation: pulse 1.5s ease-in-out infinite;
+        .loading { animation: pulse 1.5s ease-in-out infinite; }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.95); }
+            100% { transform: scale(1); opacity: 1; }
         }
+
+        .bounce-in { animation: bounceIn 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
 </head>
 <body>
     <div class="app-container">
         <header class="header">
             <div class="header-logo">
-                <span style="color: #000; font-weight: 700;">Q</span>
+                <span style="color: #000; font-weight: 800;">Q</span>
             </div>
             <h1>QuizForge</h1>
             <p>Generate quizzes with AI. Learn smarter.</p>
@@ -746,14 +806,14 @@
                         <div class="step-number">2</div>
                         <div class="step-content">
                             <h4>Tell the AI Your Topic</h4>
-                            <p>Add your desired topic, subject, or material after the prompt. The AI will generate formatted questions.</p>
+                            <p>Add your desired topic after the prompt. The AI will generate formatted questions with both MCQ and True/False types.</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-number">3</div>
                         <div class="step-content">
                             <h4>Import & Quiz</h4>
-                            <p>Copy the AI's output, go to the Import tab, paste it in, and start your quiz.</p>
+                            <p>Copy the AI's output, go to the Import tab, paste it in, and start your quiz. Optionally shuffle the order!</p>
                         </div>
                     </div>
                 </div>
@@ -767,17 +827,22 @@
                     <pre id="generation-prompt">Generate a quiz in the following strict JSON format. Output ONLY the JSON array, no other text, no markdown code fences, no explanation. The topic/material will be provided by the user after this prompt.
 
 Rules:
-- Generate 10-20 multiple choice questions
-- Each question must have exactly 4 options (A, B, C, D)
+- Generate 10-20 questions total
+- Mix both multiple choice (MCQ) and true/false (TF) questions
+- Aim for roughly 60-70% MCQ and 30-40% True/False
+- Each question must have a "type" field: either "mcq" or "tf"
+- MCQ questions must have exactly 4 options (A, B, C, D) and answer must be A, B, C, or D
+- TF questions must have exactly 2 options: {"A": "True", "B": "False"} and answer must be A or B
 - Only one correct answer per question
 - Include a brief explanation for the correct answer
 - Questions should vary in difficulty
 - Make questions clear and unambiguous
 
-Required JSON format (output ONLY this array, nothing else):
+Required JSON format (output ONLY this array):
 
 [
   {
+    "type": "mcq",
     "q": "What is the question text?",
     "options": {
       "A": "First option",
@@ -787,13 +852,23 @@ Required JSON format (output ONLY this array, nothing else):
     },
     "answer": "A",
     "explanation": "Brief explanation of why A is correct."
+  },
+  {
+    "type": "tf",
+    "q": "The Earth revolves around the Sun.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The Earth orbits the Sun in an elliptical path."
   }
 ]
 
 Now generate a quiz about the following topic:</pre>
                 </div>
                 <p style="font-size: 13px; color: var(--text-secondary); margin-top: 12px;">
-                    💡 After pasting this prompt, add your topic on the same line. Example: <em>"...following topic: World War II"</em>
+                    💡 After pasting, add your topic on the same line. Example: <em>"...following topic: Organic Chemistry"</em>
                 </p>
             </div>
         </div>
@@ -805,9 +880,12 @@ Now generate a quiz about the following topic:</pre>
                 <p class="card-subtitle">Paste the JSON output from your AI below.</p>
                 <textarea id="json-input" class="input-area" placeholder='Paste the AI-generated JSON array here...
 
+Supports both MCQ and True/False questions.
+
 Example:
 [
   {
+    "type": "mcq",
     "q": "What is the capital of France?",
     "options": {
       "A": "London",
@@ -816,15 +894,43 @@ Example:
       "D": "Madrid"
     },
     "answer": "B",
-    "explanation": "Paris is the capital and largest city of France."
+    "explanation": "Paris is the capital of France."
+  },
+  {
+    "type": "tf",
+    "q": "The Great Wall of China is visible from space.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "This is a common myth. It is not visible from space with the naked eye."
   }
 ]'></textarea>
+
+                <div class="settings-row">
+                    <div class="toggle-container" onclick="toggleShuffle()">
+                        <div>
+                            <div class="toggle-label">Shuffle Questions</div>
+                            <div class="toggle-sublabel">Randomize question order</div>
+                        </div>
+                        <div class="toggle-switch" id="shuffle-toggle"></div>
+                    </div>
+                    <div class="toggle-container" onclick="toggleShuffleOptions()">
+                        <div>
+                            <div class="toggle-label">Shuffle Options</div>
+                            <div class="toggle-sublabel">Randomize MCQ option order</div>
+                        </div>
+                        <div class="toggle-switch" id="shuffle-options-toggle"></div>
+                    </div>
+                </div>
+
                 <button class="btn-primary" onclick="loadQuiz()">Load Quiz</button>
             </div>
 
             <div class="card" id="sample-card">
                 <h3 class="card-title">Try a Sample</h3>
-                <p class="card-subtitle">Want to see how it works? Load a sample quiz.</p>
+                <p class="card-subtitle">Want to see how it works? Load a sample quiz with MCQ + True/False questions.</p>
                 <button class="btn-secondary" onclick="loadSample()" style="width: 100%;">Load Sample Quiz</button>
             </div>
         </div>
@@ -846,9 +952,10 @@ Example:
                 <div class="progress-bar-container">
                     <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
                 </div>
+                <div id="question-type-badge"></div>
                 <div class="question-number" id="question-label">QUESTION 1</div>
                 <div class="question-text" id="question-text"></div>
-                <div class="options-list" id="options-list"></div>
+                <div id="options-container"></div>
                 <div id="explanation-container" style="display: none;"></div>
                 <button class="btn-primary" id="next-btn" style="display: none;" onclick="nextQuestion()">Next Question</button>
             </div>
@@ -864,6 +971,7 @@ Example:
                         <div class="results-percentage" id="results-percentage">0%</div>
                         <div class="results-label">Score</div>
                     </div>
+                    <div class="results-message" id="results-message"></div>
                     <div class="results-stats">
                         <div class="stat-item">
                             <div class="stat-value" id="total-questions">0</div>
@@ -893,17 +1001,21 @@ Example:
     <script>
         // State
         let questions = [];
+        let originalQuestions = [];
         let currentQuestion = 0;
         let score = 0;
         let answers = [];
         let answered = false;
+        let shuffleEnabled = false;
+        let shuffleOptionsEnabled = false;
 
         // Navigation
         function showSection(section) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
             document.getElementById(`section-${section}`).classList.add('active');
-            document.querySelectorAll('.nav-tab')[['prompt', 'import', 'quiz'].indexOf(section)].classList.add('active');
+            const idx = ['prompt', 'import', 'quiz'].indexOf(section);
+            document.querySelectorAll('.nav-tab')[idx].classList.add('active');
         }
 
         // Toast
@@ -914,18 +1026,54 @@ Example:
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
+        // Toggles
+        function toggleShuffle() {
+            shuffleEnabled = !shuffleEnabled;
+            document.getElementById('shuffle-toggle').classList.toggle('active', shuffleEnabled);
+        }
+
+        function toggleShuffleOptions() {
+            shuffleOptionsEnabled = !shuffleOptionsEnabled;
+            document.getElementById('shuffle-options-toggle').classList.toggle('active', shuffleOptionsEnabled);
+        }
+
+        // Fisher-Yates shuffle
+        function shuffleArray(arr) {
+            const shuffled = [...arr];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Shuffle MCQ options
+        function shuffleOptions(question) {
+            if (question.type === 'tf') return question;
+            const q = JSON.parse(JSON.stringify(question));
+            const keys = Object.keys(q.options);
+            const entries = keys.map(k => ({ key: k, value: q.options[k], isAnswer: k === q.answer }));
+            const shuffled = shuffleArray(entries);
+            const newOptions = {};
+            let newAnswer = q.answer;
+            const letters = ['A', 'B', 'C', 'D'];
+            shuffled.forEach((entry, i) => {
+                newOptions[letters[i]] = entry.value;
+                if (entry.isAnswer) newAnswer = letters[i];
+            });
+            q.options = newOptions;
+            q.answer = newAnswer;
+            return q;
+        }
+
         // Copy prompt
         function copyPrompt(btn) {
             const text = document.getElementById('generation-prompt').textContent;
             navigator.clipboard.writeText(text).then(() => {
                 btn.textContent = 'Copied!';
                 btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.textContent = 'Copy';
-                    btn.classList.remove('copied');
-                }, 2000);
+                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
             }).catch(() => {
-                // Fallback
                 const ta = document.createElement('textarea');
                 ta.value = text;
                 document.body.appendChild(ta);
@@ -934,10 +1082,7 @@ Example:
                 document.body.removeChild(ta);
                 btn.textContent = 'Copied!';
                 btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.textContent = 'Copy';
-                    btn.classList.remove('copied');
-                }, 2000);
+                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
             });
         }
 
@@ -950,12 +1095,9 @@ Example:
             }
 
             try {
-                // Try to extract JSON from possible markdown code fences
                 let jsonStr = input;
                 const codeBlockMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);
-                if (codeBlockMatch) {
-                    jsonStr = codeBlockMatch[1].trim();
-                }
+                if (codeBlockMatch) jsonStr = codeBlockMatch[1].trim();
 
                 const data = JSON.parse(jsonStr);
 
@@ -964,31 +1106,68 @@ Example:
                     return;
                 }
 
-                // Validate structure
                 for (let i = 0; i < data.length; i++) {
                     const item = data[i];
+
+                    // Auto-detect type if missing
+                    if (!item.type) {
+                        if (item.options && Object.keys(item.options).length === 2) {
+                            const vals = Object.values(item.options).map(v => v.toLowerCase());
+                            if (vals.includes('true') && vals.includes('false')) {
+                                item.type = 'tf';
+                            } else {
+                                item.type = 'mcq';
+                            }
+                        } else {
+                            item.type = 'mcq';
+                        }
+                    }
+
                     if (!item.q || !item.options || !item.answer) {
                         showToast(`Question ${i + 1} is missing required fields (q, options, answer).`, true);
                         return;
                     }
-                    if (!item.options.A || !item.options.B || !item.options.C || !item.options.D) {
-                        showToast(`Question ${i + 1} must have options A, B, C, and D.`, true);
-                        return;
+
+                    if (item.type === 'mcq') {
+                        if (!item.options.A || !item.options.B || !item.options.C || !item.options.D) {
+                            showToast(`MCQ Question ${i + 1} must have options A, B, C, and D.`, true);
+                            return;
+                        }
+                        if (!['A', 'B', 'C', 'D'].includes(item.answer.toUpperCase())) {
+                            showToast(`MCQ Question ${i + 1} has invalid answer. Must be A, B, C, or D.`, true);
+                            return;
+                        }
+                    } else if (item.type === 'tf') {
+                        if (!item.options.A || !item.options.B) {
+                            showToast(`True/False Question ${i + 1} must have options A and B.`, true);
+                            return;
+                        }
+                        if (!['A', 'B'].includes(item.answer.toUpperCase())) {
+                            showToast(`True/False Question ${i + 1} has invalid answer. Must be A or B.`, true);
+                            return;
+                        }
                     }
-                    if (!['A', 'B', 'C', 'D'].includes(item.answer.toUpperCase())) {
-                        showToast(`Question ${i + 1} has invalid answer. Must be A, B, C, or D.`, true);
-                        return;
-                    }
+
                     item.answer = item.answer.toUpperCase();
                 }
 
-                questions = data;
+                originalQuestions = JSON.parse(JSON.stringify(data));
+
+                // Process questions
+                let processed = JSON.parse(JSON.stringify(data));
+                if (shuffleEnabled) processed = shuffleArray(processed);
+                if (shuffleOptionsEnabled) processed = processed.map(q => shuffleOptions(q));
+
+                questions = processed;
                 currentQuestion = 0;
                 score = 0;
                 answers = [];
                 answered = false;
 
-                showToast(`✓ Loaded ${questions.length} questions`);
+                const mcqCount = questions.filter(q => q.type === 'mcq').length;
+                const tfCount = questions.filter(q => q.type === 'tf').length;
+
+                showToast(`✓ Loaded ${questions.length} questions (${mcqCount} MCQ, ${tfCount} T/F)${shuffleEnabled ? ' — Shuffled' : ''}`);
                 showSection('quiz');
                 startQuiz();
             } catch (e) {
@@ -997,7 +1176,6 @@ Example:
             }
         }
 
-        // Start quiz
         function startQuiz() {
             document.getElementById('quiz-empty').style.display = 'none';
             document.getElementById('quiz-active').style.display = 'block';
@@ -1005,33 +1183,65 @@ Example:
             renderQuestion();
         }
 
-        // Render question
         function renderQuestion() {
             const q = questions[currentQuestion];
             answered = false;
 
             document.getElementById('quiz-progress').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
             document.getElementById('quiz-score').textContent = `Score: ${score}`;
-            document.getElementById('progress-bar').style.width = `${((currentQuestion) / questions.length) * 100}%`;
+            document.getElementById('progress-bar').style.width = `${(currentQuestion / questions.length) * 100}%`;
             document.getElementById('question-label').textContent = `QUESTION ${currentQuestion + 1}`;
             document.getElementById('question-text').textContent = q.q;
             document.getElementById('next-btn').style.display = 'none';
             document.getElementById('explanation-container').style.display = 'none';
 
-            const optionsList = document.getElementById('options-list');
-            optionsList.innerHTML = '';
+            // Type badge
+            const badgeEl = document.getElementById('question-type-badge');
+            if (q.type === 'tf') {
+                badgeEl.innerHTML = '<span class="question-type-badge badge-tf">True / False</span>';
+            } else {
+                badgeEl.innerHTML = '<span class="question-type-badge badge-mcq">Multiple Choice</span>';
+            }
 
-            ['A', 'B', 'C', 'D'].forEach(letter => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerHTML = `<span class="option-letter">${letter}</span><span>${q.options[letter]}</span>`;
-                btn.onclick = () => selectAnswer(letter, btn);
-                optionsList.appendChild(btn);
-            });
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            if (q.type === 'tf') {
+                const tfDiv = document.createElement('div');
+                tfDiv.className = 'tf-options';
+
+                ['A', 'B'].forEach(letter => {
+                    const btn = document.createElement('button');
+                    btn.className = 'tf-btn';
+                    const isTrue = q.options[letter].toLowerCase() === 'true';
+                    btn.innerHTML = `
+                        <span class="tf-icon">${isTrue ? '✓' : '✗'}</span>
+                        <span>${q.options[letter]}</span>
+                    `;
+                    btn.onclick = () => selectTFAnswer(letter, btn);
+                    btn.dataset.letter = letter;
+                    tfDiv.appendChild(btn);
+                });
+
+                container.appendChild(tfDiv);
+            } else {
+                const optionsList = document.createElement('div');
+                optionsList.className = 'options-list';
+
+                ['A', 'B', 'C', 'D'].forEach(letter => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.innerHTML = `<span class="option-letter">${letter}</span><span>${q.options[letter]}</span>`;
+                    btn.onclick = () => selectMCQAnswer(letter, btn);
+                    btn.dataset.letter = letter;
+                    optionsList.appendChild(btn);
+                });
+
+                container.appendChild(optionsList);
+            }
         }
 
-        // Select answer
-        function selectAnswer(letter, btn) {
+        function selectMCQAnswer(letter, btn) {
             if (answered) return;
             answered = true;
 
@@ -1044,29 +1254,48 @@ Example:
                 btn.classList.add('correct');
             } else {
                 btn.classList.add('incorrect');
-                // Highlight correct
-                const buttons = document.querySelectorAll('.option-btn');
-                buttons.forEach(b => {
-                    if (b.querySelector('.option-letter').textContent === correct) {
-                        b.classList.add('correct');
-                    }
+                document.querySelectorAll('.option-btn').forEach(b => {
+                    if (b.dataset.letter === correct) b.classList.add('correct');
                 });
             }
 
-            // Disable all
             document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+            recordAnswer(q, letter, correct, isCorrect);
+        }
 
-            // Store answer
+        function selectTFAnswer(letter, btn) {
+            if (answered) return;
+            answered = true;
+
+            const q = questions[currentQuestion];
+            const correct = q.answer;
+            const isCorrect = letter === correct;
+
+            if (isCorrect) {
+                score++;
+                btn.classList.add('correct');
+            } else {
+                btn.classList.add('incorrect');
+                document.querySelectorAll('.tf-btn').forEach(b => {
+                    if (b.dataset.letter === correct) b.classList.add('correct');
+                });
+            }
+
+            document.querySelectorAll('.tf-btn').forEach(b => b.disabled = true);
+            recordAnswer(q, letter, correct, isCorrect);
+        }
+
+        function recordAnswer(q, selected, correct, isCorrect) {
             answers.push({
                 question: q.q,
-                selected: letter,
+                type: q.type,
+                selected: selected,
                 correct: correct,
                 isCorrect: isCorrect,
                 explanation: q.explanation || '',
                 options: q.options
             });
 
-            // Show explanation
             if (q.explanation) {
                 const container = document.getElementById('explanation-container');
                 container.style.display = 'block';
@@ -1080,13 +1309,11 @@ Example:
 
             document.getElementById('quiz-score').textContent = `Score: ${score}`;
 
-            // Show next button
             const nextBtn = document.getElementById('next-btn');
             nextBtn.style.display = 'block';
             nextBtn.textContent = currentQuestion === questions.length - 1 ? 'See Results' : 'Next Question';
         }
 
-        // Next question
         function nextQuestion() {
             currentQuestion++;
             if (currentQuestion >= questions.length) {
@@ -1096,7 +1323,6 @@ Example:
             }
         }
 
-        // Show results
         function showResults() {
             document.getElementById('quiz-active').style.display = 'none';
             document.getElementById('quiz-results').style.display = 'block';
@@ -1109,66 +1335,79 @@ Example:
             document.getElementById('correct-count').textContent = score;
             document.getElementById('incorrect-count').textContent = questions.length - score;
 
+            // Message
+            let message = '';
+            if (percentage === 100) message = 'Perfect score! Outstanding! 🏆';
+            else if (percentage >= 90) message = 'Excellent work! Nearly perfect! 🌟';
+            else if (percentage >= 70) message = 'Great job! Keep it up! 💪';
+            else if (percentage >= 50) message = 'Good effort. Room to improve! 📚';
+            else message = 'Keep studying. You\'ll get there! 🎯';
+            document.getElementById('results-message').textContent = message;
+
             // Animate ring
             const ring = document.getElementById('score-ring');
-            const circumference = 2 * Math.PI * 78; // ~490
+            const circumference = 2 * Math.PI * 78;
             const offset = circumference - (percentage / 100) * circumference;
+
+            ring.style.transition = 'none';
+            ring.style.strokeDashoffset = circumference;
+
             setTimeout(() => {
-                ring.style.transition = 'stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1)';
+                ring.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
                 ring.style.strokeDashoffset = offset;
 
-                if (percentage >= 70) {
-                    ring.style.stroke = '#30d158';
-                } else if (percentage >= 40) {
-                    ring.style.stroke = '#ffd60a';
-                } else {
-                    ring.style.stroke = '#ff453a';
-                }
+                if (percentage >= 70) ring.style.stroke = '#30d158';
+                else if (percentage >= 40) ring.style.stroke = '#ffd60a';
+                else ring.style.stroke = '#ff453a';
             }, 100);
 
             document.getElementById('progress-bar').style.width = '100%';
         }
 
-        // Review answers
         function reviewAnswers() {
             const container = document.getElementById('review-container');
             const isVisible = container.style.display === 'block';
-
-            if (isVisible) {
-                container.style.display = 'none';
-                return;
-            }
+            if (isVisible) { container.style.display = 'none'; return; }
 
             container.style.display = 'block';
             container.innerHTML = '';
 
             answers.forEach((a, i) => {
+                const selectedText = a.options[a.selected] || a.selected;
+                const correctText = a.options[a.correct] || a.correct;
+
                 const div = document.createElement('div');
                 div.className = 'review-item';
                 div.innerHTML = `
                     <div class="review-item-header">
-                        <span class="question-number" style="margin-bottom: 0;">Question ${i + 1}</span>
+                        <div>
+                            <span class="question-number" style="margin-bottom: 0;">Question ${i + 1}</span>
+                            <span class="question-type-badge ${a.type === 'tf' ? 'badge-tf' : 'badge-mcq'}" style="margin-left: 8px; vertical-align: middle;">${a.type === 'tf' ? 'T/F' : 'MCQ'}</span>
+                        </div>
                         <span class="review-badge ${a.isCorrect ? 'correct' : 'incorrect'}">${a.isCorrect ? '✓ Correct' : '✗ Wrong'}</span>
                     </div>
                     <div class="review-question">${a.question}</div>
                     <div class="review-answer">
-                        Your answer: <span style="color: ${a.isCorrect ? 'var(--success)' : 'var(--error)'}">${a.selected}. ${a.options[a.selected]}</span>
+                        Your answer: <span style="color: ${a.isCorrect ? 'var(--success)' : 'var(--error)'}">${a.selected}. ${selectedText}</span>
                     </div>
-                    ${!a.isCorrect ? `<div class="review-answer" style="margin-top: 4px;">Correct answer: <span style="color: var(--success)">${a.correct}. ${a.options[a.correct]}</span></div>` : ''}
+                    ${!a.isCorrect ? `<div class="review-answer" style="margin-top: 4px;">Correct answer: <span style="color: var(--success)">${a.correct}. ${correctText}</span></div>` : ''}
                     ${a.explanation ? `<div class="explanation-box" style="margin-top: 12px;"><div class="explanation-label">Explanation</div><div class="explanation-text">${a.explanation}</div></div>` : ''}
                 `;
                 container.appendChild(div);
             });
         }
 
-        // Retake quiz
         function retakeQuiz() {
+            let processed = JSON.parse(JSON.stringify(originalQuestions));
+            if (shuffleEnabled) processed = shuffleArray(processed);
+            if (shuffleOptionsEnabled) processed = processed.map(q => shuffleOptions(q));
+
+            questions = processed;
             currentQuestion = 0;
             score = 0;
             answers = [];
             answered = false;
 
-            // Reset ring
             const ring = document.getElementById('score-ring');
             ring.style.transition = 'none';
             ring.style.strokeDashoffset = 490;
@@ -1177,123 +1416,96 @@ Example:
             startQuiz();
         }
 
-        // Load sample
         function loadSample() {
             const sampleQuiz = [
                 {
+                    "type": "mcq",
                     "q": "Which planet is known as the Red Planet?",
-                    "options": {
-                        "A": "Venus",
-                        "B": "Mars",
-                        "C": "Jupiter",
-                        "D": "Saturn"
-                    },
+                    "options": { "A": "Venus", "B": "Mars", "C": "Jupiter", "D": "Saturn" },
                     "answer": "B",
-                    "explanation": "Mars is called the Red Planet because of iron oxide (rust) on its surface, which gives it a reddish appearance."
+                    "explanation": "Mars is called the Red Planet because iron oxide (rust) on its surface gives it a reddish appearance."
                 },
                 {
+                    "type": "tf",
+                    "q": "The Great Wall of China is visible from the Moon with the naked eye.",
+                    "options": { "A": "True", "B": "False" },
+                    "answer": "B",
+                    "explanation": "This is a common myth. The Great Wall is not visible from the Moon. It's barely visible from low Earth orbit."
+                },
+                {
+                    "type": "mcq",
                     "q": "What is the largest organ in the human body?",
-                    "options": {
-                        "A": "Heart",
-                        "B": "Liver",
-                        "C": "Skin",
-                        "D": "Brain"
-                    },
+                    "options": { "A": "Heart", "B": "Liver", "C": "Skin", "D": "Brain" },
                     "answer": "C",
-                    "explanation": "The skin is the largest organ, covering approximately 20 square feet in adults and weighing about 8 pounds."
+                    "explanation": "The skin is the largest organ, covering approximately 20 square feet in adults."
                 },
                 {
+                    "type": "tf",
+                    "q": "Sound travels faster in water than in air.",
+                    "options": { "A": "True", "B": "False" },
+                    "answer": "A",
+                    "explanation": "Sound travels about 4.3 times faster in water than in air because water molecules are closer together."
+                },
+                {
+                    "type": "mcq",
                     "q": "In what year did the Berlin Wall fall?",
-                    "options": {
-                        "A": "1987",
-                        "B": "1989",
-                        "C": "1991",
-                        "D": "1985"
-                    },
+                    "options": { "A": "1987", "B": "1989", "C": "1991", "D": "1985" },
                     "answer": "B",
                     "explanation": "The Berlin Wall fell on November 9, 1989, marking a pivotal moment in the end of the Cold War."
                 },
                 {
-                    "q": "Which element has the chemical symbol 'Au'?",
-                    "options": {
-                        "A": "Silver",
-                        "B": "Aluminum",
-                        "C": "Gold",
-                        "D": "Argon"
-                    },
-                    "answer": "C",
-                    "explanation": "Au comes from the Latin word 'aurum,' meaning gold. Gold has been valued throughout human history."
+                    "type": "tf",
+                    "q": "Humans share approximately 60% of their DNA with bananas.",
+                    "options": { "A": "True", "B": "False" },
+                    "answer": "A",
+                    "explanation": "Humans share about 60% of their DNA with bananas due to fundamental cellular processes being conserved across life."
                 },
                 {
+                    "type": "mcq",
+                    "q": "Which element has the chemical symbol 'Au'?",
+                    "options": { "A": "Silver", "B": "Aluminum", "C": "Gold", "D": "Argon" },
+                    "answer": "C",
+                    "explanation": "Au comes from the Latin word 'aurum,' meaning gold."
+                },
+                {
+                    "type": "mcq",
                     "q": "What is the speed of light in a vacuum?",
-                    "options": {
-                        "A": "300,000 km/s",
-                        "B": "150,000 km/s",
-                        "C": "500,000 km/s",
-                        "D": "1,000,000 km/s"
-                    },
+                    "options": { "A": "300,000 km/s", "B": "150,000 km/s", "C": "500,000 km/s", "D": "1,000,000 km/s" },
                     "answer": "A",
                     "explanation": "The speed of light in a vacuum is approximately 299,792 km/s, commonly rounded to 300,000 km/s."
                 },
                 {
+                    "type": "tf",
+                    "q": "Lightning never strikes the same place twice.",
+                    "options": { "A": "True", "B": "False" },
+                    "answer": "B",
+                    "explanation": "Lightning frequently strikes the same place twice. The Empire State Building is struck about 20-25 times per year."
+                },
+                {
+                    "type": "mcq",
                     "q": "Who painted the Mona Lisa?",
-                    "options": {
-                        "A": "Michelangelo",
-                        "B": "Raphael",
-                        "C": "Leonardo da Vinci",
-                        "D": "Donatello"
-                    },
+                    "options": { "A": "Michelangelo", "B": "Raphael", "C": "Leonardo da Vinci", "D": "Donatello" },
                     "answer": "C",
                     "explanation": "Leonardo da Vinci painted the Mona Lisa between 1503 and 1519. It now hangs in the Louvre Museum in Paris."
                 },
                 {
-                    "q": "What is the chemical formula for water?",
-                    "options": {
-                        "A": "CO2",
-                        "B": "H2O",
-                        "C": "NaCl",
-                        "D": "O2"
-                    },
-                    "answer": "B",
-                    "explanation": "Water is composed of two hydrogen atoms and one oxygen atom, giving it the formula H₂O."
+                    "type": "tf",
+                    "q": "Octopuses have three hearts.",
+                    "options": { "A": "True", "B": "False" },
+                    "answer": "A",
+                    "explanation": "Octopuses have three hearts: two branchial hearts pump blood to the gills, and one systemic heart pumps it to the body."
                 },
                 {
-                    "q": "Which country has the largest population in the world?",
-                    "options": {
-                        "A": "United States",
-                        "B": "China",
-                        "C": "India",
-                        "D": "Indonesia"
-                    },
-                    "answer": "C",
-                    "explanation": "As of 2023, India has surpassed China as the world's most populous country with over 1.4 billion people."
-                },
-                {
+                    "type": "mcq",
                     "q": "What is the powerhouse of the cell?",
-                    "options": {
-                        "A": "Nucleus",
-                        "B": "Ribosome",
-                        "C": "Mitochondria",
-                        "D": "Endoplasmic Reticulum"
-                    },
+                    "options": { "A": "Nucleus", "B": "Ribosome", "C": "Mitochondria", "D": "Endoplasmic Reticulum" },
                     "answer": "C",
-                    "explanation": "Mitochondria generate most of the cell's supply of ATP, which is used as a source of chemical energy."
-                },
-                {
-                    "q": "Which programming language was created by Brendan Eich in 1995?",
-                    "options": {
-                        "A": "Python",
-                        "B": "Java",
-                        "C": "JavaScript",
-                        "D": "C++"
-                    },
-                    "answer": "C",
-                    "explanation": "JavaScript was created by Brendan Eich in just 10 days while working at Netscape Communications."
+                    "explanation": "Mitochondria generate most of the cell's supply of ATP, the main energy currency of the cell."
                 }
             ];
 
             document.getElementById('json-input').value = JSON.stringify(sampleQuiz, null, 2);
-            showToast('✓ Sample quiz loaded. Press "Load Quiz" to start!');
+            showToast('✓ Sample quiz loaded — Press "Load Quiz" to start!');
         }
     </script>
 </body>
