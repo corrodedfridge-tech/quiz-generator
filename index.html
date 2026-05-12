@@ -24,13 +24,11 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5}
-/* LAYOUT */
 .layout{display:flex;min-height:100vh}
 .sidebar{width:240px;min-width:240px;background:var(--s1);border-right:1px solid var(--bd);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:200;transition:transform .3s var(--ease)}
 .sidebar.collapsed{transform:translateX(-240px)}
 .main{flex:1;margin-left:240px;min-height:100vh;display:flex;flex-direction:column;transition:margin-left .3s var(--ease)}
 .main.expanded{margin-left:0}
-/* SIDEBAR */
 .sb-head{padding:16px 16px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bd)}
 .sb-logo{width:28px;height:28px;background:linear-gradient(135deg,var(--pur),var(--blu));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0}
 .sb-brand{font-size:14px;font-weight:700;letter-spacing:-.3px;flex:1}
@@ -49,11 +47,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .sb-badge{font-size:9px;font-weight:700;padding:2px 5px;border-radius:100px;background:var(--pur-bg);color:var(--pur);border:1px solid var(--pur-b)}
 .api-pill{margin:8px;padding:8px 10px;border-radius:var(--r-sm);border:1px solid var(--bd);background:var(--s2);display:flex;align-items:center;gap:7px;cursor:pointer;transition:all .15s}
 .api-pill:hover{border-color:var(--b2)}
-.api-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0}
+.api-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0;transition:background .3s}
 .api-dot.ok{background:var(--grn)}
 .api-pill-label{font-size:10px;font-weight:600;color:var(--t3);flex:1}
 .api-pill-label.ok{color:var(--grn)}
-/* TOPBAR */
 .topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10px;padding:10px 22px;background:rgba(0,0,0,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);min-height:46px}
 .tb-toggle{width:28px;height:28px;border:1px solid var(--b2);background:transparent;border-radius:var(--r-sm);color:var(--t2);cursor:pointer;display:none;align-items:center;justify-content:center;font-size:13px;transition:all .15s;flex-shrink:0}
 .tb-toggle:hover{background:var(--s3);color:var(--tx)}
@@ -61,12 +58,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .tb-bc .sep{color:var(--t5)}
 .tb-bc .cur{color:var(--tx);font-weight:600}
 .tb-right{margin-left:auto;display:flex;align-items:center;gap:6px}
-/* CONTENT */
 .content{flex:1;padding:26px 22px 80px;max-width:800px;width:100%}
 .pg{display:none}
 .pg.active{display:block;animation:pgIn .35s var(--ease)}
 @keyframes pgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-/* PAGE HEADER */
 .ch{margin-bottom:24px}
 .ch-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;background:var(--s2);border:1px solid var(--bd);border-radius:100px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3);margin-bottom:12px}
 .ch-dot{width:5px;height:5px;background:var(--grn);border-radius:50%;animation:blink 2s ease-in-out infinite}
@@ -75,22 +70,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .ch h1 .thin{font-weight:300;color:var(--t3)}
 .ch h1 .g{background:linear-gradient(135deg,var(--pur),var(--blu));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .ch p{font-size:13px;color:var(--t3);line-height:1.6}
-/* CARDS */
 .cd{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r-lg);padding:20px;position:relative;overflow:hidden;margin-bottom:10px;transition:border-color .2s}
 .cd:hover{border-color:var(--b2)}
 .cd::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.04),transparent)}
 .cd-title{font-size:13px;font-weight:700;margin-bottom:4px}
 .cd-desc{font-size:11px;color:var(--t3);line-height:1.5}
-/* GRIDS */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .stk{display:flex;flex-direction:column;gap:8px}
-/* METRIC */
 .met{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r-md);padding:12px}
 .met-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--t4);margin-bottom:4px}
 .met-val{font-size:20px;font-weight:800;letter-spacing:-1px;font-variant-numeric:tabular-nums}
-/* FORM */
 .field{margin-bottom:10px}
 .field-label{display:block;font-size:11px;font-weight:600;color:var(--t2);margin-bottom:4px}
 .input{width:100%;padding:9px 12px;background:var(--s3);border:1px solid var(--bd);border-radius:var(--r-sm);color:var(--tx);font-size:13px;font-family:inherit;outline:none;transition:all .2s}
@@ -99,7 +90,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .textarea{width:100%;min-height:140px;padding:11px 12px;background:var(--s3);border:1px solid var(--bd);border-radius:var(--r-md);color:var(--tx);font-size:11px;font-family:'SF Mono','Fira Code',monospace;line-height:1.7;outline:none;resize:vertical;transition:all .2s}
 .textarea:focus{border-color:var(--b4)}
 .textarea::placeholder{color:var(--t5)}
-/* TOGGLES */
 .tog-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--s3);border:1px solid var(--bd);border-radius:var(--r-sm);cursor:pointer;transition:all .15s;user-select:none}
 .tog-row:hover{border-color:var(--b2)}
 .tog-info{flex:1}
@@ -109,7 +99,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .tog.on{background:var(--pur)}
 .tog::after{content:'';position:absolute;width:14px;height:14px;background:#fff;border-radius:50%;top:3px;left:3px;transition:all .2s var(--ease);opacity:.5}
 .tog.on::after{transform:translateX(16px);opacity:1}
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:8px 16px;border-radius:var(--r-sm);font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .15s;border:none;position:relative}
 .btn:active{transform:scale(.98)}
 .btn:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
@@ -124,7 +113,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .btn-full{width:100%}
 .btn-sm{padding:6px 11px;font-size:11px}
 .btn-xs{padding:3px 7px;font-size:10px}
-/* QUIZ FLOW */
 .qbar{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--s2);border:1px solid var(--bd);border-radius:var(--r-md);margin-bottom:12px}
 .qbar-left{font-size:11px;color:var(--t3);font-weight:500}
 .qpill{padding:2px 8px;background:var(--s4);border:1px solid var(--bd);border-radius:100px;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
@@ -141,7 +129,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .qt{font-size:20px;font-weight:600;line-height:1.4;letter-spacing:-.3px;margin-bottom:22px;animation:qsl .25s ease}
 @keyframes qsl{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
 .qhint{font-size:11px;color:var(--t3);margin-bottom:10px;font-style:italic}
-/* INFO SLIDE */
 .info-slide-box{background:var(--s2);border:1px solid var(--b2);border-radius:var(--r-lg);padding:28px;margin-bottom:14px;position:relative;overflow:hidden;animation:qsl .3s ease}
 .info-slide-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--pur),var(--blu))}
 .info-slide-title{font-size:22px;font-weight:700;letter-spacing:-.4px;margin-bottom:14px}
@@ -154,7 +141,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .info-slide-body code{background:var(--s4);padding:1px 5px;border-radius:3px;font-family:'SF Mono',monospace;font-size:12px;color:var(--cyn)}
 .info-slide-body blockquote{border-left:3px solid var(--pur);padding:6px 14px;margin:10px 0;background:var(--s3);border-radius:0 var(--r-sm) var(--r-sm) 0;font-style:italic;color:var(--t2)}
 .info-slide-body .highlight{background:var(--yel-bg);border:1px solid var(--yel-b);border-radius:var(--r-sm);padding:10px 14px;margin:10px 0}
-/* OPTIONS */
 .opts{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
 .opt{width:100%;padding:10px 13px;background:var(--s2);border:1px solid var(--b2);border-radius:var(--r-sm);color:var(--tx);font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit;text-align:left;display:flex;align-items:center;gap:9px;line-height:1.4}
 .opt:hover:not(:disabled){border-color:var(--b4);background:var(--s3)}
@@ -166,14 +152,12 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .opt.selected{border-color:var(--b4);background:var(--s3)}.opt.selected .opt-k{background:#fff;color:#000;border-color:#fff}
 .opt:disabled{cursor:default}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-/* T/F */
 .tf-g{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
 .tf-b{padding:18px 12px;background:var(--s2);border:1px solid var(--b2);border-radius:var(--r-md);color:var(--tx);font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
 .tf-b:hover:not(:disabled){border-color:var(--b4);background:var(--s3)}
 .tf-b.correct{border-color:var(--grn-b);background:var(--grn-bg)}
 .tf-b.incorrect{border-color:var(--red-b);background:var(--red-bg);animation:shake .3s ease}
 .tf-b:disabled{cursor:default}
-/* SHORT / FILL */
 .sh-in{width:100%;padding:10px 13px;background:var(--s2);border:1px solid var(--b2);border-radius:var(--r-sm);color:var(--tx);font-size:14px;font-family:inherit;outline:none;transition:all .2s;margin-bottom:6px}
 .sh-in:focus{border-color:var(--b4)}.sh-in::placeholder{color:var(--t5)}
 .sh-in.correct{border-color:var(--grn-b);background:var(--grn-bg)}
@@ -187,7 +171,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .fill-bl:focus{border-color:#fff;background:var(--s4)}
 .fill-bl.correct{border-color:var(--grn)}.fill-bl.incorrect{border-color:var(--red)}
 .fill-bl:disabled{cursor:default}
-/* FEEDBACK */
 .fb{margin-top:8px;padding:9px 13px;border-radius:var(--r-sm);font-size:12px;animation:fbIn .2s ease}
 @keyframes fbIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .fb-ok{background:var(--grn-bg);border:1px solid var(--grn-b);color:var(--grn)}
@@ -197,7 +180,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .expl-text{font-size:11px;line-height:1.6;color:var(--t2)}
 .nxt-btn{width:100%;padding:10px 16px;background:linear-gradient(135deg,var(--pur),var(--blu));color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;margin-top:10px;display:none}
 .nxt-btn:hover{opacity:.9}.nxt-btn.show{display:block;animation:fbIn .2s ease}
-/* RESULTS */
 .res-wrap{text-align:center;padding:32px 0}
 .res-ring{width:140px;height:140px;margin:0 auto 20px;position:relative}
 .res-ring svg{position:absolute;top:-3px;left:-3px;transform:rotate(-90deg)}
@@ -205,7 +187,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .res-pct{font-size:34px;font-weight:800;letter-spacing:-2px}
 .res-lbl{font-size:9px;color:var(--t4);font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
 .res-msg{font-size:14px;color:var(--t3);margin-bottom:24px;font-weight:500}
-/* REVIEW */
 .rev-item{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r-md);padding:12px 14px;margin-bottom:5px;animation:pgIn .3s var(--ease);animation-fill-mode:backwards}
 .rev-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:3px}
 .rev-ql{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--t5)}
@@ -215,7 +196,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .rv-info{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-b)}
 .rev-q{font-size:12px;font-weight:500;line-height:1.5;margin-bottom:4px}
 .rev-ans{font-size:11px;color:var(--t3);line-height:1.5}
-/* FLASHCARDS */
 .fc-wrap{perspective:1000px;margin-bottom:12px}
 .fc{width:100%;height:220px;position:relative;transition:transform .55s var(--ease);transform-style:preserve-3d;cursor:pointer}
 .fc.flipped{transform:rotateY(180deg)}
@@ -229,10 +209,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .fc-prog{display:flex;gap:3px;justify-content:center;margin-top:8px;flex-wrap:wrap}
 .fc-dot{width:6px;height:6px;border-radius:50%;background:var(--s5);transition:all .15s;cursor:pointer}
 .fc-dot.active{background:#fff}.fc-dot.known{background:var(--grn)}.fc-dot.unknown{background:var(--red)}
-/* TIMER */
 .timer-disp{font-size:48px;font-weight:800;letter-spacing:-3px;font-variant-numeric:tabular-nums;text-align:center;padding:24px 0;transition:color .3s}
 .timer-ctrls{display:flex;gap:6px;justify-content:center}
-/* SAVED */
 .sv-item{background:var(--s3);border:1px solid var(--bd);border-radius:var(--r-sm);padding:11px 13px;display:flex;align-items:center;gap:8px;transition:all .15s;cursor:pointer;animation:pgIn .3s var(--ease);animation-fill-mode:backwards}
 .sv-item:hover{border-color:var(--b2);background:var(--s4)}
 .sv-info{flex:1;min-width:0}
@@ -242,9 +220,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .sv-acts button{padding:3px 7px;border-radius:var(--r-xs);border:1px solid var(--bd);background:var(--s4);color:var(--t3);font-size:9px;font-weight:600;cursor:pointer;transition:all .1s;font-family:inherit}
 .sv-acts button:hover{background:var(--s5);color:var(--tx)}
 .sv-acts button.del:hover{background:var(--red-bg);color:var(--red);border-color:var(--red-b)}
-/* STUDY METHODS */
-.study-tabs{display:flex;gap:4px;margin-bottom:14px;background:var(--s2);padding:4px;border-radius:var(--r-md);border:1px solid var(--bd)}
-.study-tab{flex:1;padding:6px 8px;border-radius:var(--r-sm);font-size:10px;font-weight:600;cursor:pointer;transition:all .15s;border:none;background:transparent;color:var(--t3);font-family:inherit;text-align:center}
+.study-tabs{display:flex;gap:4px;margin-bottom:14px;background:var(--s2);padding:4px;border-radius:var(--r-md);border:1px solid var(--bd);flex-wrap:wrap}
+.study-tab{flex:1;padding:6px 8px;border-radius:var(--r-sm);font-size:10px;font-weight:600;cursor:pointer;transition:all .15s;border:none;background:transparent;color:var(--t3);font-family:inherit;text-align:center;min-width:60px}
 .study-tab.active{background:var(--s4);color:var(--tx)}
 .study-tab:hover:not(.active){color:var(--t2)}
 .study-panel{display:none}
@@ -278,24 +255,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .spaced-day{min-width:80px;font-size:9px;font-weight:700;color:var(--pur);text-transform:uppercase;letter-spacing:.6px;padding-top:1px}
 .spaced-action{font-size:12px;font-weight:600;margin-bottom:2px}
 .spaced-items{font-size:11px;color:var(--t3);line-height:1.5}
-/* EXPORT */
 .exp-preview{background:var(--s3);border:1px solid var(--bd);border-radius:var(--r-md);padding:12px;margin-top:8px;max-height:260px;overflow-y:auto}
 .exp-preview pre{font-family:'SF Mono',monospace;font-size:10px;line-height:1.6;color:var(--t2);white-space:pre-wrap;word-wrap:break-word}
-/* API PAGE */
 .api-setup-box{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r-lg);padding:22px;margin-bottom:10px}
-.api-vis-wrap{display:flex;gap:8px;align-items:center}
-.api-vis-wrap .input{flex:1;font-family:'SF Mono',monospace;font-size:11px}
-.api-test-box{padding:10px 14px;border-radius:var(--r-sm);font-size:12px;margin-top:10px;animation:fbIn .2s ease}
+.api-test-box{padding:10px 14px;border-radius:var(--r-sm);font-size:12px;margin-top:10px;animation:fbIn .2s ease;line-height:1.6}
 .api-test-box.ok{background:var(--grn-bg);border:1px solid var(--grn-b);color:var(--grn)}
 .api-test-box.err{background:var(--red-bg);border:1px solid var(--red-b);color:var(--red)}
-/* JSON VIEWER */
-.json-viewer{background:var(--s3);border:1px solid var(--bd);border-radius:var(--r-md);padding:12px;margin-top:8px;max-height:200px;overflow-y:auto}
+.api-test-box.warn{background:var(--yel-bg);border:1px solid var(--yel-b);color:var(--yel)}
+.json-viewer{background:var(--s3);border:1px solid var(--bd);border-radius:var(--r-md);padding:12px;margin-top:8px;max-height:200px;overflow-y:auto;position:relative}
 .json-viewer pre{font-family:'SF Mono',monospace;font-size:10px;line-height:1.6;color:var(--t2);white-space:pre-wrap;word-wrap:break-word}
-.cp-wrap{position:relative}
-.cp-btn{position:absolute;top:6px;right:6px;padding:3px 8px;background:var(--s4);border:1px solid var(--b2);border-radius:var(--r-xs);color:var(--t2);font-size:9px;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit}
+.cp-btn{padding:3px 8px;background:var(--s4);border:1px solid var(--b2);border-radius:var(--r-xs);color:var(--t2);font-size:9px;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit}
 .cp-btn:hover{background:#fff;color:#000}
 .cp-btn.copied{background:var(--grn);color:#fff;border-color:var(--grn)}
-/* LOADING */
 .ai-loading{text-align:center;padding:40px 20px}
 .ai-ring{width:52px;height:52px;border:3px solid var(--s4);border-top-color:var(--pur);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -305,28 +276,24 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .dots span:nth-child(2){animation-delay:.15s}
 .dots span:nth-child(3){animation-delay:.3s}
 @keyframes db{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
-/* QUICK TOPICS */
 .topic-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
 .topic-chip{padding:4px 9px;background:var(--s3);border:1px solid var(--bd);border-radius:100px;font-size:10px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--t2)}
 .topic-chip:hover{background:var(--s4);border-color:var(--b2);color:var(--tx)}
-/* TOAST */
+.model-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:var(--s4);border:1px solid var(--bd);border-radius:100px;font-size:9px;font-weight:700;color:var(--t3)}
+.model-badge.ok{background:var(--grn-bg);border-color:var(--grn-b);color:var(--grn)}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--s3);color:var(--tx);padding:7px 16px;border-radius:var(--r-sm);font-size:12px;font-weight:500;border:1px solid var(--bd);z-index:20000;transition:transform .3s var(--spring);max-width:90%;text-align:center}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .toast.ok{border-color:var(--grn-b);color:var(--grn)}
 .toast.err{border-color:var(--red-b);color:var(--red)}
-/* CONFETTI */
 .conf-box{position:fixed;inset:0;pointer-events:none;z-index:15000;overflow:hidden}
 .conf{position:absolute;border-radius:1px;animation:confFall linear forwards}
 @keyframes confFall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-/* SPINNER INLINE */
 .spin-sm{width:11px;height:11px;border:2px solid var(--bd);border-top-color:#fff;border-radius:50%;animation:spin .5s linear infinite;display:inline-block}
-/* EMPTY */
 .empty{text-align:center;padding:44px 16px}
 .empty-icon{font-size:34px;margin-bottom:10px;display:inline-block;animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .empty-title{font-size:15px;font-weight:700;margin-bottom:3px}
 .empty-desc{font-size:12px;color:var(--t4);margin-bottom:14px}
-/* RESPONSIVE */
 @media(max-width:900px){.sidebar{transform:translateX(-240px)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.sb-close{display:flex}.tb-toggle{display:flex}}
 @media(max-width:600px){.content{padding:16px 12px 80px}.topbar{padding:8px 12px}.ch h1{font-size:22px}.qt{font-size:17px}.g2,.g3,.g4{grid-template-columns:1fr}.fc{height:190px}.info-slide-box{padding:18px}.cornell-body{grid-template-columns:1fr}}
 </style>
@@ -334,7 +301,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 <body>
 <div class="layout">
 
-<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <div class="sb-head">
     <div class="sb-logo">🧠</div>
@@ -344,7 +310,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
   <div class="sb-nav">
     <div class="sb-sec">
       <div class="sb-sec-label">Generate</div>
-      <div class="sb-item active" onclick="go('generate')" data-p="generate"><span class="sb-item-icon">✨</span><span class="sb-item-text">AI Generate</span><span class="sb-badge">NEW</span></div>
+      <div class="sb-item active" onclick="go('generate')" data-p="generate"><span class="sb-item-icon">✨</span><span class="sb-item-text">AI Generate</span><span class="sb-badge">AI</span></div>
       <div class="sb-item" onclick="go('import')" data-p="import"><span class="sb-item-icon">📥</span><span class="sb-item-text">Import JSON</span></div>
     </div>
     <div class="sb-sec">
@@ -371,36 +337,34 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
   </div>
 </div>
 
-<!-- MAIN -->
 <div class="main" id="main">
   <div class="topbar">
     <button class="tb-toggle" onclick="toggleSB()">☰</button>
     <div class="tb-bc"><span style="color:var(--t4)">QuizForge</span><span class="sep"> / </span><span class="cur" id="bc">Generate</span></div>
-    <div class="tb-right"></div>
+    <div class="tb-right">
+      <div class="model-badge" id="model-badge" style="display:none"></div>
+    </div>
   </div>
   <div class="content">
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: GENERATE                                          -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- GENERATE -->
   <div class="pg active" id="pg-generate">
     <div class="ch">
-      <div class="ch-chip"><span class="ch-dot"></span>Gemini 2.0 Flash</div>
+      <div class="ch-chip"><span class="ch-dot"></span>Gemini AI</div>
       <h1><span class="g">AI Quiz</span> <span class="thin">Generator</span></h1>
-      <p>Type any topic → Gemini creates a complete quiz JSON → instantly playable here.</p>
+      <p>Type any topic → AI creates a complete quiz JSON → play it instantly here.</p>
     </div>
 
-    <!-- API key warning -->
-    <div id="gen-warn" style="display:none;background:var(--ora-bg);border:1px solid var(--ora-b);border-radius:var(--r-md);padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--ora);display:flex;align-items:center;gap:8px">
-      ⚠️ <span>No API key. <b style="cursor:pointer;text-decoration:underline" onclick="go('apikey')">Add your Gemini API key →</b></span>
+    <div id="gen-warn" style="background:var(--ora-bg);border:1px solid var(--ora-b);border-radius:var(--r-md);padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--ora);display:none;align-items:center;gap:8px">
+      ⚠️ <span>No API key set. <b style="cursor:pointer;text-decoration:underline" onclick="go('apikey')">Add your Gemini API key →</b></span>
     </div>
 
     <div class="cd">
       <div class="field">
         <label class="field-label">What do you want to study?</label>
         <div style="display:flex;gap:8px">
-          <input type="text" class="input" id="topic-input" placeholder="e.g. The French Revolution, Python decorators, Photosynthesis..." style="flex:1;font-size:14px" onkeydown="if(event.key==='Enter')generate()">
-          <button class="btn btn-ai" id="gen-btn" onclick="generate()" style="white-space:nowrap">✨ Generate</button>
+          <input type="text" class="input" id="topic-input" placeholder="e.g. Photosynthesis, World War II, Python decorators..." style="flex:1;font-size:14px" onkeydown="if(event.key==='Enter')generate()">
+          <button class="btn btn-ai" id="gen-btn" onclick="generate()" style="white-space:nowrap;padding:9px 18px">✨ Generate</button>
         </div>
         <div class="topic-chips">
           <span class="topic-chip" onclick="setTopic('Photosynthesis')">🌿 Photosynthesis</span>
@@ -411,8 +375,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
           <span class="topic-chip" onclick="setTopic('Calculus derivatives')">📐 Calculus</span>
           <span class="topic-chip" onclick="setTopic('The French Revolution')">🗼 French Rev</span>
           <span class="topic-chip" onclick="setTopic('Machine Learning basics')">🤖 ML</span>
-          <span class="topic-chip" onclick="setTopic('Shakespeare plays')">📜 Shakespeare</span>
-          <span class="topic-chip" onclick="setTopic('The American Civil War')">🇺🇸 Civil War</span>
         </div>
       </div>
 
@@ -436,7 +398,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
           </select>
         </div>
         <div class="field" style="margin-bottom:0">
-          <label class="field-label">Question Style</label>
+          <label class="field-label">Style</label>
           <select class="input" id="gen-style" style="cursor:pointer">
             <option value="mixed">Mixed types</option>
             <option value="mcq">MCQ only</option>
@@ -452,63 +414,54 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
           <div class="tog on" id="tog-info"></div>
         </div>
         <div class="tog-row" onclick="togOpt('study')">
-          <div class="tog-info"><div class="tog-title">Study Guide</div><div class="tog-desc">Generate study materials too</div></div>
+          <div class="tog-info"><div class="tog-title">Study Guide</div><div class="tog-desc">AI study materials too</div></div>
           <div class="tog on" id="tog-study"></div>
         </div>
       </div>
     </div>
 
-    <!-- Loading -->
     <div id="gen-loading" style="display:none">
       <div class="ai-loading">
         <div class="ai-ring"></div>
         <div class="ai-loading-text">Generating <span class="dots"><span></span><span></span><span></span></span></div>
-        <div class="ai-loading-sub" id="gen-status">Calling Gemini 2.0 Flash...</div>
+        <div class="ai-loading-sub" id="gen-status">Connecting to Gemini...</div>
       </div>
     </div>
 
-    <!-- Generated JSON preview -->
     <div id="gen-result" style="display:none">
       <div class="cd" style="border-color:var(--grn-b)">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
           <span style="font-size:24px">✅</span>
-          <div>
-            <div style="font-size:14px;font-weight:700;color:var(--grn)">Quiz JSON Generated!</div>
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:700;color:var(--grn)">Quiz Generated!</div>
             <div style="font-size:11px;color:var(--t3)" id="gen-summary">Ready</div>
           </div>
         </div>
-
-        <!-- JSON file preview -->
         <div style="margin-bottom:12px">
           <div style="font-size:11px;font-weight:600;color:var(--t3);margin-bottom:5px;display:flex;align-items:center;justify-content:space-between">
-            <span>📄 Generated quiz.json</span>
-            <button class="cp-btn" style="position:static" id="cp-json-btn" onclick="cpJSON()">Copy JSON</button>
+            <span>📄 quiz.json preview</span>
+            <button class="cp-btn" id="cp-json-btn" onclick="cpJSON()">Copy JSON</button>
           </div>
-          <div class="json-viewer">
-            <pre id="json-preview"></pre>
-          </div>
+          <div class="json-viewer"><pre id="json-preview"></pre></div>
         </div>
-
         <div class="g2" style="margin-bottom:8px">
           <button class="btn btn-ai btn-full" onclick="playGenerated()">▶ Play Quiz Now</button>
           <button class="btn btn-d btn-full" onclick="go('flashcards')">🃏 Flashcards</button>
         </div>
         <div class="g2">
           <button class="btn btn-d btn-full" onclick="go('study')">📚 Study Guide</button>
-          <button class="btn btn-d btn-full" onclick="saveGenerated()">💾 Save to Library</button>
+          <button class="btn btn-d btn-full" onclick="saveGenerated()">💾 Save</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: API KEY                                           -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- API KEY -->
   <div class="pg" id="pg-apikey">
     <div class="ch">
       <div class="ch-chip">⚙ Settings</div>
       <h1>Gemini <span class="thin">API Key</span></h1>
-      <p>Connect your free Gemini API key to generate quizzes with AI.</p>
+      <p>Connect your Gemini API key to generate quizzes with AI.</p>
     </div>
 
     <div class="api-setup-box">
@@ -516,54 +469,54 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
         <span style="font-size:26px">🔑</span>
         <div>
           <div style="font-size:14px;font-weight:700">Google Gemini API Key</div>
-          <div style="font-size:11px;color:var(--t3);margin-top:2px">Uses <b>gemini-2.0-flash</b> — free & fast</div>
+          <div style="font-size:11px;color:var(--t3);margin-top:2px">Auto-detects the best free model for your key</div>
         </div>
       </div>
 
       <div class="field">
         <label class="field-label">Your API Key</label>
-        <div class="api-vis-wrap">
-          <input type="password" class="input" id="api-key-input" placeholder="AIzaSy..." autocomplete="off">
+        <div style="display:flex;gap:8px">
+          <input type="password" class="input" id="api-key-input" placeholder="AIzaSy..." autocomplete="off" style="flex:1;font-family:'SF Mono',monospace;font-size:11px">
           <button class="btn btn-d btn-sm" onclick="toggleVis()" id="vis-btn">Show</button>
         </div>
       </div>
+
+      <div class="field">
+        <label class="field-label">Model (leave on Auto for best results)</label>
+        <select class="input" id="api-model" style="cursor:pointer" onchange="saveModelPref()">
+          <option value="auto">🔄 Auto-detect (tries free models first)</option>
+          <option value="gemini-1.5-flash">gemini-1.5-flash — free tier ✓</option>
+          <option value="gemini-1.5-flash-latest">gemini-1.5-flash-latest — free tier ✓</option>
+          <option value="gemini-1.5-pro">gemini-1.5-pro — free tier (slower)</option>
+          <option value="gemini-2.0-flash-lite">gemini-2.0-flash-lite — may be free</option>
+          <option value="gemini-2.0-flash">gemini-2.0-flash — needs billing</option>
+        </select>
+      </div>
+
       <div class="g2" style="margin-top:6px">
         <button class="btn btn-ai btn-full" onclick="saveKey()">💾 Save & Test</button>
         <button class="btn btn-d btn-full" onclick="clearKey()">🗑 Remove</button>
       </div>
       <div id="api-test-res" style="display:none"></div>
 
-      <div style="background:var(--s3);border:1px solid var(--bd);border-radius:var(--r-sm);padding:12px 14px;margin-top:12px;font-size:11px;color:var(--t3);line-height:1.7">
-        <b style="color:var(--tx)">How to get a free key:</b><br>
+      <div style="background:var(--s3);border:1px solid var(--bd);border-radius:var(--r-sm);padding:12px 14px;margin-top:12px;font-size:11px;color:var(--t3);line-height:1.8">
+        <b style="color:var(--tx)">Get your free API key:</b><br>
         1. Go to <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--blu)">aistudio.google.com/app/apikey</a><br>
         2. Click <b style="color:var(--tx)">"Create API Key"</b><br>
-        3. Copy & paste it above, then click Save<br><br>
-        🔒 Key is stored only in your browser's localStorage. Never sent to any server except Google.
-      </div>
-    </div>
-
-    <div class="cd">
-      <div class="cd-title" style="margin-bottom:8px">Why Gemini 2.0 Flash?</div>
-      <div class="stk">
-        <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--bd)"><span style="font-size:16px">🆓</span><div><div style="font-size:11px;font-weight:600">Free Tier</div><div style="font-size:10px;color:var(--t4);margin-top:1px">Generous free usage — perfect for students</div></div></div>
-        <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--bd)"><span style="font-size:16px">⚡</span><div><div style="font-size:11px;font-weight:600">Fast Generation</div><div style="font-size:10px;color:var(--t4);margin-top:1px">Full quiz with explanations in seconds</div></div></div>
-        <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0"><span style="font-size:16px">🎯</span><div><div style="font-size:11px;font-weight:600">Accurate JSON</div><div style="font-size:10px;color:var(--t4);margin-top:1px">Structured output loads directly — no copy-paste needed</div></div></div>
+        3. Paste it above → Save & Test<br><br>
+        <b style="color:var(--yel)">⚠️ Quota tip:</b> If you see quota errors, the model auto-selector will find the right free model. The key itself doesn't have a limit of 0 — it just means that specific model needs billing. The free models (gemini-1.5-flash) work fine.<br><br>
+        🔒 Key stored only in your browser localStorage.
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: IMPORT                                            -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- IMPORT -->
   <div class="pg" id="pg-import">
-    <div class="ch">
-      <h1>Import <span class="thin">Quiz JSON</span></h1>
-      <p>Paste a quiz JSON array directly — or load the sample.</p>
-    </div>
+    <div class="ch"><h1>Import <span class="thin">Quiz JSON</span></h1><p>Paste a quiz JSON array directly.</p></div>
     <div class="cd">
       <div class="field">
         <label class="field-label">Quiz JSON</label>
-        <textarea id="ji" class="textarea" placeholder='Paste JSON array here: [{"type":"mcq","q":"...","options":{...},"answer":"A","explanation":"..."}]'></textarea>
+        <textarea id="ji" class="textarea" placeholder='Paste JSON array: [{"type":"mcq","q":"...","options":{...},"answer":"A","explanation":"..."}]'></textarea>
       </div>
       <div class="g2" style="margin-bottom:10px">
         <div class="tog-row" onclick="togS()"><div class="tog-info"><div class="tog-title">Shuffle Questions</div><div class="tog-desc">Randomize order</div></div><div class="tog" id="ts"></div></div>
@@ -575,19 +528,17 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
       </div>
       <div class="g2">
         <button class="btn btn-ai btn-full" onclick="loadFromImport()">▶ Load & Play</button>
-        <button class="btn btn-d btn-full" onclick="saveFromImport()">💾 Save to Library</button>
+        <button class="btn btn-d btn-full" onclick="saveFromImport()">💾 Save</button>
       </div>
     </div>
     <div class="cd">
       <div class="cd-title" style="margin-bottom:4px">Sample Quiz</div>
-      <div class="cd-desc" style="margin-bottom:10px">Cell Biology — all question types with info slides.</div>
+      <div class="cd-desc" style="margin-bottom:10px">Cell Biology — all question types + info slides.</div>
       <button class="btn btn-d btn-full" onclick="loadSample()">Load Sample</button>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: QUIZ                                              -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- QUIZ -->
   <div class="pg" id="pg-quiz">
     <div id="qz-empty" class="empty">
       <div class="empty-icon">📝</div>
@@ -599,10 +550,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
       </div>
     </div>
     <div id="qz-active" style="display:none">
-      <div class="qbar">
-        <span class="qbar-left" id="qp"></span>
-        <span class="qpill" id="qs">0</span>
-      </div>
+      <div class="qbar"><span class="qbar-left" id="qp"></span><span class="qpill" id="qs">0</span></div>
       <div class="ptr"><div class="ptf" id="pf"></div></div>
       <div id="qb"></div>
       <div class="qnum-lbl" id="qnum"></div>
@@ -630,20 +578,17 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
           <button class="btn btn-w btn-full" onclick="retake()">🔄 Retake</button>
         </div>
         <button class="btn btn-d btn-full btn-sm" onclick="saveQuiz()">💾 Save</button>
-        <button class="btn btn-ai btn-full btn-sm" style="margin-top:6px" id="ai-rec-btn" onclick="go('study')" style="display:none">📚 View Study Guide</button>
+        <button class="btn btn-ai btn-full btn-sm" style="margin-top:6px" id="study-btn" onclick="go('study')">📚 Study Guide</button>
       </div>
       <div id="revbox" style="display:none;margin-top:10px"></div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: FLASHCARDS                                        -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FLASHCARDS -->
   <div class="pg" id="pg-flashcards">
-    <div class="ch"><h1>Flash<span class="thin">cards</span></h1><p>Click card to flip. Mark known / unknown.</p></div>
+    <div class="ch"><h1>Flash<span class="thin">cards</span></h1><p>Click to flip · Mark known/unknown · Use ← → keys</p></div>
     <div id="fc-empty" class="empty">
-      <div class="empty-icon">🃏</div>
-      <div class="empty-title">No Cards</div>
+      <div class="empty-icon">🃏</div><div class="empty-title">No Cards</div>
       <div class="empty-desc">Generate or import a quiz first.</div>
       <div style="display:flex;gap:8px;justify-content:center"><button class="btn btn-ai btn-sm" onclick="go('generate')">✨ Generate</button><button class="btn btn-g btn-sm" onclick="go('import')">Import</button></div>
     </div>
@@ -671,19 +616,16 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: STUDY METHODS                                     -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- STUDY METHODS -->
   <div class="pg" id="pg-study">
     <div class="ch">
-      <div class="ch-chip"><span class="ch-dot"></span>AI Powered</div>
+      <div class="ch-chip"><span class="ch-dot"></span>AI Generated</div>
       <h1>Study <span class="thin">Methods</span></h1>
-      <p>AI-generated study strategies tailored to your quiz topic.</p>
+      <p>AI study strategies tailored to your topic.</p>
     </div>
     <div id="study-empty" class="empty">
-      <div class="empty-icon">📚</div>
-      <div class="empty-title">No Study Content</div>
-      <div class="empty-desc">Generate a quiz first to unlock study materials.</div>
+      <div class="empty-icon">📚</div><div class="empty-title">No Study Content</div>
+      <div class="empty-desc">Generate a quiz first to unlock AI study materials.</div>
       <button class="btn btn-ai btn-sm" onclick="go('generate')">✨ Generate Quiz</button>
     </div>
     <div id="study-content" style="display:none">
@@ -699,13 +641,11 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
       <div class="study-panel" id="study-cornell"><div id="cornell-content"></div></div>
       <div class="study-panel" id="study-mindmap"><div id="mindmap-content"></div></div>
       <div class="study-panel" id="study-spaced"><div id="spaced-content"></div></div>
-      <button class="btn btn-ai btn-full" style="margin-top:10px" onclick="regenStudy()">✨ Regenerate Study Materials</button>
+      <button class="btn btn-ai btn-full" style="margin-top:10px" onclick="regenStudy()">✨ Regenerate</button>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: TIMER                                             -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- TIMER -->
   <div class="pg" id="pg-timer">
     <div class="ch"><h1>Study <span class="thin">Timer</span></h1><p>Pomodoro focus sessions.</p></div>
     <div class="cd" style="text-align:center">
@@ -721,8 +661,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
         <div class="met"><div class="met-label">Streak</div><div class="met-val" id="pm-s" style="font-size:18px">0</div></div>
       </div>
     </div>
-    <div class="cd">
-      <div class="cd-title" style="margin-bottom:8px">Presets</div>
+    <div class="cd"><div class="cd-title" style="margin-bottom:8px">Presets</div>
       <div class="g4">
         <button class="btn btn-d btn-sm btn-full" onclick="setTm(15)">15 min</button>
         <button class="btn btn-d btn-sm btn-full" onclick="setTm(25)">25 min</button>
@@ -732,44 +671,35 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: STATS                                             -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- STATS -->
   <div class="pg" id="pg-stats">
     <div class="ch"><h1>Stat<span class="thin">istics</span></h1></div>
     <div class="g4">
-      <div class="met"><div class="met-label">Quizzes Taken</div><div class="met-val" id="s-tk">0</div></div>
+      <div class="met"><div class="met-label">Quizzes</div><div class="met-val" id="s-tk">0</div></div>
       <div class="met"><div class="met-label">Avg Score</div><div class="met-val" id="s-av">—</div></div>
-      <div class="met"><div class="met-label">Best Score</div><div class="met-val" id="s-bs" style="color:var(--grn)">—</div></div>
+      <div class="met"><div class="met-label">Best</div><div class="met-val" id="s-bs" style="color:var(--grn)">—</div></div>
       <div class="met"><div class="met-label">Qs Answered</div><div class="met-val" id="s-qa">0</div></div>
     </div>
     <div class="cd" style="margin-top:10px">
-      <div class="cd-title" style="margin-bottom:10px">Score History</div>
+      <div class="cd-title" style="margin-bottom:10px">History</div>
       <div id="s-chart" style="display:flex;align-items:flex-end;gap:3px;height:70px;margin-bottom:10px"></div>
       <div class="stk" id="s-hist"><div style="text-align:center;padding:14px;color:var(--t4);font-size:12px">No history yet.</div></div>
       <button class="btn btn-g btn-xs" style="margin-top:8px" onclick="clearStats()">Clear History</button>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: SAVED                                             -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SAVED -->
   <div class="pg" id="pg-saved">
     <div class="ch"><h1>Saved <span class="thin">Quizzes</span></h1><p>Stored locally in your browser.</p></div>
-    <div class="stk" id="sv-list">
-      <div style="text-align:center;padding:20px;color:var(--t4);font-size:12px">No saved quizzes.</div>
-    </div>
+    <div class="stk" id="sv-list"><div style="text-align:center;padding:20px;color:var(--t4);font-size:12px">No saved quizzes.</div></div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PAGE: EXPORT                                            -->
-  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- EXPORT -->
   <div class="pg" id="pg-export">
     <div class="ch"><h1>Export <span class="thin">Quiz</span></h1><p>Download your quiz in different formats.</p></div>
     <div id="exp-empty" class="empty">
-      <div class="empty-icon">📤</div>
-      <div class="empty-title">No Quiz Loaded</div>
-      <div class="empty-desc">Generate or import a quiz first.</div>
+      <div class="empty-icon">📤</div><div class="empty-title">No Quiz Loaded</div>
+      <div class="empty-desc">Generate or import first.</div>
       <button class="btn btn-ai btn-sm" onclick="go('generate')">✨ Generate</button>
     </div>
     <div id="exp-active" style="display:none">
@@ -781,7 +711,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
           <button class="btn btn-d btn-full" onclick="exportAs('csv')">📊 Download CSV</button>
           <button class="btn btn-d btn-full" onclick="exportAs('markdown')">📝 Download Markdown</button>
           <button class="btn btn-d btn-full" onclick="exportAs('anki')">🃏 Download Anki TSV</button>
-          <button class="btn btn-d btn-full" onclick="exportAs('pdf')">🖨 Print / Save as PDF</button>
+          <button class="btn btn-d btn-full" onclick="exportAs('pdf')">🖨 Print / PDF</button>
         </div>
       </div>
       <div class="cd" id="exp-pw" style="display:none">
@@ -795,9 +725,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
     </div>
   </div>
 
-  </div><!-- end content -->
-</div><!-- end main -->
-</div><!-- end layout -->
+  </div>
+</div>
+</div>
 
 <div class="toast" id="toast"></div>
 <div class="conf-box" id="confbox"></div>
@@ -805,1222 +735,1021 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 <script>
 'use strict';
 
-// ============================================================
-// STATE
-// ============================================================
-let questions = [], origQ = [], curQ = 0, score = 0;
-let answers = [], answered = false, mSel = [], totalQCount = 0;
-let sOn = false, soOn = false;
-let wantInfo = true, wantStudy = true;
-let curTopic = '', curStudyData = null;
-let expData = '', expFn = 'quiz.json';
-let fcC = [], fcI = 0, fcMarks = {};
-let tmInt = null, tmRun = false, tmSec = 25*60, tmTot = 25*60;
-let pmC = +localStorage.getItem('qf-pc')||0;
-let pmT = +localStorage.getItem('qf-pt')||0;
-let pmS = +localStorage.getItem('qf-ps')||0;
-let geminiKey = localStorage.getItem('qf-key')||'';
+// ── STATE ────────────────────────────────────────────────────
+let questions=[], origQ=[], curQ=0, score=0;
+let answers=[], answered=false, mSel=[], totalQCount=0;
+let sOn=false, soOn=false;
+let wantInfo=true, wantStudy=true;
+let curTopic='', curStudyData=null;
+let expData='', expFn='quiz.json';
+let fcC=[], fcI=0, fcMarks={};
+let tmInt=null, tmRun=false, tmSec=25*60, tmTot=25*60;
+let pmC=+localStorage.getItem('qf-pc')||0;
+let pmT=+localStorage.getItem('qf-pt')||0;
+let pmS=+localStorage.getItem('qf-ps')||0;
+let geminiKey=localStorage.getItem('qf-key')||'';
+let activeModel=''; // tracks which model actually worked
 
-// ============================================================
-// API KEY
-// ============================================================
-function updateApiUI() {
-  const dot = document.getElementById('api-dot');
-  const lbl = document.getElementById('api-pill-label');
-  if (geminiKey) {
-    dot.className = 'api-dot ok';
-    lbl.textContent = 'API Key Active';
-    lbl.className = 'api-pill-label ok';
+// ── API KEY ──────────────────────────────────────────────────
+function updateApiUI(){
+  const dot=document.getElementById('api-dot');
+  const lbl=document.getElementById('api-pill-label');
+  const mb=document.getElementById('model-badge');
+  if(geminiKey){
+    dot.className='api-dot ok';
+    lbl.textContent='API Key Active';
+    lbl.className='api-pill-label ok';
+    if(activeModel){
+      mb.textContent='⚡ '+activeModel;
+      mb.className='model-badge ok';
+      mb.style.display='inline-flex';
+    }
   } else {
-    dot.className = 'api-dot';
-    lbl.textContent = 'API Key Required';
-    lbl.className = 'api-pill-label';
+    dot.className='api-dot';
+    lbl.textContent='API Key Required';
+    lbl.className='api-pill-label';
+    mb.style.display='none';
   }
-  const w = document.getElementById('gen-warn');
-  if (w) w.style.display = geminiKey ? 'none' : 'flex';
+  const w=document.getElementById('gen-warn');
+  if(w) w.style.display=geminiKey?'none':'flex';
 }
 
-function saveKey() {
-  const v = document.getElementById('api-key-input').value.trim();
-  if (!v) { toast('Paste your API key first.', 'err'); return; }
-  geminiKey = v;
-  localStorage.setItem('qf-key', v);
+function saveKey(){
+  const v=document.getElementById('api-key-input').value.trim();
+  if(!v){toast('Paste your API key first.','err');return;}
+  if(!v.startsWith('AIza')){toast('Key should start with "AIza…"','err');return;}
+  geminiKey=v;
+  localStorage.setItem('qf-key',v);
+  activeModel='';
   updateApiUI();
   testKey();
 }
 
-function clearKey() {
-  geminiKey = '';
+function clearKey(){
+  geminiKey='';activeModel='';
   localStorage.removeItem('qf-key');
-  document.getElementById('api-key-input').value = '';
-  document.getElementById('api-test-res').style.display = 'none';
-  updateApiUI();
-  toast('Key removed.');
+  document.getElementById('api-key-input').value='';
+  document.getElementById('api-test-res').style.display='none';
+  updateApiUI();toast('Key removed.');
 }
 
-function toggleVis() {
-  const inp = document.getElementById('api-key-input');
-  const btn = document.getElementById('vis-btn');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
-  btn.textContent = inp.type === 'password' ? 'Show' : 'Hide';
+function toggleVis(){
+  const inp=document.getElementById('api-key-input');
+  const btn=document.getElementById('vis-btn');
+  inp.type=inp.type==='password'?'text':'password';
+  btn.textContent=inp.type==='password'?'Show':'Hide';
 }
 
-async function testKey() {
-  const box = document.getElementById('api-test-res');
-  box.style.display = 'block';
-  box.className = 'api-test-box';
-  box.innerHTML = '<span class="spin-sm"></span> Testing connection...';
-  try {
-    const r = await callGemini('Say exactly the word: CONNECTED');
-    box.className = 'api-test-box ok';
-    box.innerHTML = '✅ Connected! Key works — ready to generate quizzes.';
-    toast('API key verified!', 'ok');
-  } catch(e) {
-    box.className = 'api-test-box err';
-    box.innerHTML = '❌ Error: ' + e.message;
-    toast('Key test failed.', 'err');
+function saveModelPref(){
+  localStorage.setItem('qf-model',document.getElementById('api-model').value);
+}
+
+async function testKey(){
+  const box=document.getElementById('api-test-res');
+  box.style.display='block';
+  box.className='api-test-box';
+  box.innerHTML='<span class="spin-sm"></span> Testing — finding the best free model for your key...';
+  try{
+    const r=await callGemini('Reply with the single word: CONNECTED');
+    box.className='api-test-box ok';
+    box.innerHTML=`✅ Connected using <b>${activeModel}</b> — ready to generate quizzes!`;
+    updateApiUI();
+    toast('API key works!','ok');
+  }catch(e){
+    box.className='api-test-box err';
+    box.innerHTML='❌ '+e.message.split('\n')[0];
+    toast('Test failed.','err');
   }
 }
 
-// ============================================================
-// GEMINI API — uses gemini-2.0-flash
-// ============================================================
-async function callGemini(prompt) {
-  if (!geminiKey) throw new Error('No API key set. Go to Settings and add your Gemini API key.');
+// ── GEMINI CALL — tries all free models automatically ────────
+async function callGemini(prompt){
+  if(!geminiKey) throw new Error('No API key set. Go to Settings.');
 
-  // Try gemini-2.0-flash first, fallback to gemini-1.5-flash
-  const models = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-pro'];
-  let lastErr = null;
+  const pref=localStorage.getItem('qf-model')||'auto';
 
-  for (const model of models) {
-    try {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey}`;
-      const body = {
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 8192,
-          responseMimeType: 'text/plain'
-        }
-      };
-      const resp = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+  // Build candidate list based on preference
+  let candidates;
+  if(pref!=='auto'){
+    // User picked a specific model — try it first, then fall back
+    candidates=[
+      {model:pref, api:'v1beta'},
+      {model:pref, api:'v1'},
+      {model:'gemini-1.5-flash', api:'v1beta'},
+      {model:'gemini-1.5-flash', api:'v1'},
+    ];
+  } else {
+    // Auto: try all free models across both API versions
+    candidates=[
+      {model:'gemini-1.5-flash',        api:'v1beta'},
+      {model:'gemini-1.5-flash',        api:'v1'},
+      {model:'gemini-1.5-flash-latest', api:'v1beta'},
+      {model:'gemini-1.5-flash-latest', api:'v1'},
+      {model:'gemini-1.5-pro',          api:'v1beta'},
+      {model:'gemini-1.5-pro',          api:'v1'},
+      {model:'gemini-2.0-flash-lite',   api:'v1beta'},
+      {model:'gemini-2.0-flash',        api:'v1beta'},
+    ];
+  }
+
+  // If we already found a working model this session, use it first
+  if(activeModel){
+    candidates=candidates.filter(c=>c.model!==activeModel);
+    candidates.unshift({model:activeModel,api:'v1beta'},{model:activeModel,api:'v1'});
+  }
+
+  let lastErr=null;
+  const triedModels=new Set();
+
+  for(const {model,api} of candidates){
+    const key=`${model}@${api}`;
+    if(triedModels.has(key)) continue;
+    triedModels.add(key);
+
+    const url=`https://generativelanguage.googleapis.com/${api}/models/${model}:generateContent?key=${geminiKey}`;
+    console.log(`Trying: ${model} (${api})...`);
+
+    try{
+      const resp=await fetch(url,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          contents:[{role:'user',parts:[{text:prompt}]}],
+          generationConfig:{temperature:0.7,maxOutputTokens:8192}
+        })
       });
 
-      if (!resp.ok) {
-        const err = await resp.json().catch(() => ({ error: { message: `HTTP ${resp.status}` } }));
-        const msg = err.error?.message || `HTTP ${resp.status}`;
-        // If model not found, try next
-        if (msg.includes('not found') || msg.includes('not supported') || resp.status === 404) {
-          lastErr = new Error(msg);
-          continue;
+      const data=await resp.json();
+
+      if(!resp.ok){
+        const msg=data?.error?.message||`HTTP ${resp.status}`;
+        const isSkippable=
+          resp.status===404||
+          resp.status===429||
+          msg.includes('not found')||
+          msg.includes('not supported')||
+          msg.includes('quota')||
+          msg.includes('RESOURCE_EXHAUSTED')||
+          msg.includes('free_tier')||
+          msg.includes('limit: 0');
+
+        if(isSkippable){
+          console.warn(`Skip ${model}@${api}:`,msg.slice(0,100));
+          lastErr=new Error(msg);
+          continue; // try next candidate
         }
         throw new Error(msg);
       }
 
-      const data = await resp.json();
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!text) throw new Error('Empty response from Gemini.');
-      console.log(`✅ Used model: ${model}`);
+      const text=data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if(!text) throw new Error('Empty response from API.');
+
+      // Remember what worked
+      activeModel=model;
+      updateApiUI();
+      console.log(`✅ Success: ${model} (${api})`);
       return text;
-    } catch(e) {
-      if (e.message.includes('not found') || e.message.includes('not supported')) {
-        lastErr = e;
+
+    }catch(e){
+      const isSkippable=
+        e.message.includes('not found')||
+        e.message.includes('not supported')||
+        e.message.includes('quota')||
+        e.message.includes('RESOURCE_EXHAUSTED')||
+        e.message.includes('free_tier')||
+        e.message.includes('limit: 0')||
+        e.message.includes('429')||
+        e.message.includes('404');
+
+      if(isSkippable){
+        lastErr=e;
+        console.warn(`Skip ${model}@${api}:`,e.message.slice(0,80));
         continue;
       }
-      throw e;
+      throw e; // real error (bad key, network, etc.)
     }
   }
-  throw lastErr || new Error('No available Gemini model found.');
+
+  // All failed
+  const baseMsg=lastErr?.message||'All models failed.';
+  throw new Error(
+    baseMsg+
+    '\n\nThis usually means:\n'+
+    '• Your API key needs billing enabled for these models\n'+
+    '• Try going to aistudio.google.com and checking your quota\n'+
+    '• The free tier (gemini-1.5-flash) should work on a fresh key'
+  );
 }
 
-// ============================================================
-// GENERATE
-// ============================================================
-function setTopic(t) { document.getElementById('topic-input').value = t; }
-function togOpt(k) {
-  if (k === 'info') { wantInfo = !wantInfo; document.getElementById('tog-info').classList.toggle('on', wantInfo); }
-  else { wantStudy = !wantStudy; document.getElementById('tog-study').classList.toggle('on', wantStudy); }
+// ── GENERATE ─────────────────────────────────────────────────
+function setTopic(t){document.getElementById('topic-input').value=t;}
+function togOpt(k){
+  if(k==='info'){wantInfo=!wantInfo;document.getElementById('tog-info').classList.toggle('on',wantInfo);}
+  else{wantStudy=!wantStudy;document.getElementById('tog-study').classList.toggle('on',wantStudy);}
 }
 
-async function generate() {
-  const topic = document.getElementById('topic-input').value.trim();
-  if (!topic) { toast('Enter a topic first.', 'err'); return; }
-  if (!geminiKey) { toast('Add your Gemini API key first.', 'err'); go('apikey'); return; }
+async function generate(){
+  const topic=document.getElementById('topic-input').value.trim();
+  if(!topic){toast('Enter a topic first.','err');return;}
+  if(!geminiKey){toast('Add your Gemini API key first.','err');go('apikey');return;}
 
-  const diff   = document.getElementById('gen-diff').value;
-  const count  = document.getElementById('gen-count').value;
-  const style  = document.getElementById('gen-style').value;
-  curTopic = topic;
+  const diff=document.getElementById('gen-diff').value;
+  const count=document.getElementById('gen-count').value;
+  const style=document.getElementById('gen-style').value;
+  curTopic=topic;
 
-  // UI: show loading
-  document.getElementById('gen-loading').style.display = 'block';
-  document.getElementById('gen-result').style.display = 'none';
-  document.getElementById('gen-btn').disabled = true;
+  document.getElementById('gen-loading').style.display='block';
+  document.getElementById('gen-result').style.display='none';
+  document.getElementById('gen-btn').disabled=true;
 
-  // Status cycling
-  const statuses = [
-    'Calling Gemini 2.0 Flash...',
+  const statusMsgs=[
+    'Finding the best model for your key...',
     'Analyzing topic...',
     'Writing questions...',
     'Adding explanations...',
     'Formatting JSON...',
     'Almost ready...'
   ];
-  let si = 0;
-  const stInt = setInterval(() => {
-    si = (si + 1) % statuses.length;
-    const el = document.getElementById('gen-status');
-    if (el) el.textContent = statuses[si];
-  }, 1800);
+  let si=0;
+  const stInt=setInterval(()=>{
+    si=(si+1)%statusMsgs.length;
+    const el=document.getElementById('gen-status');
+    if(el) el.textContent=statusMsgs[si];
+  },2000);
 
-  try {
-    // ── Build prompt ──────────────────────────────────────────
-    let typeInstr = '';
-    if (style === 'mcq')   typeInstr = 'Use ONLY mcq type.';
-    else if (style === 'short') typeInstr = 'Use ONLY short type (no options needed).';
-    else if (style === 'deep')  typeInstr = 'Use 50% info slides and mix all types heavily.';
-    else typeInstr = 'Mix: 35% mcq, 15% multi, 15% tf, 10% short, 10% fill, 15% info slides.';
+  try{
+    let typeInstr='';
+    if(style==='mcq')      typeInstr='Use ONLY mcq type.';
+    else if(style==='short') typeInstr='Use ONLY short type (no multiple choice options).';
+    else if(style==='deep')  typeInstr='Use 40% info slides and mix all question types.';
+    else typeInstr='Mix types: 35% mcq, 15% multi, 15% tf, 10% short, 10% fill, 15% info.';
 
-    const infoInstr = wantInfo
-      ? 'Include info slides (type "info") BEFORE groups of related questions.'
-      : 'Do NOT include any info slides.';
+    const infoInstr=wantInfo
+      ?'Include info slides (type "info") BEFORE groups of related questions to teach the concept first.'
+      :'Do NOT include info slides. Only questions.';
 
-    const prompt = `You are a quiz generator. Create a ${diff}-level quiz about: "${topic}"
+    const prompt=`You are a quiz generator. Create a ${diff}-level quiz about: "${topic}"
 
 Generate exactly ${count} QUESTIONS (info slides do NOT count toward this number).
 ${typeInstr}
 ${infoInstr}
 
-OUTPUT RULES — CRITICAL:
-- Output ONLY a valid JSON array.
+CRITICAL OUTPUT RULES:
+- Output ONLY a valid JSON array
 - Start with [ and end with ]
-- No markdown, no code fences, no explanation text.
-- Every question must have a non-empty "explanation" field.
+- No markdown fences, no code blocks, no explanation text whatsoever
+- Every question MUST have a non-empty "explanation" field
 
-JSON TYPES:
+QUESTION TYPES:
 
-Info slide (teaching content, placed before questions):
-{"type":"info","title":"Slide Title","body":"<p>HTML content with <b>bold terms</b>.</p><ul><li><b>Term</b> — definition</li></ul><blockquote>Key insight</blockquote>"}
+Info slide:
+{"type":"info","title":"Title","body":"<p>HTML with <b>bold</b>.</p><ul><li><b>Term</b> — def</li></ul><blockquote>Key insight</blockquote>"}
 
-MCQ (single correct answer):
-{"type":"mcq","q":"Question text?","options":{"A":"option","B":"option","C":"option","D":"option"},"answer":"B","explanation":"Why B is correct."}
+MCQ:
+{"type":"mcq","q":"Question?","options":{"A":"opt","B":"opt","C":"opt","D":"opt"},"answer":"B","explanation":"Why B."}
 
-Multi-select (multiple correct):
-{"type":"multi","q":"Select ALL that apply:","options":{"A":"opt","B":"opt","C":"opt","D":"opt","E":"opt"},"answer":["A","C"],"explanation":"Why those are correct."}
+Multi-select:
+{"type":"multi","q":"Select ALL that apply:","options":{"A":"opt","B":"opt","C":"opt","D":"opt","E":"opt"},"answer":["A","C"],"explanation":"Why."}
 
 True/False:
-{"type":"tf","q":"Statement here.","options":{"A":"True","B":"False"},"answer":"A","explanation":"Why it is true."}
+{"type":"tf","q":"Statement.","options":{"A":"True","B":"False"},"answer":"A","explanation":"Why true."}
 
 Short answer:
-{"type":"short","q":"Question?","answer":"Correct answer","accept":["correct answer","alternate spelling"],"explanation":"Explanation here."}
+{"type":"short","q":"Question?","answer":"Answer","accept":["answer","alt"],"explanation":"Why."}
 
-Fill in the blank (exactly ONE blank using ___):
-{"type":"fill","q":"The ___ does something.","answer":"answer","accept":["answer","alt"],"explanation":"Why."}
+Fill blank (ONE ___ only):
+{"type":"fill","q":"The ___ does X.","answer":"word","accept":["word","alt"],"explanation":"Why."}
 
-Now generate the quiz about "${topic}". Output ONLY the JSON array:`;
+Generate the ${diff} quiz about "${topic}". Output ONLY the JSON array starting with [:`;
 
-    document.getElementById('gen-status').textContent = 'Waiting for Gemini...';
-    const raw = await callGemini(prompt);
+    document.getElementById('gen-status').textContent='Waiting for Gemini...';
+    const raw=await callGemini(prompt);
     clearInterval(stInt);
 
-    // ── Parse JSON ────────────────────────────────────────────
+    // Parse
     let quizData;
-    try {
-      let clean = raw.trim();
-      // Strip markdown fences if present
-      const fence = clean.match(/```(?:json)?\s*([\s\S]*?)```/);
-      if (fence) clean = fence[1].trim();
-      // Find array bounds
-      const a = clean.indexOf('['), b = clean.lastIndexOf(']');
-      if (a !== -1 && b !== -1) clean = clean.slice(a, b + 1);
-      quizData = JSON.parse(clean);
-    } catch(e) {
-      throw new Error('Gemini returned invalid JSON. Try again or simplify your topic.');
+    try{
+      let clean=raw.trim();
+      const fence=clean.match(/```(?:json)?\s*([\s\S]*?)```/);
+      if(fence) clean=fence[1].trim();
+      const a=clean.indexOf('['),b=clean.lastIndexOf(']');
+      if(a!==-1&&b!==-1) clean=clean.slice(a,b+1);
+      quizData=JSON.parse(clean);
+    }catch(e){
+      throw new Error('Gemini returned invalid JSON. Please try again.');
     }
 
-    if (!Array.isArray(quizData) || quizData.length === 0) {
-      throw new Error('No quiz data returned. Try again.');
+    if(!Array.isArray(quizData)||!quizData.length) throw new Error('No questions returned. Try again.');
+    quizData=normalizeQuiz(quizData);
+
+    origQ=JSON.parse(JSON.stringify(quizData));
+    questions=JSON.parse(JSON.stringify(quizData));
+    curQ=0;score=0;answers=[];answered=false;
+    totalQCount=questions.filter(q=>q.type!=='info').length;
+
+    if(wantStudy){
+      document.getElementById('gen-status').textContent='Generating study guide...';
+      try{await genStudyMaterials(topic,quizData);}catch(e){console.warn('Study gen failed:',e);}
     }
 
-    // Normalize
-    quizData = normalizeQuiz(quizData);
+    document.getElementById('gen-loading').style.display='none';
+    document.getElementById('gen-btn').disabled=false;
+    document.getElementById('gen-result').style.display='block';
+    document.getElementById('gen-summary').textContent=`${totalQCount} questions · ${topic} · ${diff} · via ${activeModel}`;
 
-    // Store
-    origQ = JSON.parse(JSON.stringify(quizData));
-    let p = JSON.parse(JSON.stringify(quizData));
-    questions = p;
-    curQ = 0; score = 0; answers = []; answered = false;
-    totalQCount = questions.filter(q => q.type !== 'info').length;
-
-    // Generate study materials
-    if (wantStudy) {
-      document.getElementById('gen-status').textContent = 'Generating study guide...';
-      try { await genStudyMaterials(topic, quizData); } catch(e) { console.warn('Study gen failed:', e); }
-    }
-
-    // Show result
-    document.getElementById('gen-loading').style.display = 'none';
-    document.getElementById('gen-btn').disabled = false;
-    document.getElementById('gen-result').style.display = 'block';
-    document.getElementById('gen-summary').textContent =
-      `${totalQCount} questions · ${topic} · ${diff}`;
-
-    // Show JSON preview (first 60 chars per item for brevity)
-    const previewData = JSON.stringify(quizData, null, 2);
-    document.getElementById('json-preview').textContent =
-      previewData.length > 3000 ? previewData.slice(0, 3000) + '\n... (truncated)' : previewData;
+    const preview=JSON.stringify(quizData,null,2);
+    document.getElementById('json-preview').textContent=
+      preview.length>3000?preview.slice(0,3000)+'\n\n... ('+quizData.length+' items total)':preview;
 
     updateSVCount();
-    toast(`${totalQCount} questions ready!`, 'ok');
+    toast(`${totalQCount} questions ready!`,'ok');
     confetti();
 
-  } catch(e) {
+  }catch(e){
     clearInterval(stInt);
-    document.getElementById('gen-loading').style.display = 'none';
-    document.getElementById('gen-btn').disabled = false;
-    toast('Error: ' + e.message, 'err');
-    console.error(e);
+    document.getElementById('gen-loading').style.display='none';
+    document.getElementById('gen-btn').disabled=false;
+    toast('Error: '+e.message.split('\n')[0],'err');
+    console.error('Generate error:',e);
   }
 }
 
-function cpJSON() {
-  const pre = document.getElementById('json-preview').textContent;
-  navigator.clipboard.writeText(pre).then(() => {
-    const btn = document.getElementById('cp-json-btn');
-    btn.textContent = 'Copied!'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy JSON'; btn.classList.remove('copied'); }, 1500);
+function cpJSON(){
+  const txt=document.getElementById('json-preview').textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    const btn=document.getElementById('cp-json-btn');
+    btn.textContent='Copied!';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy JSON';btn.classList.remove('copied');},1500);
   });
 }
 
-function playGenerated() {
-  if (!origQ.length) { toast('No quiz generated.', 'err'); return; }
-  let p = JSON.parse(JSON.stringify(origQ));
-  if (sOn) p = shuf(p);
-  questions = p; curQ = 0; score = 0; answers = []; answered = false;
-  totalQCount = questions.filter(q => q.type !== 'info').length;
-  go('quiz'); startQ();
+function playGenerated(){
+  if(!origQ.length){toast('No quiz generated.','err');return;}
+  let p=JSON.parse(JSON.stringify(origQ));
+  if(sOn) p=shuf(p);
+  questions=p;curQ=0;score=0;answers=[];answered=false;
+  totalQCount=questions.filter(q=>q.type!=='info').length;
+  go('quiz');startQ();
 }
 
-// ============================================================
-// STUDY MATERIALS
-// ============================================================
-async function genStudyMaterials(topic, quizData) {
-  const qList = quizData
-    .filter(q => q.type !== 'info')
-    .slice(0, 12)
-    .map((q, i) => `${i+1}. ${q.q} → ${Array.isArray(q.answer) ? q.answer.join(',') : q.answer}`)
+// ── STUDY MATERIALS ──────────────────────────────────────────
+async function genStudyMaterials(topic,quizData){
+  const qList=quizData
+    .filter(q=>q.type!=='info').slice(0,12)
+    .map((q,i)=>`${i+1}. ${q.q} → ${Array.isArray(q.answer)?q.answer.join(','):q.answer}`)
     .join('\n');
 
-  const prompt = `Based on this quiz about "${topic}", create study materials.
+  const prompt=`Create study materials for a quiz about "${topic}".
 
-Quiz questions:
+Questions covered:
 ${qList}
 
-Output ONLY valid JSON (no markdown, no fences):
+Output ONLY valid JSON (no markdown, no fences, start with {):
 {
-  "plan": [
+  "plan":[
     {"step":1,"emoji":"📖","title":"Step title","desc":"What to do","time":"X min"},
     {"step":2,"emoji":"✍️","title":"...","desc":"...","time":"..."},
     {"step":3,"emoji":"🧠","title":"...","desc":"...","time":"..."},
     {"step":4,"emoji":"📝","title":"...","desc":"...","time":"..."},
     {"step":5,"emoji":"✅","title":"...","desc":"...","time":"..."}
   ],
-  "mnemonics": [
+  "mnemonics":[
     {"term":"Key term","trick":"Memory device or acronym","why":"Why it works"},
     {"term":"...","trick":"...","why":"..."},
     {"term":"...","trick":"...","why":"..."},
     {"term":"...","trick":"...","why":"..."}
   ],
-  "cornell": [
-    {"cue":"Key question","notes":"Detailed answer/notes","summary":"One-line summary"},
+  "cornell":[
+    {"cue":"Key question","notes":"Detailed notes","summary":"One-line summary"},
     {"cue":"...","notes":"...","summary":"..."},
     {"cue":"...","notes":"...","summary":"..."}
   ],
-  "mindmap": {
+  "mindmap":{
     "center":"${topic}",
     "branches":[
-      {"title":"Subtopic 1","points":["point","point","point"]},
-      {"title":"Subtopic 2","points":["point","point","point"]},
-      {"title":"Subtopic 3","points":["point","point","point"]},
-      {"title":"Subtopic 4","points":["point","point","point"]}
+      {"title":"Subtopic","points":["point","point","point"]},
+      {"title":"Subtopic","points":["point","point","point"]},
+      {"title":"Subtopic","points":["point","point","point"]},
+      {"title":"Subtopic","points":["point","point","point"]}
     ]
   },
   "spaced":[
-    {"day":"Today","action":"First exposure","focus":"Read all info slides, review every answer"},
-    {"day":"Tomorrow","action":"Active recall","focus":"Quiz yourself without hints"},
-    {"day":"Day 3","action":"Weak spots","focus":"Redo wrong questions only"},
+    {"day":"Today","action":"First read","focus":"Go through all info slides and answers"},
+    {"day":"Tomorrow","action":"Active recall","focus":"Quiz without hints"},
+    {"day":"Day 3","action":"Weak spots","focus":"Redo wrong answers only"},
     {"day":"Day 7","action":"Full retake","focus":"Complete quiz from scratch"},
-    {"day":"Day 14","action":"Spaced test","focus":"All material, timed"},
+    {"day":"Day 14","action":"Timed test","focus":"All material under time pressure"},
     {"day":"Day 30","action":"Final review","focus":"Long-term retention check"}
   ]
 }`;
 
-  const raw = await callGemini(prompt);
-  let clean = raw.trim();
-  const fence = clean.match(/```(?:json)?\s*([\s\S]*?)```/);
-  if (fence) clean = fence[1].trim();
-  const a = clean.indexOf('{'), b = clean.lastIndexOf('}');
-  if (a !== -1 && b !== -1) clean = clean.slice(a, b + 1);
-  curStudyData = JSON.parse(clean);
+  const raw=await callGemini(prompt);
+  let clean=raw.trim();
+  const fence=clean.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if(fence) clean=fence[1].trim();
+  const a=clean.indexOf('{'),b=clean.lastIndexOf('}');
+  if(a!==-1&&b!==-1) clean=clean.slice(a,b+1);
+  curStudyData=JSON.parse(clean);
   renderStudy();
 }
 
-function renderStudy() {
-  if (!curStudyData) return;
-  document.getElementById('study-empty').style.display = 'none';
-  document.getElementById('study-content').style.display = 'block';
-  const d = curStudyData;
+function renderStudy(){
+  if(!curStudyData) return;
+  document.getElementById('study-empty').style.display='none';
+  document.getElementById('study-content').style.display='block';
+  const d=curStudyData;
 
-  // Plan
-  document.getElementById('plan-content').innerHTML = (d.plan||[]).map(s => `
-    <div class="plan-step">
-      <div class="plan-step-num">${s.step}</div>
-      <div class="plan-step-body">
-        <div class="plan-step-title">${s.emoji||'📖'} ${s.title}</div>
-        <div class="plan-step-desc">${s.desc}</div>
-        <div class="plan-step-time">⏱ ${s.time}</div>
-      </div>
-    </div>`).join('');
+  document.getElementById('plan-content').innerHTML=
+    (d.plan||[]).map(s=>`<div class="plan-step"><div class="plan-step-num">${s.step}</div><div class="plan-step-body"><div class="plan-step-title">${s.emoji||'📖'} ${s.title}</div><div class="plan-step-desc">${s.desc}</div><div class="plan-step-time">⏱ ${s.time}</div></div></div>`).join('');
 
-  // Mnemonics
-  document.getElementById('mnem-content').innerHTML = (d.mnemonics||[]).map(m => `
-    <div class="mnem-card">
-      <div class="mnem-term">📌 ${m.term}</div>
-      <div class="mnem-trick">💡 ${m.trick}</div>
-      <div class="mnem-why">${m.why}</div>
-    </div>`).join('');
+  document.getElementById('mnem-content').innerHTML=
+    (d.mnemonics||[]).map(m=>`<div class="mnem-card"><div class="mnem-term">📌 ${m.term}</div><div class="mnem-trick">💡 ${m.trick}</div><div class="mnem-why">${m.why}</div></div>`).join('');
 
-  // Cornell
-  document.getElementById('cornell-content').innerHTML = (d.cornell||[]).map((c,i) => `
-    <div class="cornell-box">
-      <div class="cornell-hd">Section ${i+1}</div>
-      <div class="cornell-body">
-        <div class="cornell-cue"><b>Cue:</b><br>${c.cue}</div>
-        <div class="cornell-note">${c.notes}</div>
-      </div>
-      <div class="cornell-sum">📝 ${c.summary}</div>
-    </div>`).join('');
+  document.getElementById('cornell-content').innerHTML=
+    (d.cornell||[]).map((c,i)=>`<div class="cornell-box"><div class="cornell-hd">Section ${i+1}</div><div class="cornell-body"><div class="cornell-cue"><b>Cue:</b><br>${c.cue}</div><div class="cornell-note">${c.notes}</div></div><div class="cornell-sum">📝 ${c.summary}</div></div>`).join('');
 
-  // Mind map
-  const mm = d.mindmap || {};
-  document.getElementById('mindmap-content').innerHTML = `
-    <div class="mindmap-box">
-      <div style="text-align:center;margin-bottom:12px">
-        <div class="mindmap-center-text">${mm.center||curTopic}</div>
-      </div>
-      <div class="mindmap-branches">
-        ${(mm.branches||[]).map(b => `
-          <div class="mindmap-branch">
-            <div class="mindmap-branch-title">${b.title}</div>
-            <ul>${(b.points||[]).map(p=>`<li>${p}</li>`).join('')}</ul>
-          </div>`).join('')}
-      </div>
-    </div>`;
+  const mm=d.mindmap||{};
+  document.getElementById('mindmap-content').innerHTML=`<div class="mindmap-box"><div style="text-align:center;margin-bottom:12px"><div class="mindmap-center-text">${mm.center||curTopic}</div></div><div class="mindmap-branches">${(mm.branches||[]).map(b=>`<div class="mindmap-branch"><div class="mindmap-branch-title">${b.title}</div><ul>${(b.points||[]).map(p=>`<li>${p}</li>`).join('')}</ul></div>`).join('')}</div></div>`;
 
-  // Spaced repetition
-  document.getElementById('spaced-content').innerHTML = `
-    <div class="cd-desc" style="margin-bottom:14px">Based on the Ebbinghaus forgetting curve — review at these intervals for maximum long-term retention.</div>
-    ${(d.spaced||[]).map(s => `
-      <div class="spaced-row">
-        <div class="spaced-day">${s.day}</div>
-        <div>
-          <div class="spaced-action">${s.action}</div>
-          <div class="spaced-items">${s.focus}</div>
-        </div>
-      </div>`).join('')}`;
+  document.getElementById('spaced-content').innerHTML=
+    `<p style="font-size:11px;color:var(--t3);margin-bottom:12px;line-height:1.6">Based on the Ebbinghaus forgetting curve — reviewing at these intervals maximises long-term retention.</p>`+
+    (d.spaced||[]).map(s=>`<div class="spaced-row"><div class="spaced-day">${s.day}</div><div><div class="spaced-action">${s.action}</div><div class="spaced-items">${s.focus}</div></div></div>`).join('');
 }
 
-function showStudyTab(id, btn) {
-  document.querySelectorAll('.study-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.study-tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('study-' + id).classList.add('active');
+function showStudyTab(id,btn){
+  document.querySelectorAll('.study-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.study-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('study-'+id).classList.add('active');
   btn.classList.add('active');
 }
 
-async function regenStudy() {
-  if (!curTopic) { toast('Generate a quiz first.', 'err'); return; }
-  if (!geminiKey) { toast('API key required.', 'err'); return; }
+async function regenStudy(){
+  if(!curTopic){toast('Generate a quiz first.','err');return;}
+  if(!geminiKey){toast('API key required.','err');return;}
   toast('Regenerating...');
-  try {
-    await genStudyMaterials(curTopic, origQ);
-    toast('Study materials updated!', 'ok');
-  } catch(e) { toast('Error: ' + e.message, 'err'); }
+  try{await genStudyMaterials(curTopic,origQ);toast('Updated!','ok');}
+  catch(e){toast('Error: '+e.message.split('\n')[0],'err');}
 }
 
-// ============================================================
-// SAVE / LOAD
-// ============================================================
-function saveGenerated() {
-  if (!origQ.length) { toast('No quiz to save.', 'err'); return; }
-  doSave(origQ, curTopic || 'Generated Quiz');
+// ── SAVE / LOAD ──────────────────────────────────────────────
+function saveGenerated(){
+  if(!origQ.length){toast('No quiz to save.','err');return;}
+  doSave(origQ,curTopic||'Generated Quiz');
 }
-
-function saveFromImport() {
-  const d = parseJSON(document.getElementById('ji').value.trim());
-  if (!d) return;
-  doSave(d, document.getElementById('qname').value.trim() || 'Imported Quiz');
+function saveFromImport(){
+  const d=parseJSONInput(document.getElementById('ji').value.trim());
+  if(!d) return;
+  doSave(d,document.getElementById('qname').value.trim()||'Imported Quiz');
 }
-
-function saveQuiz() {
-  if (!origQ.length) { toast('Nothing to save.', 'err'); return; }
-  doSave(origQ, curTopic || 'Quiz');
+function saveQuiz(){
+  if(!origQ.length){toast('Nothing to save.','err');return;}
+  doSave(origQ,curTopic||'Quiz');
 }
-
-function doSave(qs, name) {
-  const saves = JSON.parse(localStorage.getItem('qf-saves')||'[]');
-  saves.unshift({ name, questions: qs, date: new Date().toISOString(), count: qs.length, topic: curTopic });
-  if (saves.length > 60) saves.pop();
-  localStorage.setItem('qf-saves', JSON.stringify(saves));
+function doSave(qs,name){
+  const saves=JSON.parse(localStorage.getItem('qf-saves')||'[]');
+  saves.unshift({name,questions:qs,date:new Date().toISOString(),count:qs.length,topic:curTopic});
+  if(saves.length>60) saves.pop();
+  localStorage.setItem('qf-saves',JSON.stringify(saves));
+  updateSVCount();toast('Saved!','ok');
+}
+function updateSVCount(){
+  const saves=JSON.parse(localStorage.getItem('qf-saves')||'[]');
+  const ct=document.getElementById('sv-ct');
+  ct.textContent=saves.length;ct.style.display=saves.length?'inline':'none';
+}
+function loadSavedList(){
+  const saves=JSON.parse(localStorage.getItem('qf-saves')||'[]');
+  const list=document.getElementById('sv-list');
   updateSVCount();
-  toast('Saved!', 'ok');
-}
-
-function updateSVCount() {
-  const saves = JSON.parse(localStorage.getItem('qf-saves')||'[]');
-  const ct = document.getElementById('sv-ct');
-  ct.textContent = saves.length;
-  ct.style.display = saves.length ? 'inline' : 'none';
-}
-
-function loadSavedList() {
-  const saves = JSON.parse(localStorage.getItem('qf-saves')||'[]');
-  const list = document.getElementById('sv-list');
-  updateSVCount();
-  if (!saves.length) {
-    list.innerHTML = '<div style="text-align:center;padding:20px;color:var(--t4);font-size:12px">No saved quizzes.</div>';
-    return;
-  }
-  list.innerHTML = '';
-  saves.forEach((s, i) => {
-    const el = document.createElement('div');
-    el.className = 'sv-item';
-    el.style.animationDelay = (i * .04) + 's';
-    const dt = new Date(s.date).toLocaleDateString();
-    el.innerHTML = `
-      <div class="sv-info">
-        <div class="sv-name">${s.name||'Untitled'}</div>
-        <div class="sv-meta">${s.count} items · ${dt}</div>
-      </div>
-      <div class="sv-acts">
-        <button onclick="event.stopPropagation();ldSave(${i})">▶</button>
-        <button class="del" onclick="event.stopPropagation();delSave(${i})">✕</button>
-      </div>`;
-    el.onclick = () => ldSave(i);
-    list.appendChild(el);
+  if(!saves.length){list.innerHTML='<div style="text-align:center;padding:20px;color:var(--t4);font-size:12px">No saved quizzes.</div>';return;}
+  list.innerHTML='';
+  saves.forEach((s,i)=>{
+    const el=document.createElement('div');
+    el.className='sv-item';el.style.animationDelay=(i*.04)+'s';
+    const dt=new Date(s.date).toLocaleDateString();
+    el.innerHTML=`<div class="sv-info"><div class="sv-name">${s.name||'Untitled'}</div><div class="sv-meta">${s.count} items · ${dt}</div></div><div class="sv-acts"><button onclick="event.stopPropagation();ldSave(${i})">▶</button><button class="del" onclick="event.stopPropagation();delSave(${i})">✕</button></div>`;
+    el.onclick=()=>ldSave(i);list.appendChild(el);
   });
 }
-
-function ldSave(i) {
-  const saves = JSON.parse(localStorage.getItem('qf-saves')||'[]');
-  const s = saves[i]; if (!s) return;
-  origQ = JSON.parse(JSON.stringify(s.questions));
-  let p = JSON.parse(JSON.stringify(s.questions));
-  if (sOn) p = shuf(p);
-  questions = p; curQ = 0; score = 0; answers = []; answered = false;
-  totalQCount = questions.filter(q => q.type !== 'info').length;
-  curTopic = s.topic || s.name || '';
-  go('quiz'); startQ();
-  toast('Loaded: ' + (s.name||'Quiz'), 'ok');
+function ldSave(i){
+  const saves=JSON.parse(localStorage.getItem('qf-saves')||'[]');
+  const s=saves[i];if(!s) return;
+  origQ=JSON.parse(JSON.stringify(s.questions));
+  let p=JSON.parse(JSON.stringify(s.questions));
+  if(sOn) p=shuf(p);
+  questions=p;curQ=0;score=0;answers=[];answered=false;
+  totalQCount=questions.filter(q=>q.type!=='info').length;
+  curTopic=s.topic||s.name||'';
+  go('quiz');startQ();toast('Loaded: '+(s.name||'Quiz'),'ok');
+}
+function delSave(i){
+  if(!confirm('Delete this quiz?')) return;
+  const saves=JSON.parse(localStorage.getItem('qf-saves')||'[]');
+  saves.splice(i,1);
+  localStorage.setItem('qf-saves',JSON.stringify(saves));
+  loadSavedList();toast('Deleted.');
 }
 
-function delSave(i) {
-  if (!confirm('Delete this quiz?')) return;
-  const saves = JSON.parse(localStorage.getItem('qf-saves')||'[]');
-  saves.splice(i, 1);
-  localStorage.setItem('qf-saves', JSON.stringify(saves));
-  loadSavedList();
-  toast('Deleted.');
-}
+// ── NAV ──────────────────────────────────────────────────────
+const pgNames={generate:'Generate',apikey:'API Key',import:'Import',quiz:'Quiz',flashcards:'Flashcards',study:'Study Methods',timer:'Timer',stats:'Statistics',saved:'Saved',export:'Export'};
+let curPage='generate';
 
-// ============================================================
-// NAVIGATION
-// ============================================================
-const pgNames = { generate:'Generate', apikey:'API Key', import:'Import', quiz:'Quiz', flashcards:'Flashcards', study:'Study Methods', timer:'Timer', stats:'Statistics', saved:'Saved', export:'Export' };
-let curPage = 'generate';
-
-function go(p) {
-  curPage = p;
-  document.querySelectorAll('.pg').forEach(e => e.classList.remove('active'));
-  document.querySelectorAll('.sb-item').forEach(e => e.classList.remove('active'));
-  const pg = document.getElementById('pg-' + p);
-  if (pg) pg.classList.add('active');
-  document.querySelectorAll(`.sb-item[data-p="${p}"]`).forEach(e => e.classList.add('active'));
-  document.getElementById('bc').textContent = pgNames[p] || p;
-  if (p === 'flashcards') initFC();
-  if (p === 'stats') renderStats();
-  if (p === 'export') initExport();
-  if (p === 'saved') loadSavedList();
-  if (p === 'study' && curStudyData) renderStudy();
-  if (p === 'apikey' && geminiKey) document.getElementById('api-key-input').value = geminiKey;
-  if (p === 'generate') {
-    const w = document.getElementById('gen-warn');
-    if (w) w.style.display = geminiKey ? 'none' : 'flex';
+function go(p){
+  curPage=p;
+  document.querySelectorAll('.pg').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(e=>e.classList.remove('active'));
+  const pg=document.getElementById('pg-'+p);
+  if(pg) pg.classList.add('active');
+  document.querySelectorAll(`.sb-item[data-p="${p}"]`).forEach(e=>e.classList.add('active'));
+  document.getElementById('bc').textContent=pgNames[p]||p;
+  if(p==='flashcards') initFC();
+  if(p==='stats') renderStats();
+  if(p==='export') initExport();
+  if(p==='saved') loadSavedList();
+  if(p==='study'&&curStudyData) renderStudy();
+  if(p==='apikey'){
+    if(geminiKey) document.getElementById('api-key-input').value=geminiKey;
+    const pref=localStorage.getItem('qf-model')||'auto';
+    document.getElementById('api-model').value=pref;
+  }
+  if(p==='generate'){
+    const w=document.getElementById('gen-warn');
+    if(w) w.style.display=geminiKey?'none':'flex';
   }
   updateApiUI();
-  if (window.innerWidth <= 900) {
+  if(window.innerWidth<=900){
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('sidebar').classList.add('collapsed');
   }
 }
 
-function toggleSB() {
+function toggleSB(){
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('sidebar').classList.toggle('collapsed');
 }
 
-function toast(msg, type) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (type === 'err' ? ' err' : type === 'ok' ? ' ok' : '');
-  setTimeout(() => t.classList.remove('show'), 2600);
+function toast(msg,type){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast show'+(type==='err'?' err':type==='ok'?' ok':'');
+  setTimeout(()=>t.classList.remove('show'),2800);
 }
 
-function shuf(a) {
-  const s = [...a];
-  for (let i = s.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [s[i], s[j]] = [s[j], s[i]];
-  }
-  return s;
-}
+function shuf(a){const s=[...a];for(let i=s.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[s[i],s[j]]=[s[j],s[i]];}return s;}
 
-function confetti() {
-  const b = document.getElementById('confbox'); b.innerHTML = '';
-  const colors = ['#bf5af2','#30d158','#0a84ff','#ffd60a','#ff375f','#fff'];
-  for (let i = 0; i < 55; i++) {
-    const p = document.createElement('div'); p.className = 'conf';
-    p.style.left = Math.random()*100+'%';
-    p.style.background = colors[Math.floor(Math.random()*colors.length)];
-    const size = (Math.random()*5+2)+'px';
-    p.style.width = size; p.style.height = size;
-    p.style.animationDuration = (Math.random()*2+1.5)+'s';
-    p.style.animationDelay = (Math.random()*.8)+'s';
+function confetti(){
+  const b=document.getElementById('confbox');b.innerHTML='';
+  const colors=['#bf5af2','#30d158','#0a84ff','#ffd60a','#ff375f','#fff'];
+  for(let i=0;i<55;i++){
+    const p=document.createElement('div');p.className='conf';
+    p.style.left=Math.random()*100+'%';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    const sz=(Math.random()*5+2)+'px';p.style.width=sz;p.style.height=sz;
+    p.style.animationDuration=(Math.random()*2+1.5)+'s';
+    p.style.animationDelay=(Math.random()*.8)+'s';
     b.appendChild(p);
   }
-  setTimeout(() => b.innerHTML = '', 5000);
+  setTimeout(()=>b.innerHTML='',5000);
 }
 
-function esc(s) { return (s||'').replace(/"/g,'""').replace(/\n/g,' '); }
-function stripHTML(s) { const d = document.createElement('div'); d.innerHTML = s; return d.textContent||''; }
+function esc(s){return(s||'').replace(/"/g,'""').replace(/\n/g,' ');}
+function stripHTML(s){const d=document.createElement('div');d.innerHTML=s;return d.textContent||'';}
 
-// ============================================================
-// IMPORT / PARSE
-// ============================================================
-function parseJSON(raw) {
-  if (!raw) { toast('Paste JSON first.', 'err'); return null; }
-  try {
-    let s = raw.trim();
-    const fence = s.match(/```(?:json)?\s*([\s\S]*?)```/);
-    if (fence) s = fence[1].trim();
-    const a = s.indexOf('['), b = s.lastIndexOf(']');
-    if (a !== -1 && b !== -1) s = s.slice(a, b+1);
-    const d = JSON.parse(s);
-    if (!Array.isArray(d) || !d.length) throw new Error('Expected a non-empty JSON array.');
+// ── IMPORT ───────────────────────────────────────────────────
+function parseJSONInput(raw){
+  if(!raw){toast('Paste JSON first.','err');return null;}
+  try{
+    let s=raw.trim();
+    const fence=s.match(/```(?:json)?\s*([\s\S]*?)```/);
+    if(fence) s=fence[1].trim();
+    const a=s.indexOf('['),b=s.lastIndexOf(']');
+    if(a!==-1&&b!==-1) s=s.slice(a,b+1);
+    const d=JSON.parse(s);
+    if(!Array.isArray(d)||!d.length) throw new Error('Expected a non-empty JSON array.');
     return normalizeQuiz(d);
-  } catch(e) { toast('JSON error: ' + e.message, 'err'); return null; }
+  }catch(e){toast('JSON error: '+e.message,'err');return null;}
 }
 
-function normalizeQuiz(d) {
-  for (let i = 0; i < d.length; i++) {
-    const it = d[i];
-    if (!it.type) {
-      if (it.title && it.body) it.type = 'info';
-      else if (it.q && it.q.includes('___')) it.type = 'fill';
-      else if (it.options && Array.isArray(it.answer)) it.type = 'multi';
-      else if (it.options && Object.keys(it.options).length === 2) {
-        const v = Object.values(it.options).map(x => x.toLowerCase());
-        it.type = v.includes('true') && v.includes('false') ? 'tf' : 'mcq';
-      } else if (!it.options && !it.title) it.type = 'short';
-      else it.type = 'mcq';
+function normalizeQuiz(d){
+  for(let i=0;i<d.length;i++){
+    const it=d[i];
+    if(!it.type){
+      if(it.title&&it.body) it.type='info';
+      else if(it.q&&it.q.includes('___')) it.type='fill';
+      else if(it.options&&Array.isArray(it.answer)) it.type='multi';
+      else if(it.options&&Object.keys(it.options).length===2){
+        const v=Object.values(it.options).map(x=>x.toLowerCase());
+        it.type=v.includes('true')&&v.includes('false')?'tf':'mcq';
+      }else if(!it.options&&!it.title) it.type='short';
+      else it.type='mcq';
     }
-    if (it.type === 'info') continue;
-    if (!it.q) continue;
-    if (it.type === 'mcq') it.answer = (it.answer||'').toString().toUpperCase();
-    else if (it.type === 'multi') {
-      if (!Array.isArray(it.answer)) it.answer = [it.answer];
-      it.answer = it.answer.map(a => a.toString().toUpperCase());
-    } else if (it.type === 'tf') {
-      if (!it.options) it.options = { A:'True', B:'False' };
-      it.answer = (it.answer||'').toString().toUpperCase();
-    } else if (it.type === 'short' || it.type === 'fill') {
-      if (!it.accept) it.accept = [it.answer.toLowerCase()];
-      else it.accept = it.accept.map(a => a.toLowerCase());
-      if (!it.accept.includes(it.answer.toLowerCase())) it.accept.push(it.answer.toLowerCase());
+    if(it.type==='info') continue;
+    if(!it.q) continue;
+    if(it.type==='mcq') it.answer=(it.answer||'').toString().toUpperCase();
+    else if(it.type==='multi'){
+      if(!Array.isArray(it.answer)) it.answer=[it.answer];
+      it.answer=it.answer.map(a=>a.toString().toUpperCase());
+    }else if(it.type==='tf'){
+      if(!it.options) it.options={A:'True',B:'False'};
+      it.answer=(it.answer||'').toString().toUpperCase();
+    }else if(it.type==='short'||it.type==='fill'){
+      if(!it.accept) it.accept=[it.answer.toLowerCase()];
+      else it.accept=it.accept.map(a=>a.toLowerCase());
+      if(!it.accept.includes(it.answer.toLowerCase())) it.accept.push(it.answer.toLowerCase());
     }
   }
-  return d.filter(it => it.type === 'info' || it.q);
+  return d.filter(it=>it.type==='info'||it.q);
 }
 
-function loadFromImport() {
-  const d = parseJSON(document.getElementById('ji').value.trim());
-  if (!d) return;
-  origQ = JSON.parse(JSON.stringify(d));
-  let p = JSON.parse(JSON.stringify(d));
-  if (sOn) p = shuf(p);
-  questions = p; curQ = 0; score = 0; answers = []; answered = false;
-  totalQCount = questions.filter(q => q.type !== 'info').length;
-  curTopic = document.getElementById('qname').value.trim() || 'Imported Quiz';
-  toast(`${questions.length} items loaded.`, 'ok');
-  go('quiz'); startQ();
+function loadFromImport(){
+  const d=parseJSONInput(document.getElementById('ji').value.trim());
+  if(!d) return;
+  origQ=JSON.parse(JSON.stringify(d));
+  let p=JSON.parse(JSON.stringify(d));
+  if(sOn) p=shuf(p);
+  questions=p;curQ=0;score=0;answers=[];answered=false;
+  totalQCount=questions.filter(q=>q.type!=='info').length;
+  curTopic=document.getElementById('qname').value.trim()||'Imported Quiz';
+  toast(`${questions.length} items loaded.`,'ok');
+  go('quiz');startQ();
 }
 
-// ============================================================
-// QUIZ ENGINE
-// ============================================================
-function togS() { sOn = !sOn; document.getElementById('ts').classList.toggle('on', sOn); }
-function togSO() { soOn = !soOn; document.getElementById('tso').classList.toggle('on', soOn); }
+// ── QUIZ ENGINE ───────────────────────────────────────────────
+function togS(){sOn=!sOn;document.getElementById('ts').classList.toggle('on',sOn);}
+function togSO(){soOn=!soOn;document.getElementById('tso').classList.toggle('on',soOn);}
 
-function shufOpts(q) {
-  if (q.type !== 'mcq' && q.type !== 'multi') return q;
-  const c = JSON.parse(JSON.stringify(q));
-  const keys = Object.keys(c.options);
-  const entries = keys.map(k => ({ k, v: c.options[k] }));
-  const shuffled = shuf(entries);
-  const labels = 'ABCDEFGH'.split('').slice(0, keys.length);
-  const newOpts = {}, remap = {};
-  shuffled.forEach((e, i) => { newOpts[labels[i]] = e.v; remap[e.k] = labels[i]; });
-  c.options = newOpts;
-  if (Array.isArray(c.answer)) c.answer = c.answer.map(a => remap[a]);
-  else c.answer = remap[c.answer];
+function shufOpts(q){
+  if(q.type!=='mcq'&&q.type!=='multi') return q;
+  const c=JSON.parse(JSON.stringify(q));
+  const keys=Object.keys(c.options);
+  const entries=keys.map(k=>({k,v:c.options[k]}));
+  const shuffled=shuf(entries);
+  const labels='ABCDEFGH'.split('').slice(0,keys.length);
+  const newOpts={},remap={};
+  shuffled.forEach((e,i)=>{newOpts[labels[i]]=e.v;remap[e.k]=labels[i];});
+  c.options=newOpts;
+  if(Array.isArray(c.answer)) c.answer=c.answer.map(a=>remap[a]);
+  else c.answer=remap[c.answer];
   return c;
 }
 
-function startQ() {
-  document.getElementById('qz-empty').style.display = 'none';
-  document.getElementById('qz-active').style.display = 'block';
-  document.getElementById('qz-results').style.display = 'none';
+function startQ(){
+  document.getElementById('qz-empty').style.display='none';
+  document.getElementById('qz-active').style.display='block';
+  document.getElementById('qz-results').style.display='none';
   renderQ();
 }
 
-function renderQ() {
-  const q = questions[curQ];
-  answered = false; mSel = [];
-  const qIdx = questions.slice(0, curQ+1).filter(x => x.type !== 'info').length;
+function renderQ(){
+  const q=questions[curQ];
+  answered=false;mSel=[];
+  const qIdx=questions.slice(0,curQ+1).filter(x=>x.type!=='info').length;
 
-  document.getElementById('qp').textContent = `${curQ+1} / ${questions.length}`;
-  document.getElementById('qs').textContent = score;
-  document.getElementById('pf').style.width = `${(curQ / questions.length) * 100}%`;
-  document.getElementById('nxt').className = 'nxt-btn';
-  document.getElementById('qfb').innerHTML = '';
-  document.getElementById('qhint').innerHTML = '';
-  const c = document.getElementById('qo'); c.innerHTML = '';
+  document.getElementById('qp').textContent=`${curQ+1} / ${questions.length}`;
+  document.getElementById('qs').textContent=score;
+  document.getElementById('pf').style.width=`${(curQ/questions.length)*100}%`;
+  document.getElementById('nxt').className='nxt-btn';
+  document.getElementById('qfb').innerHTML='';
+  document.getElementById('qhint').innerHTML='';
+  const c=document.getElementById('qo');c.innerHTML='';
 
-  // INFO SLIDE
-  if (q.type === 'info') {
-    document.getElementById('qb').innerHTML = `<span class="tbdg tbdg-info">📘 Info Slide</span>`;
-    document.getElementById('qnum').textContent = '';
-    document.getElementById('qtxt').textContent = '';
-    c.innerHTML = `<div class="info-slide-box"><div class="info-slide-title">${q.title}</div><div class="info-slide-body">${q.body}</div></div>`;
-    answers.push({ q: q.title, type: 'info', st:'—', ct:'—', ok: null, expl:'' });
-    const n = document.getElementById('nxt');
-    n.textContent = curQ === questions.length-1 ? 'See Results →' : 'Continue →';
-    n.className = 'nxt-btn show';
+  if(q.type==='info'){
+    document.getElementById('qb').innerHTML=`<span class="tbdg tbdg-info">📘 Info Slide</span>`;
+    document.getElementById('qnum').textContent='';
+    document.getElementById('qtxt').textContent='';
+    c.innerHTML=`<div class="info-slide-box"><div class="info-slide-title">${q.title}</div><div class="info-slide-body">${q.body}</div></div>`;
+    answers.push({q:q.title,type:'info',st:'—',ct:'—',ok:null,expl:''});
+    const n=document.getElementById('nxt');
+    n.textContent=curQ===questions.length-1?'See Results →':'Continue →';
+    n.className='nxt-btn show';
     return;
   }
 
-  const badges = { mcq:'MCQ', multi:'Multi-Select', tf:'True / False', short:'Short Answer', fill:'Fill Blank' };
-  const bclass = { mcq:'tbdg-mcq', multi:'tbdg-multi', tf:'tbdg-tf', short:'tbdg-short', fill:'tbdg-fill' };
-  document.getElementById('qb').innerHTML = `<span class="tbdg ${bclass[q.type]||'tbdg-mcq'}">${badges[q.type]||q.type}</span>`;
-  document.getElementById('qnum').textContent = `Question ${qIdx}`;
-  document.getElementById('qtxt').textContent = q.q;
+  const badges={mcq:'MCQ',multi:'Multi-Select',tf:'True / False',short:'Short Answer',fill:'Fill Blank'};
+  const bclass={mcq:'tbdg-mcq',multi:'tbdg-multi',tf:'tbdg-tf',short:'tbdg-short',fill:'tbdg-fill'};
+  document.getElementById('qb').innerHTML=`<span class="tbdg ${bclass[q.type]||'tbdg-mcq'}">${badges[q.type]||q.type}</span>`;
+  document.getElementById('qnum').textContent=`Question ${qIdx}`;
+  document.getElementById('qtxt').textContent=q.q;
 
-  if (q.type === 'tf') {
-    const g = document.createElement('div'); g.className = 'tf-g';
-    ['A','B'].forEach(l => {
-      const btn = document.createElement('button'); btn.className = 'tf-b';
-      const icon = q.options[l].toLowerCase() === 'true' ? '✓' : '✗';
-      btn.innerHTML = `<span style="font-size:20px">${icon}</span>${q.options[l]}`;
-      btn.dataset.l = l;
-      btn.onclick = () => selOne(l, btn, 'tf');
+  if(q.type==='tf'){
+    const g=document.createElement('div');g.className='tf-g';
+    ['A','B'].forEach(l=>{
+      const btn=document.createElement('button');btn.className='tf-b';
+      btn.innerHTML=`<span style="font-size:20px">${q.options[l].toLowerCase()==='true'?'✓':'✗'}</span>${q.options[l]}`;
+      btn.dataset.l=l;btn.onclick=()=>selOne(l,btn,'tf');
       g.appendChild(btn);
-    });
-    c.appendChild(g);
-
-  } else if (q.type === 'short') {
-    c.innerHTML = `<input type="text" class="sh-in" id="si" placeholder="Type your answer…" autocomplete="off"><button class="sub-btn" id="sib" onclick="subSh()">Submit Answer</button>`;
-    setTimeout(() => {
-      const inp = document.getElementById('si');
-      if (inp) { inp.focus(); inp.onkeydown = e => { if (e.key==='Enter') subSh(); }; }
-    }, 50);
-
-  } else if (q.type === 'fill') {
-    const parts = q.q.split(/_{2,}/);
-    const ft = document.createElement('div'); ft.className = 'fill-txt';
-    parts.forEach((pt, i) => {
+    });c.appendChild(g);
+  }else if(q.type==='short'){
+    c.innerHTML=`<input type="text" class="sh-in" id="si" placeholder="Type your answer…" autocomplete="off"><button class="sub-btn" id="sib" onclick="subSh()">Submit Answer</button>`;
+    setTimeout(()=>{const inp=document.getElementById('si');if(inp){inp.focus();inp.onkeydown=e=>{if(e.key==='Enter')subSh();};}},50);
+  }else if(q.type==='fill'){
+    const parts=q.q.split(/_{2,}/);
+    const ft=document.createElement('div');ft.className='fill-txt';
+    parts.forEach((pt,i)=>{
       ft.appendChild(document.createTextNode(pt));
-      if (i < parts.length - 1) {
-        const inp = document.createElement('input');
-        inp.type = 'text'; inp.className = 'fill-bl'; inp.id = 'fi'; inp.placeholder = '?'; inp.autocomplete = 'off';
-        ft.appendChild(inp);
-      }
+      if(i<parts.length-1){const inp=document.createElement('input');inp.type='text';inp.className='fill-bl';inp.id='fi';inp.placeholder='?';inp.autocomplete='off';ft.appendChild(inp);}
     });
     c.appendChild(ft);
-    document.getElementById('qtxt').textContent = 'Fill in the blank:';
-    const sb = document.createElement('button'); sb.className = 'sub-btn'; sb.id = 'fib'; sb.textContent = 'Submit';
-    sb.onclick = subFl; c.appendChild(sb);
-    setTimeout(() => {
-      const inp = document.getElementById('fi');
-      if (inp) { inp.focus(); inp.onkeydown = e => { if (e.key==='Enter') subFl(); }; }
-    }, 50);
-
-  } else if (q.type === 'multi') {
-    document.getElementById('qhint').innerHTML = `<div class="qhint">Select all correct answers (${q.answer.length} correct)</div>`;
-    const ol = document.createElement('div'); ol.className = 'opts';
-    Object.keys(q.options).forEach(l => {
-      const btn = document.createElement('button'); btn.className = 'opt';
-      btn.innerHTML = `<span class="opt-k">${l}</span><span>${q.options[l]}</span>`;
-      btn.dataset.l = l;
-      btn.onclick = () => togM(l, btn);
-      ol.appendChild(btn);
-    });
-    c.appendChild(ol);
-    const sb = document.createElement('button'); sb.className = 'sub-btn'; sb.id = 'mb';
-    sb.textContent = 'Submit'; sb.onclick = subM; c.appendChild(sb);
-
-  } else { // mcq
-    const ol = document.createElement('div'); ol.className = 'opts';
-    Object.keys(q.options).forEach(l => {
-      const btn = document.createElement('button'); btn.className = 'opt';
-      btn.innerHTML = `<span class="opt-k">${l}</span><span>${q.options[l]}</span>`;
-      btn.dataset.l = l;
-      btn.onclick = () => selOne(l, btn, 'mcq');
-      ol.appendChild(btn);
-    });
-    c.appendChild(ol);
+    document.getElementById('qtxt').textContent='Fill in the blank:';
+    const sb=document.createElement('button');sb.className='sub-btn';sb.id='fib';sb.textContent='Submit';sb.onclick=subFl;c.appendChild(sb);
+    setTimeout(()=>{const inp=document.getElementById('fi');if(inp){inp.focus();inp.onkeydown=e=>{if(e.key==='Enter')subFl();};}},50);
+  }else if(q.type==='multi'){
+    document.getElementById('qhint').innerHTML=`<div class="qhint">Select all correct answers (${q.answer.length} correct)</div>`;
+    const ol=document.createElement('div');ol.className='opts';
+    Object.keys(q.options).forEach(l=>{
+      const btn=document.createElement('button');btn.className='opt';
+      btn.innerHTML=`<span class="opt-k">${l}</span><span>${q.options[l]}</span>`;
+      btn.dataset.l=l;btn.onclick=()=>togM(l,btn);ol.appendChild(btn);
+    });c.appendChild(ol);
+    const sb=document.createElement('button');sb.className='sub-btn';sb.id='mb';sb.textContent='Submit';sb.onclick=subM;c.appendChild(sb);
+  }else{
+    const ol=document.createElement('div');ol.className='opts';
+    Object.keys(q.options).forEach(l=>{
+      const btn=document.createElement('button');btn.className='opt';
+      btn.innerHTML=`<span class="opt-k">${l}</span><span>${q.options[l]}</span>`;
+      btn.dataset.l=l;btn.onclick=()=>selOne(l,btn,'mcq');ol.appendChild(btn);
+    });c.appendChild(ol);
   }
 }
 
-function selOne(l, btn, tp) {
-  if (answered) return;
-  answered = true;
-  const q = questions[curQ], ok = l === q.answer;
-  if (ok) { score++; btn.classList.add('correct'); }
-  else {
-    btn.classList.add('incorrect');
-    document.querySelectorAll(tp === 'tf' ? '.tf-b' : '.opt').forEach(b => {
-      if (b.dataset.l === q.answer) b.classList.add(tp === 'tf' ? 'correct' : 'show-correct');
-    });
-  }
-  document.querySelectorAll(tp === 'tf' ? '.tf-b' : '.opt').forEach(b => b.disabled = true);
-  rec(q, l, q.options ? q.options[l] : l, q.answer, q.options ? q.options[q.answer] : q.answer, ok);
+function selOne(l,btn,tp){
+  if(answered) return;answered=true;
+  const q=questions[curQ],ok=l===q.answer;
+  if(ok){score++;btn.classList.add('correct');}
+  else{btn.classList.add('incorrect');document.querySelectorAll(tp==='tf'?'.tf-b':'.opt').forEach(b=>{if(b.dataset.l===q.answer)b.classList.add(tp==='tf'?'correct':'show-correct');});}
+  document.querySelectorAll(tp==='tf'?'.tf-b':'.opt').forEach(b=>b.disabled=true);
+  rec(q,l,q.options?q.options[l]:l,q.answer,q.options?q.options[q.answer]:q.answer,ok);
 }
 
-function togM(l, btn) {
-  if (answered) return;
-  if (mSel.includes(l)) { mSel = mSel.filter(x => x !== l); btn.classList.remove('selected'); }
-  else { mSel.push(l); btn.classList.add('selected'); }
+function togM(l,btn){
+  if(answered) return;
+  if(mSel.includes(l)){mSel=mSel.filter(x=>x!==l);btn.classList.remove('selected');}
+  else{mSel.push(l);btn.classList.add('selected');}
 }
 
-function subM() {
-  if (answered || !mSel.length) { if (!mSel.length) toast('Select at least one option.', 'err'); return; }
-  answered = true;
-  const q = questions[curQ];
-  const cs = new Set(q.answer), ss = new Set(mSel);
-  const ok = cs.size === ss.size && [...cs].every(c => ss.has(c));
-  if (ok) score++;
-  document.querySelectorAll('.opt').forEach(b => {
-    const l = b.dataset.l;
-    if (cs.has(l)) b.classList.add('show-correct');
-    if (ss.has(l) && !cs.has(l)) b.classList.add('incorrect');
-    b.disabled = true;
-  });
-  document.getElementById('mb').disabled = true;
-  rec(q, mSel.join(','), mSel.map(l=>`${l}. ${q.options[l]}`).join(', '), q.answer.join(','), q.answer.map(l=>`${l}. ${q.options[l]}`).join(', '), ok);
+function subM(){
+  if(answered||!mSel.length){if(!mSel.length)toast('Select at least one.','err');return;}
+  answered=true;const q=questions[curQ];
+  const cs=new Set(q.answer),ss=new Set(mSel);
+  const ok=cs.size===ss.size&&[...cs].every(c=>ss.has(c));
+  if(ok) score++;
+  document.querySelectorAll('.opt').forEach(b=>{const l=b.dataset.l;if(cs.has(l))b.classList.add('show-correct');if(ss.has(l)&&!cs.has(l))b.classList.add('incorrect');b.disabled=true;});
+  document.getElementById('mb').disabled=true;
+  rec(q,mSel.join(','),mSel.map(l=>`${l}. ${q.options[l]}`).join(', '),q.answer.join(','),q.answer.map(l=>`${l}. ${q.options[l]}`).join(', '),ok);
 }
 
-function normalize(v) {
-  return v.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
+function norm(v){return v.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();}
+
+function subSh(){
+  if(answered) return;
+  const inp=document.getElementById('si'),v=inp.value.trim();
+  if(!v){toast('Type your answer.','err');return;}
+  answered=true;const q=questions[curQ];
+  const n=norm(v),ac=(q.accept||[]).map(a=>norm(a));
+  const ok=ac.some(a=>a===n||n.includes(a)||a.includes(n));
+  if(ok) score++;
+  inp.disabled=true;document.getElementById('sib').disabled=true;
+  inp.classList.add(ok?'correct':'incorrect');
+  showFB(ok,q.answer);rec(q,v,v,q.answer,q.answer,ok);
 }
 
-function subSh() {
-  if (answered) return;
-  const inp = document.getElementById('si'), v = inp.value.trim();
-  if (!v) { toast('Type your answer.', 'err'); return; }
-  answered = true;
-  const q = questions[curQ];
-  const n = normalize(v);
-  const ac = (q.accept||[]).map(a => normalize(a));
-  const ok = ac.some(a => a === n || n.includes(a) || a.includes(n));
-  if (ok) score++;
-  inp.disabled = true; document.getElementById('sib').disabled = true;
-  inp.classList.add(ok ? 'correct' : 'incorrect');
-  showFB(ok, q.answer);
-  rec(q, v, v, q.answer, q.answer, ok);
+function subFl(){
+  if(answered) return;
+  const inp=document.getElementById('fi'),v=inp.value.trim();
+  if(!v){toast('Fill in the blank.','err');return;}
+  answered=true;const q=questions[curQ];
+  const n=norm(v),ac=(q.accept||[]).map(a=>norm(a));
+  const ok=ac.some(a=>a===n||n.includes(a)||a.includes(n));
+  if(ok) score++;
+  inp.disabled=true;document.getElementById('fib').disabled=true;
+  inp.classList.add(ok?'correct':'incorrect');
+  showFB(ok,q.answer);rec(q,v,v,q.answer,q.answer,ok);
 }
 
-function subFl() {
-  if (answered) return;
-  const inp = document.getElementById('fi'), v = inp.value.trim();
-  if (!v) { toast('Fill in the blank.', 'err'); return; }
-  answered = true;
-  const q = questions[curQ];
-  const n = normalize(v);
-  const ac = (q.accept||[]).map(a => normalize(a));
-  const ok = ac.some(a => a === n || n.includes(a) || a.includes(n));
-  if (ok) score++;
-  inp.disabled = true; document.getElementById('fib').disabled = true;
-  inp.classList.add(ok ? 'correct' : 'incorrect');
-  showFB(ok, q.answer);
-  rec(q, v, v, q.answer, q.answer, ok);
+function showFB(ok,ans){
+  document.getElementById('qfb').innerHTML+=
+    ok?`<div class="fb fb-ok"><b>✓ Correct!</b></div>`
+      :`<div class="fb fb-no"><b>✗ Incorrect.</b> Answer: ${ans}</div>`;
 }
 
-function showFB(ok, ans) {
-  document.getElementById('qfb').innerHTML +=
-    ok ? `<div class="fb fb-ok"><b>✓ Correct!</b></div>`
-       : `<div class="fb fb-no"><b>✗ Incorrect.</b> Answer: ${ans}</div>`;
+function rec(q,sk,st,ck,ct,ok){
+  answers.push({q:q.q,type:q.type,st,ct,ok,expl:q.explanation||'',opts:q.options||null});
+  if(!ok&&(q.type==='mcq'||q.type==='tf')&&q.options) showFB(false,q.options[q.answer]);
+  if(q.explanation) document.getElementById('qfb').innerHTML+=`<div class="expl"><div class="expl-label">Explanation</div><div class="expl-text">${q.explanation}</div></div>`;
+  document.getElementById('qs').textContent=score;
+  const n=document.getElementById('nxt');
+  n.textContent=curQ===questions.length-1?'See Results →':'Next →';
+  n.className='nxt-btn show';
 }
 
-function rec(q, sk, st, ck, ct, ok) {
-  answers.push({ q: q.q, type: q.type, st, ct, ok, expl: q.explanation||'', opts: q.options||null });
-  if (!ok && (q.type==='mcq'||q.type==='tf') && q.options) showFB(false, q.options[q.answer]);
-  if (q.explanation) {
-    document.getElementById('qfb').innerHTML += `<div class="expl"><div class="expl-label">Explanation</div><div class="expl-text">${q.explanation}</div></div>`;
-  }
-  document.getElementById('qs').textContent = score;
-  const n = document.getElementById('nxt');
-  n.textContent = curQ === questions.length-1 ? 'See Results →' : 'Next →';
-  n.className = 'nxt-btn show';
+function nextQ(){curQ++;curQ>=questions.length?showRes():renderQ();}
+
+function showRes(){
+  document.getElementById('qz-active').style.display='none';
+  document.getElementById('qz-results').style.display='block';
+  document.getElementById('revbox').style.display='none';
+  const pct=totalQCount?Math.round((score/totalQCount)*100):0;
+  document.getElementById('rp').textContent=pct+'%';
+  document.getElementById('rt').textContent=totalQCount;
+  document.getElementById('rc').textContent=score;
+  document.getElementById('rw').textContent=totalQCount-score;
+  document.getElementById('rm').textContent=
+    pct===100?'🎉 Perfect!':pct>=90?'🔥 Excellent!':pct>=70?'👍 Great!':pct>=50?'📚 Keep going.':'💪 More practice needed.';
+  const ring=document.getElementById('sr');
+  const circ=2*Math.PI*68,off=circ-(pct/100)*circ;
+  ring.style.transition='none';ring.style.strokeDasharray=circ;ring.style.strokeDashoffset=circ;
+  setTimeout(()=>{ring.style.transition='stroke-dashoffset 1s var(--ease)';ring.style.strokeDashoffset=off;ring.style.stroke=pct>=70?'var(--grn)':pct>=40?'var(--yel)':'var(--red)';},80);
+  document.getElementById('pf').style.width='100%';
+  document.getElementById('study-btn').style.display=curStudyData?'block':'none';
+  if(pct>=70) confetti();
+  trackStat(score,totalQCount);
 }
 
-function nextQ() { curQ++; curQ >= questions.length ? showRes() : renderQ(); }
-
-function showRes() {
-  document.getElementById('qz-active').style.display = 'none';
-  document.getElementById('qz-results').style.display = 'block';
-  document.getElementById('revbox').style.display = 'none';
-
-  const pct = totalQCount ? Math.round((score / totalQCount) * 100) : 0;
-  document.getElementById('rp').textContent = pct + '%';
-  document.getElementById('rt').textContent = totalQCount;
-  document.getElementById('rc').textContent = score;
-  document.getElementById('rw').textContent = totalQCount - score;
-  document.getElementById('rm').textContent =
-    pct === 100 ? '🎉 Perfect score!' : pct >= 90 ? '🔥 Excellent!' : pct >= 70 ? '👍 Great job!' : pct >= 50 ? '📚 Keep it up.' : '💪 More practice needed.';
-
-  const ring = document.getElementById('sr');
-  const circ = 2 * Math.PI * 68, off = circ - (pct / 100) * circ;
-  ring.style.transition = 'none'; ring.style.strokeDasharray = circ; ring.style.strokeDashoffset = circ;
-  setTimeout(() => {
-    ring.style.transition = 'stroke-dashoffset 1s var(--ease)';
-    ring.style.strokeDashoffset = off;
-    ring.style.stroke = pct >= 70 ? 'var(--grn)' : pct >= 40 ? 'var(--yel)' : 'var(--red)';
-  }, 80);
-  document.getElementById('pf').style.width = '100%';
-
-  const recBtn = document.getElementById('ai-rec-btn');
-  recBtn.style.display = curStudyData ? 'block' : 'none';
-
-  if (pct >= 70) confetti();
-  trackStat(score, totalQCount);
-}
-
-function reviewAns() {
-  const c = document.getElementById('revbox');
-  if (c.style.display === 'block') { c.style.display = 'none'; return; }
-  c.style.display = 'block'; c.innerHTML = '';
-  answers.forEach((a, i) => {
-    const div = document.createElement('div'); div.className = 'rev-item';
-    div.style.animationDelay = (i * .03) + 's';
-    if (a.type === 'info') {
-      div.innerHTML = `<div class="rev-head"><span class="rev-ql">Slide</span><span class="rev-badge rv-info">📘</span></div><div class="rev-q">${a.q}</div>`;
-    } else {
-      div.innerHTML = `<div class="rev-head"><span class="rev-ql">Q${i+1}</span><span class="rev-badge ${a.ok?'rv-ok':'rv-no'}">${a.ok?'✓ Correct':'✗ Wrong'}</span></div>
+function reviewAns(){
+  const c=document.getElementById('revbox');
+  if(c.style.display==='block'){c.style.display='none';return;}
+  c.style.display='block';c.innerHTML='';
+  answers.forEach((a,i)=>{
+    const div=document.createElement('div');div.className='rev-item';div.style.animationDelay=(i*.03)+'s';
+    if(a.type==='info'){
+      div.innerHTML=`<div class="rev-head"><span class="rev-ql">Slide</span><span class="rev-badge rv-info">📘</span></div><div class="rev-q">${a.q}</div>`;
+    }else{
+      div.innerHTML=`<div class="rev-head"><span class="rev-ql">Q${i+1}</span><span class="rev-badge ${a.ok?'rv-ok':'rv-no'}">${a.ok?'✓ Correct':'✗ Wrong'}</span></div>
         <div class="rev-q">${a.q}</div>
         <div class="rev-ans">Your answer: <span style="color:${a.ok?'var(--grn)':'var(--red)'};font-weight:600">${a.st}</span></div>
-        ${!a.ok ? `<div class="rev-ans">Correct: <span style="color:var(--grn);font-weight:600">${a.ct}</span></div>` : ''}
-        ${a.expl ? `<div class="expl" style="margin-top:5px"><div class="expl-label">Explanation</div><div class="expl-text">${a.expl}</div></div>` : ''}`;
+        ${!a.ok?`<div class="rev-ans">Correct: <span style="color:var(--grn);font-weight:600">${a.ct}</span></div>`:''}
+        ${a.expl?`<div class="expl" style="margin-top:5px"><div class="expl-label">Explanation</div><div class="expl-text">${a.expl}</div></div>`:''}`;
     }
     c.appendChild(div);
   });
 }
 
-function retake() {
-  let p = JSON.parse(JSON.stringify(origQ));
-  if (sOn) p = shuf(p);
-  if (soOn) p = p.map(q => shufOpts(q));
-  questions = p; curQ = 0; score = 0; answers = []; answered = false;
-  totalQCount = questions.filter(q => q.type !== 'info').length;
-  document.getElementById('sr').style.transition = 'none';
-  document.getElementById('sr').style.strokeDashoffset = 427;
+function retake(){
+  let p=JSON.parse(JSON.stringify(origQ));
+  if(sOn) p=shuf(p);
+  if(soOn) p=p.map(q=>shufOpts(q));
+  questions=p;curQ=0;score=0;answers=[];answered=false;
+  totalQCount=questions.filter(q=>q.type!=='info').length;
+  document.getElementById('sr').style.transition='none';
+  document.getElementById('sr').style.strokeDashoffset=427;
   startQ();
 }
 
-// ============================================================
-// FLASHCARDS
-// ============================================================
-function initFC() {
-  if (!origQ.length) {
-    document.getElementById('fc-empty').style.display = 'block';
-    document.getElementById('fc-active').style.display = 'none';
-    return;
-  }
-  document.getElementById('fc-empty').style.display = 'none';
-  document.getElementById('fc-active').style.display = 'block';
-  fcC = origQ.filter(q => q.type !== 'info').map((q, i) => {
-    let a = '';
-    if (q.type === 'mcq' || q.type === 'tf') a = q.answer + '. ' + q.options[q.answer];
-    else if (q.type === 'multi') a = q.answer.map(l => l + '. ' + q.options[l]).join(', ');
-    else a = q.answer;
-    return { q: q.q, a, expl: q.explanation||'', id: i };
+// ── FLASHCARDS ────────────────────────────────────────────────
+function initFC(){
+  if(!origQ.length){document.getElementById('fc-empty').style.display='block';document.getElementById('fc-active').style.display='none';return;}
+  document.getElementById('fc-empty').style.display='none';document.getElementById('fc-active').style.display='block';
+  fcC=origQ.filter(q=>q.type!=='info').map((q,i)=>{
+    let a='';
+    if(q.type==='mcq'||q.type==='tf') a=q.answer+'. '+q.options[q.answer];
+    else if(q.type==='multi') a=q.answer.map(l=>l+'. '+q.options[l]).join(', ');
+    else a=q.answer;
+    return{q:q.q,a,expl:q.explanation||'',id:i};
   });
-  fcI = 0; fcMarks = {};
-  renderFC(); renderFCProg(); updateFCStats();
+  fcI=0;fcMarks={};renderFC();renderFCProg();updateFCStats();
 }
-
-function renderFC() {
-  if (!fcC.length) return;
-  const c = fcC[fcI];
-  document.getElementById('fc-f').textContent = c.q;
-  document.getElementById('fc-b').textContent = c.a;
-  document.getElementById('fc-e').textContent = c.expl;
+function renderFC(){
+  if(!fcC.length) return;
+  const c=fcC[fcI];
+  document.getElementById('fc-f').textContent=c.q;
+  document.getElementById('fc-b').textContent=c.a;
+  document.getElementById('fc-e').textContent=c.expl;
   document.getElementById('fc').classList.remove('flipped');
-  document.getElementById('fc-ct').textContent = `${fcI+1} / ${fcC.length}`;
+  document.getElementById('fc-ct').textContent=`${fcI+1} / ${fcC.length}`;
+}
+function flipFC(){document.getElementById('fc').classList.toggle('flipped');}
+function fcPrev(){if(fcI>0){fcI--;renderFC();renderFCProg();updateFCStats();}}
+function fcNext(){if(fcI<fcC.length-1){fcI++;renderFC();renderFCProg();updateFCStats();}}
+function fcShuffle(){fcC=shuf(fcC);fcI=0;fcMarks={};renderFC();renderFCProg();updateFCStats();}
+function fcMark(m){fcMarks[fcC[fcI].id]=m;renderFCProg();updateFCStats();if(fcI<fcC.length-1){fcI++;renderFC();}}
+function renderFCProg(){
+  const p=document.getElementById('fc-prog');p.innerHTML='';
+  fcC.forEach((c,i)=>{const d=document.createElement('div');d.className='fc-dot'+(i===fcI?' active':'')+(fcMarks[c.id]==='known'?' known':'')+(fcMarks[c.id]==='unknown'?' unknown':'');d.onclick=()=>{fcI=i;renderFC();renderFCProg();updateFCStats();};p.appendChild(d);});
+}
+function updateFCStats(){
+  const known=Object.values(fcMarks).filter(v=>v==='known').length;
+  const unknown=Object.values(fcMarks).filter(v=>v==='unknown').length;
+  document.getElementById('fc-known').textContent=known;
+  document.getElementById('fc-unknown').textContent=unknown;
+  document.getElementById('fc-left').textContent=fcC.length-known-unknown;
 }
 
-function flipFC() { document.getElementById('fc').classList.toggle('flipped'); }
-function fcPrev() { if (fcI > 0) { fcI--; renderFC(); renderFCProg(); updateFCStats(); } }
-function fcNext() { if (fcI < fcC.length-1) { fcI++; renderFC(); renderFCProg(); updateFCStats(); } }
-function fcShuffle() { fcC = shuf(fcC); fcI = 0; fcMarks = {}; renderFC(); renderFCProg(); updateFCStats(); }
-function fcMark(m) {
-  fcMarks[fcC[fcI].id] = m;
-  renderFCProg(); updateFCStats();
-  if (fcI < fcC.length-1) { fcI++; renderFC(); }
+// ── TIMER ─────────────────────────────────────────────────────
+function setTm(m){tmSec=m*60;tmTot=m*60;tmRun=false;clearInterval(tmInt);document.getElementById('tm-start').textContent='Start';updTm();}
+function updTm(){
+  const m=Math.floor(tmSec/60),s=tmSec%60;
+  document.getElementById('tm-disp').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  document.getElementById('tm-disp').style.color=tmSec<60&&tmRun?'var(--red)':'';
+  document.getElementById('pm-c').textContent=pmC;
+  document.getElementById('pm-t').textContent=Math.round(pmT/60)+'m';
+  document.getElementById('pm-s').textContent=pmS;
 }
-
-function renderFCProg() {
-  const p = document.getElementById('fc-prog'); p.innerHTML = '';
-  fcC.forEach((c, i) => {
-    const d = document.createElement('div');
-    d.className = 'fc-dot' + (i === fcI ? ' active' : '') + (fcMarks[c.id] === 'known' ? ' known' : '') + (fcMarks[c.id] === 'unknown' ? ' unknown' : '');
-    d.onclick = () => { fcI = i; renderFC(); renderFCProg(); updateFCStats(); };
-    p.appendChild(d);
-  });
-}
-
-function updateFCStats() {
-  const known = Object.values(fcMarks).filter(v => v === 'known').length;
-  const unknown = Object.values(fcMarks).filter(v => v === 'unknown').length;
-  document.getElementById('fc-known').textContent = known;
-  document.getElementById('fc-unknown').textContent = unknown;
-  document.getElementById('fc-left').textContent = fcC.length - known - unknown;
-}
-
-// ============================================================
-// TIMER
-// ============================================================
-function setTm(m) {
-  tmSec = m*60; tmTot = m*60; tmRun = false; clearInterval(tmInt);
-  document.getElementById('tm-start').textContent = 'Start';
-  updTm();
-}
-function updTm() {
-  const m = Math.floor(tmSec/60), s = tmSec%60;
-  document.getElementById('tm-disp').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  document.getElementById('tm-disp').style.color = tmSec < 60 && tmRun ? 'var(--red)' : '';
-  document.getElementById('pm-c').textContent = pmC;
-  document.getElementById('pm-t').textContent = Math.round(pmT/60) + 'm';
-  document.getElementById('pm-s').textContent = pmS;
-}
-function tmToggle() {
-  if (tmRun) {
-    tmRun = false; clearInterval(tmInt);
-    document.getElementById('tm-start').textContent = 'Resume';
-  } else {
-    tmRun = true; document.getElementById('tm-start').textContent = 'Pause';
-    tmInt = setInterval(() => {
-      if (tmSec <= 0) {
-        clearInterval(tmInt); tmRun = false;
-        document.getElementById('tm-start').textContent = 'Start';
-        pmC++; pmT += tmTot; pmS++;
-        localStorage.setItem('qf-pc', pmC); localStorage.setItem('qf-pt', pmT); localStorage.setItem('qf-ps', pmS);
-        toast('Session done! 🎉', 'ok');
-        tmSec = 5*60; tmTot = 5*60;
-        document.getElementById('tm-mode').textContent = 'Break';
-        updTm();
-      } else { tmSec--; updTm(); }
-    }, 1000);
+function tmToggle(){
+  if(tmRun){tmRun=false;clearInterval(tmInt);document.getElementById('tm-start').textContent='Resume';}
+  else{
+    tmRun=true;document.getElementById('tm-start').textContent='Pause';
+    tmInt=setInterval(()=>{
+      if(tmSec<=0){clearInterval(tmInt);tmRun=false;document.getElementById('tm-start').textContent='Start';pmC++;pmT+=tmTot;pmS++;localStorage.setItem('qf-pc',pmC);localStorage.setItem('qf-pt',pmT);localStorage.setItem('qf-ps',pmS);toast('Session done! 🎉','ok');tmSec=5*60;tmTot=5*60;document.getElementById('tm-mode').textContent='Break';updTm();}
+      else{tmSec--;updTm();}
+    },1000);
   }
 }
-function tmReset() {
-  clearInterval(tmInt); tmRun = false; tmSec = tmTot;
-  document.getElementById('tm-start').textContent = 'Start';
-  document.getElementById('tm-mode').textContent = 'Focus';
-  updTm();
-}
+function tmReset(){clearInterval(tmInt);tmRun=false;tmSec=tmTot;document.getElementById('tm-start').textContent='Start';document.getElementById('tm-mode').textContent='Focus';updTm();}
 updTm();
 
-// ============================================================
-// STATS
-// ============================================================
-function trackStat(sc, tot) {
-  const h = JSON.parse(localStorage.getItem('qf-st')||'[]');
-  h.push({ s: sc, t: tot, p: Math.round((sc/tot)*100), d: new Date().toISOString(), topic: curTopic });
-  if (h.length > 100) h.shift();
-  localStorage.setItem('qf-st', JSON.stringify(h));
+// ── STATS ─────────────────────────────────────────────────────
+function trackStat(sc,tot){
+  const h=JSON.parse(localStorage.getItem('qf-st')||'[]');
+  h.push({s:sc,t:tot,p:Math.round((sc/tot)*100),d:new Date().toISOString(),topic:curTopic});
+  if(h.length>100) h.shift();
+  localStorage.setItem('qf-st',JSON.stringify(h));
 }
-function renderStats() {
-  const h = JSON.parse(localStorage.getItem('qf-st')||'[]');
-  document.getElementById('s-tk').textContent = h.length;
-  if (h.length) {
-    document.getElementById('s-av').textContent = Math.round(h.reduce((s,x)=>s+x.p,0)/h.length) + '%';
-    document.getElementById('s-bs').textContent = Math.max(...h.map(x=>x.p)) + '%';
-    document.getElementById('s-qa').textContent = h.reduce((s,x)=>s+x.t,0);
-  } else {
-    document.getElementById('s-av').textContent = '—';
-    document.getElementById('s-bs').textContent = '—';
-    document.getElementById('s-qa').textContent = '0';
-  }
-  const chart = document.getElementById('s-chart'); chart.innerHTML = '';
-  h.slice(-20).forEach(x => {
-    const bar = document.createElement('div');
-    bar.style.cssText = `flex:1;background:${x.p>=70?'var(--grn)':x.p>=40?'var(--yel)':'var(--red)'};border-radius:2px 2px 0 0;min-width:4px;height:${Math.max(x.p,4)}%;opacity:.75;transition:height .3s`;
-    bar.title = `${x.p}%${x.topic?' — '+x.topic:''}`;
-    chart.appendChild(bar);
-  });
-  const box = document.getElementById('s-hist');
-  if (!h.length) { box.innerHTML = '<div style="text-align:center;padding:14px;color:var(--t4);font-size:12px">No history yet.</div>'; return; }
-  box.innerHTML = '';
-  h.slice().reverse().slice(0, 10).forEach(x => {
-    const el = document.createElement('div'); el.className = 'sv-item'; el.style.cursor = 'default';
-    el.innerHTML = `<div class="sv-info"><div class="sv-name">${x.s}/${x.t} — ${x.p}%${x.topic?' · '+x.topic:''}</div><div class="sv-meta">${new Date(x.d).toLocaleDateString()}</div></div><div style="font-size:13px">${x.p>=70?'🟢':x.p>=40?'🟡':'🔴'}</div>`;
-    box.appendChild(el);
-  });
+function renderStats(){
+  const h=JSON.parse(localStorage.getItem('qf-st')||'[]');
+  document.getElementById('s-tk').textContent=h.length;
+  if(h.length){
+    document.getElementById('s-av').textContent=Math.round(h.reduce((s,x)=>s+x.p,0)/h.length)+'%';
+    document.getElementById('s-bs').textContent=Math.max(...h.map(x=>x.p))+'%';
+    document.getElementById('s-qa').textContent=h.reduce((s,x)=>s+x.t,0);
+  }else{document.getElementById('s-av').textContent='—';document.getElementById('s-bs').textContent='—';document.getElementById('s-qa').textContent='0';}
+  const chart=document.getElementById('s-chart');chart.innerHTML='';
+  h.slice(-20).forEach(x=>{const bar=document.createElement('div');bar.style.cssText=`flex:1;background:${x.p>=70?'var(--grn)':x.p>=40?'var(--yel)':'var(--red)'};border-radius:2px 2px 0 0;min-width:4px;height:${Math.max(x.p,4)}%;opacity:.75`;bar.title=`${x.p}%${x.topic?' — '+x.topic:''}`;chart.appendChild(bar);});
+  const box=document.getElementById('s-hist');
+  if(!h.length){box.innerHTML='<div style="text-align:center;padding:14px;color:var(--t4);font-size:12px">No history yet.</div>';return;}
+  box.innerHTML='';
+  h.slice().reverse().slice(0,10).forEach(x=>{const el=document.createElement('div');el.className='sv-item';el.style.cursor='default';el.innerHTML=`<div class="sv-info"><div class="sv-name">${x.s}/${x.t} — ${x.p}%${x.topic?' · '+x.topic:''}</div><div class="sv-meta">${new Date(x.d).toLocaleDateString()}</div></div><div style="font-size:13px">${x.p>=70?'🟢':x.p>=40?'🟡':'🔴'}</div>`;box.appendChild(el);});
 }
-function clearStats() {
-  if (!confirm('Clear all history?')) return;
-  localStorage.removeItem('qf-st'); renderStats(); toast('Cleared.');
-}
+function clearStats(){if(!confirm('Clear all history?'))return;localStorage.removeItem('qf-st');renderStats();toast('Cleared.');}
 
-// ============================================================
-// EXPORT
-// ============================================================
-function initExport() {
-  if (!origQ.length) {
-    document.getElementById('exp-empty').style.display = 'block';
-    document.getElementById('exp-active').style.display = 'none';
-    return;
-  }
-  document.getElementById('exp-empty').style.display = 'none';
-  document.getElementById('exp-active').style.display = 'block';
-  document.getElementById('exp-info').textContent = `${origQ.length} items · ${curTopic||'Quiz'}`;
+// ── EXPORT ────────────────────────────────────────────────────
+function initExport(){
+  if(!origQ.length){document.getElementById('exp-empty').style.display='block';document.getElementById('exp-active').style.display='none';return;}
+  document.getElementById('exp-empty').style.display='none';document.getElementById('exp-active').style.display='block';
+  document.getElementById('exp-info').textContent=`${origQ.length} items · ${curTopic||'Quiz'}`;
 }
-function exportAs(fmt) {
-  const qs = origQ;
-  document.getElementById('exp-pw').style.display = 'block';
-  if (fmt === 'json') {
-    expData = JSON.stringify(qs, null, 2); expFn = 'quiz.json';
-  } else if (fmt === 'csv') {
-    const lines = ['Type,Question,Answer,Explanation'];
-    qs.forEach(q => {
-      if (q.type === 'info') lines.push(`info,"${esc(q.title)}","${esc(stripHTML(q.body))}",""`);
-      else lines.push(`${q.type},"${esc(q.q)}","${esc(Array.isArray(q.answer)?q.answer.join(','):q.answer)}","${esc(q.explanation||'')}"`);
-    });
-    expData = lines.join('\n'); expFn = 'quiz.csv';
-  } else if (fmt === 'markdown') {
-    let md = `# ${curTopic||'Quiz'}\n\n`;
-    qs.forEach(q => {
-      if (q.type === 'info') md += `## ${q.title}\n${stripHTML(q.body)}\n\n`;
-      else md += `**${q.q}**\nAnswer: ${Array.isArray(q.answer)?q.answer.join(','):q.answer}\n${q.explanation?'> '+q.explanation+'\n':''}\n`;
-    });
-    expData = md; expFn = 'quiz.md';
-  } else if (fmt === 'anki') {
-    const lines = [];
-    qs.forEach(q => {
-      if (q.type === 'info') return;
-      lines.push(esc(q.q) + '\t' + esc(Array.isArray(q.answer)?q.answer.join(','):q.answer));
-    });
-    expData = lines.join('\n'); expFn = 'quiz.tsv';
-  } else if (fmt === 'pdf') {
-    let h = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:sans-serif;max-width:680px;margin:40px auto;color:#111;line-height:1.6}h1{font-size:22px;margin-bottom:20px}.q{margin:14px 0;padding:12px;border:1px solid #ddd;border-radius:8px;page-break-inside:avoid}.info{background:#f0f4ff;padding:14px;border-radius:8px;margin:14px 0}@media print{.q,.info{break-inside:avoid}}</style></head><body><h1>${curTopic||'Quiz'}</h1>`;
-    qs.forEach((q,i) => {
-      if (q.type === 'info') h += `<div class="info"><h3>${q.title}</h3>${q.body}</div>`;
-      else h += `<div class="q"><b>Q${i+1}: ${q.q}</b><br>Answer: ${Array.isArray(q.answer)?q.answer.join(','):q.answer}${q.explanation?'<br><i>'+q.explanation+'</i>':''}</div>`;
-    });
-    h += '</body></html>';
-    window.open(URL.createObjectURL(new Blob([h], { type:'text/html' })));
-    return;
-  }
-  document.getElementById('exp-pre').textContent = expData.slice(0, 2500) + (expData.length > 2500 ? '\n...' : '');
+function exportAs(fmt){
+  const qs=origQ;
+  document.getElementById('exp-pw').style.display='block';
+  if(fmt==='json'){expData=JSON.stringify(qs,null,2);expFn='quiz.json';}
+  else if(fmt==='csv'){const lines=['Type,Question,Answer,Explanation'];qs.forEach(q=>{if(q.type==='info')lines.push(`info,"${esc(q.title)}","${esc(stripHTML(q.body))}",""`);else lines.push(`${q.type},"${esc(q.q)}","${esc(Array.isArray(q.answer)?q.answer.join(','):q.answer)}","${esc(q.explanation||'')}"`)});expData=lines.join('\n');expFn='quiz.csv';}
+  else if(fmt==='markdown'){let md=`# ${curTopic||'Quiz'}\n\n`;qs.forEach(q=>{if(q.type==='info')md+=`## ${q.title}\n${stripHTML(q.body)}\n\n`;else md+=`**${q.q}**\nAnswer: ${Array.isArray(q.answer)?q.answer.join(','):q.answer}\n${q.explanation?'> '+q.explanation+'\n':''}\n`});expData=md;expFn='quiz.md';}
+  else if(fmt==='anki'){const lines=[];qs.forEach(q=>{if(q.type==='info')return;lines.push(esc(q.q)+'\t'+esc(Array.isArray(q.answer)?q.answer.join(','):q.answer))});expData=lines.join('\n');expFn='quiz.tsv';}
+  else if(fmt==='pdf'){let h=`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:sans-serif;max-width:680px;margin:40px auto;color:#111;line-height:1.6}h1{font-size:22px;margin-bottom:20px}.q{margin:14px 0;padding:12px;border:1px solid #ddd;border-radius:8px}.info{background:#f0f4ff;padding:14px;border-radius:8px;margin:14px 0}</style></head><body><h1>${curTopic||'Quiz'}</h1>`;qs.forEach((q,i)=>{if(q.type==='info')h+=`<div class="info"><h3>${q.title}</h3>${q.body}</div>`;else h+=`<div class="q"><b>Q${i+1}: ${q.q}</b><br>Answer: ${Array.isArray(q.answer)?q.answer.join(','):q.answer}${q.explanation?'<br><i>'+q.explanation+'</i>':''}</div>`});h+='</body></html>';window.open(URL.createObjectURL(new Blob([h],{type:'text/html'})));return;}
+  document.getElementById('exp-pre').textContent=expData.slice(0,2500)+(expData.length>2500?'\n...':'');
 }
-function cpExp() { navigator.clipboard.writeText(expData).then(() => toast('Copied.')); }
-function dlExp() {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([expData]));
-  a.download = expFn; a.click();
-}
+function cpExp(){navigator.clipboard.writeText(expData).then(()=>toast('Copied.'));}
+function dlExp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([expData]));a.download=expFn;a.click();}
 
-// ============================================================
-// SAMPLE
-// ============================================================
-function loadSample() {
-  const s = [
-    {"type":"info","title":"Cell Biology Basics","body":"<p>Cells are the <b>basic units of life</b>. All living organisms are composed of cells.</p><ul><li><b>Prokaryotic</b> — no nucleus (e.g. bacteria)</li><li><b>Eukaryotic</b> — has a membrane-bound nucleus</li></ul><blockquote>Every living thing is made of one or more cells — this is the Cell Theory.</blockquote>"},
+// ── SAMPLE ────────────────────────────────────────────────────
+function loadSample(){
+  const s=[
+    {"type":"info","title":"Cell Biology Basics","body":"<p>Cells are the <b>basic units of life</b>. All living organisms are composed of cells.</p><ul><li><b>Prokaryotic</b> — no nucleus (e.g. bacteria)</li><li><b>Eukaryotic</b> — has a membrane-bound nucleus</li></ul><blockquote>Every living thing is made of cells — this is the Cell Theory.</blockquote>"},
     {"type":"mcq","q":"What is the basic unit of life?","options":{"A":"Atom","B":"Cell","C":"Molecule","D":"Organ"},"answer":"B","explanation":"Cells are the fundamental structural and functional units of all living organisms."},
-    {"type":"tf","q":"Prokaryotes have a membrane-bound nucleus.","options":{"A":"True","B":"False"},"answer":"B","explanation":"Prokaryotes lack a membrane-bound nucleus — their DNA floats freely in the cytoplasm."},
-    {"type":"info","title":"Key Cell Organelles","body":"<p>Organelles are specialized structures that carry out specific functions:</p><ul><li><b>Mitochondria</b> — produces ATP (energy)</li><li><b>Nucleus</b> — contains DNA, controls the cell</li><li><b>Ribosome</b> — builds proteins</li><li><b>Golgi apparatus</b> — packages and ships proteins</li></ul><blockquote>Mitochondria = powerhouse of the cell!</blockquote>"},
-    {"type":"fill","q":"The ___ is known as the powerhouse of the cell.","answer":"mitochondria","accept":["mitochondria"],"explanation":"Mitochondria produce ATP through cellular respiration, providing energy for the cell."},
-    {"type":"multi","q":"Select ALL organelles found in eukaryotic cells:","options":{"A":"Mitochondria","B":"Hemoglobin","C":"Nucleus","D":"Glucose","E":"Ribosome"},"answer":["A","C","E"],"explanation":"Hemoglobin is a protein in blood. Glucose is a sugar molecule. Neither is an organelle."},
-    {"type":"short","q":"What molecule stores and carries genetic information?","answer":"DNA","accept":["dna","deoxyribonucleic acid"],"explanation":"DNA (deoxyribonucleic acid) carries the genetic instructions for all living organisms."},
-    {"type":"mcq","q":"Which organelle is responsible for protein synthesis?","options":{"A":"Mitochondria","B":"Ribosome","C":"Nucleus","D":"Golgi apparatus"},"answer":"B","explanation":"Ribosomes read mRNA and assemble amino acids into proteins — they are the cell's protein factories."}
+    {"type":"tf","q":"Prokaryotes have a membrane-bound nucleus.","options":{"A":"True","B":"False"},"answer":"B","explanation":"Prokaryotes lack a membrane-bound nucleus — their DNA floats in the cytoplasm."},
+    {"type":"info","title":"Key Organelles","body":"<p>Organelles are specialised structures within cells:</p><ul><li><b>Mitochondria</b> — produces ATP (energy)</li><li><b>Nucleus</b> — contains DNA, controls the cell</li><li><b>Ribosome</b> — builds proteins</li></ul><blockquote>Mitochondria = powerhouse of the cell!</blockquote>"},
+    {"type":"fill","q":"The ___ is known as the powerhouse of the cell.","answer":"mitochondria","accept":["mitochondria"],"explanation":"Mitochondria produce ATP through cellular respiration."},
+    {"type":"multi","q":"Select ALL organelles found in eukaryotic cells:","options":{"A":"Mitochondria","B":"Hemoglobin","C":"Nucleus","D":"Glucose","E":"Ribosome"},"answer":["A","C","E"],"explanation":"Hemoglobin is a protein, glucose is a sugar — neither are organelles."},
+    {"type":"short","q":"What molecule carries genetic information?","answer":"DNA","accept":["dna","deoxyribonucleic acid"],"explanation":"DNA carries the genetic blueprint for all living organisms."},
+    {"type":"mcq","q":"Which organelle builds proteins?","options":{"A":"Mitochondria","B":"Ribosome","C":"Nucleus","D":"Golgi apparatus"},"answer":"B","explanation":"Ribosomes read mRNA and assemble amino acids into proteins."}
   ];
-  origQ = JSON.parse(JSON.stringify(s));
-  questions = JSON.parse(JSON.stringify(s));
-  curQ = 0; score = 0; answers = []; answered = false;
-  totalQCount = questions.filter(q => q.type !== 'info').length;
-  curTopic = 'Cell Biology';
-  document.getElementById('ji').value = JSON.stringify(s, null, 2);
-  document.getElementById('qname').value = 'Cell Biology Sample';
-  go('quiz'); startQ();
-  toast('Sample loaded!', 'ok');
+  origQ=JSON.parse(JSON.stringify(s));
+  questions=JSON.parse(JSON.stringify(s));
+  curQ=0;score=0;answers=[];answered=false;
+  totalQCount=questions.filter(q=>q.type!=='info').length;
+  curTopic='Cell Biology';
+  go('quiz');startQ();toast('Sample loaded!','ok');
 }
 
-// ============================================================
-// KEYBOARD SHORTCUTS
-// ============================================================
-document.addEventListener('keydown', e => {
-  const tag = e.target.tagName;
-  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
-
-  if (e.key === 'b') { e.preventDefault(); toggleSB(); }
-  if (e.key === ' ' && curPage === 'flashcards') { e.preventDefault(); flipFC(); }
-  if (e.key === 'ArrowLeft' && curPage === 'flashcards') fcPrev();
-  if (e.key === 'ArrowRight' && curPage === 'flashcards') fcNext();
-  if (e.key === 'Enter' && curPage === 'quiz' && document.getElementById('nxt').classList.contains('show')) {
-    e.preventDefault(); nextQ();
-  }
-  if ('1234'.includes(e.key) && curPage === 'quiz' && !answered) {
-    const q = questions[curQ];
-    if (q && (q.type === 'mcq' || q.type === 'multi')) {
-      const keys = Object.keys(q.options), idx = parseInt(e.key) - 1;
-      if (idx < keys.length) {
-        const btns = document.querySelectorAll('.opt');
-        if (btns[idx]) {
-          if (q.type === 'mcq') btns[idx].click();
-          else togM(keys[idx], btns[idx]);
-        }
-      }
+// ── KEYBOARD ──────────────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  const tag=e.target.tagName;
+  if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT') return;
+  if(e.key==='b'){e.preventDefault();toggleSB();}
+  if(e.key===' '&&curPage==='flashcards'){e.preventDefault();flipFC();}
+  if(e.key==='ArrowLeft'&&curPage==='flashcards') fcPrev();
+  if(e.key==='ArrowRight'&&curPage==='flashcards') fcNext();
+  if(e.key==='Enter'&&curPage==='quiz'&&document.getElementById('nxt').classList.contains('show')){e.preventDefault();nextQ();}
+  if('1234'.includes(e.key)&&curPage==='quiz'&&!answered){
+    const q=questions[curQ];
+    if(q&&(q.type==='mcq'||q.type==='multi')){
+      const keys=Object.keys(q.options),idx=parseInt(e.key)-1;
+      if(idx<keys.length){const btns=document.querySelectorAll('.opt');if(btns[idx]){if(q.type==='mcq')btns[idx].click();else togM(keys[idx],btns[idx]);}}
     }
-    if (q && q.type === 'tf') {
-      const btns = document.querySelectorAll('.tf-b');
-      if (e.key === '1' && btns[0]) btns[0].click();
-      if (e.key === '2' && btns[1]) btns[1].click();
-    }
+    if(q&&q.type==='tf'){const btns=document.querySelectorAll('.tf-b');if(e.key==='1'&&btns[0])btns[0].click();if(e.key==='2'&&btns[1])btns[1].click();}
   }
 });
 
-// ============================================================
-// INIT
-// ============================================================
+// ── INIT ──────────────────────────────────────────────────────
 updateApiUI();
 updateSVCount();
-setTimeout(() => {
-  if (geminiKey) document.getElementById('api-key-input').value = geminiKey;
-  const w = document.getElementById('gen-warn');
-  if (w) w.style.display = geminiKey ? 'none' : 'flex';
-}, 100);
+setTimeout(()=>{
+  if(geminiKey) document.getElementById('api-key-input').value=geminiKey;
+  const pref=localStorage.getItem('qf-model')||'auto';
+  const sel=document.getElementById('api-model');
+  if(sel) sel.value=pref;
+  const w=document.getElementById('gen-warn');
+  if(w) w.style.display=geminiKey?'none':'flex';
+},100);
 </script>
 </body>
 </html>
